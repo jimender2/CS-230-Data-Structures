@@ -4,12 +4,16 @@ public class ComplexNumber {
 	private int imaginaryPart;
 	
 	public ComplexNumber() {
-
+		
 		this.realPart = 0;
 		this.imaginaryPart = 0;
 	}
 	
-	
+	public ComplexNumber( int realPart, int imaginaryPart) {
+		//this is an interesting thing, use this.realpart  helps clean up 
+		this.realPart = realPart;
+		this.imaginaryPart = imaginaryPart;
+	}
 	
 	public void SetComplexNumber( int realPart, int imaginaryPart) {
 
