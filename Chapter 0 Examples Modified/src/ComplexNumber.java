@@ -15,6 +15,12 @@ public class ComplexNumber {
 		this.imaginaryPart = imaginaryPart;
 	}
 	
+	public ComplexNumber( ComplexNumber other) {
+		
+		this.realPart = other.realPart;
+		this.imaginaryPart = other.imaginaryPart;
+	}
+	
 	public void SetComplexNumber( int realPart, int imaginaryPart) {
 
 		this.realPart = realPart;
