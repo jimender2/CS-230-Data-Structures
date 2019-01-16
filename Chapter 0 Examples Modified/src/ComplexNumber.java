@@ -63,12 +63,24 @@ public class ComplexNumber {
 	
 	public ComplexNumber add( ComplexNumber other) {
 
+		int newReal = this.realPart;
+		int newImaginary = this.imaginaryPart;
 		
+		newReal += other.realPart;
+		newImaginary += other.imaginaryPart;
+		
+		return new ComplexNumber( newReal, newImaginary);
 	}
 	
 	public ComplexNumber subtract( ComplexNumber other) {
 
+		int newReal = this.realPart;
+		int newImaginary = this.imaginaryPart;
 		
+		newReal -= other.realPart;
+		newImaginary -= other.imaginaryPart;
+		
+		return new ComplexNumber( newReal, newImaginary);
 	}
 	
 	public ComplexNumber multiply( ComplexNumber other) {
