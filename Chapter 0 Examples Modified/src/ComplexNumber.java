@@ -137,7 +137,7 @@ public class ComplexNumber {
 			return str;
 		}
 		
-		str += 
+		str += r + " + " + m + "i";
 		return str;
 	}
 }
