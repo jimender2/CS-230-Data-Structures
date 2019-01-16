@@ -114,10 +114,30 @@ public class ComplexNumber {
 
 		String str = "";
 		int r = this.realPart;
-		int i = this.imaginaryPart;
+		int m = this.imaginaryPart;
 		
+		if( r == 0 && m == 0) {
+			str += "0";
+			return str;
+		}
 		
+		if( r == 0) {
+			str += m + "i";
+			return str;
+		}
 		
+		if( m == 0) {
+			str += r;
+			return str;
+		}
+		
+		if( m < 0) {
+			m = -m;
+			str += r + " - " + m + "i";
+			return str;
+		}
+		
+		str += 
 		return str;
 	}
 }
