@@ -49,6 +49,10 @@ public class RationalNumber {
 			tempDen = denominator * rat.denominator;
 
 		}
+
+		int gcd = gcd(tempNum, tempDen);
+		tempNum = tempNum / gcd;
+		tempDen = tempDen / gcd;
 		
 		RationalNumber newFraction = new RationalNumber(tempNum, tempDen);
 
@@ -66,7 +70,7 @@ public class RationalNumber {
 
 			tempNum = numerator - rat.numerator;
 			tempDen = denominator;
-			
+
 		} else {
 
 			tempNum = (numerator * rat.denominator) - 
@@ -74,6 +78,10 @@ public class RationalNumber {
 			tempDen = denominator * rat.denominator;
 
 		}
+		
+		int gcd = gcd(tempNum, tempDen);
+		tempNum = tempNum / gcd;
+		tempDen = tempDen / gcd;
 		
 		RationalNumber newFraction = new RationalNumber(tempNum, tempDen);
 
@@ -91,7 +99,7 @@ public class RationalNumber {
 
 			tempNum = numerator * rat.numerator;
 			tempDen = denominator;
-			
+
 		} else {
 
 			tempNum = (numerator * rat.denominator) - 
@@ -99,6 +107,10 @@ public class RationalNumber {
 			tempDen = denominator * rat.denominator;
 
 		}
+		
+		int gcd = gcd(tempNum, tempDen);
+		tempNum = tempNum / gcd;
+		tempDen = tempDen / gcd;
 		
 		RationalNumber newFraction = new RationalNumber(tempNum, tempDen);
 
