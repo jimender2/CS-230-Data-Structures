@@ -11,7 +11,19 @@ public class Employee {
 		ssn = "";
 	}
 	
+	public Employee(String fName, String lName, String sssn) {
+		
+		firstName = fName;
+		lastName = lName;
+		ssn = sssn;
+	}
 	
+	public Employee(Employee other) {
+		this.firstName = other.firstName;
+		this.lastName = other.lastName;
+		this.ssn = other.ssn;
+		
+	}
 	
 	public void setFirstName( String name) {
 	
@@ -94,6 +106,22 @@ public class Employee {
 	
 	public int compareTo( Employee e) {
 	
+		if( this.lastName.compareTo(e.lastName) < 0) {
+			return -1;
+		} else if( this.lastName.compareTo( e.lastName) == 0) {
+			if( this.firstName.compareTo( e.firstName) < 0) {
+				return -1;
+			}
+			if( this.firstName.compareTo( e.firstName) == 0) {
+				return 0;
+			} else {
+				return 1;
+			}
+			
+		} else {
+			return 1;
+		}
+		
 		
 	}
 }
