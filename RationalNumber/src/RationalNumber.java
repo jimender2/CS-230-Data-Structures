@@ -102,8 +102,7 @@ public class RationalNumber {
 
 		} else {
 
-			tempNum = (numerator * rat.denominator) - 
-					(rat.numerator * denominator);
+			tempNum = numerator * rat.numerator;
 			tempDen = denominator * rat.denominator;
 
 		}
