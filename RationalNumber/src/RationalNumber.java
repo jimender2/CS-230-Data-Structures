@@ -1,34 +1,56 @@
+/**
+ * 
+ * @author Jonathan Meredith
+ * 
+ * This is a class that creates, stores, and does operations on rational
+ * numbers.
+ * Part 1 of 2 of assignment 1 for CS 230 Data Structures.
+ *
+ */
+
 
 public class RationalNumber {
 
+	//Declare variables
 	int numerator,
 		denominator;
 
 
+	/**
+	 * Default Constructor
+	 */
 	public RationalNumber() {
-
 		numerator = 0;
 		denominator = 1;
-
 	}
 
 
-	public RationalNumber(int a, int b) {
+	/**
+	 * Constructor
+	 * @param a Numerator
+	 * @param b Denominator
+	 */
 
+	public RationalNumber(int a, int b) {
 		numerator = a;
 		denominator = b;
 		simplify(a,b);
-		
 	}
 
 
-	public RationalNumber add(RationalNumber other) {
+	/**
+	 * The add method allows us to add a rational number by another
+	 * 		rational number
+	 * @param other The other rational number you want to add
+	 * @return The new rational number
+	 */
 
+	public RationalNumber add(RationalNumber other) {
 
 		int num = (this.numerator * other.denominator) + 
 					(other.numerator * this.denominator);
-		
-	    int den = this.denominator * other.denominator;
+
+		int den = this.denominator * other.denominator;
 
 		RationalNumber newFraction = new RationalNumber(num, den);
 
@@ -36,6 +58,13 @@ public class RationalNumber {
 
 	}
 
+
+	/**
+	 * The subtract method allows us to subtract a rational number by 
+	 * 		another rational number
+	 * @param other The other rational number you want to subtract
+	 * @return The new rational number
+	 */
 
 	public RationalNumber subtract(RationalNumber other) {
 
@@ -44,13 +73,19 @@ public class RationalNumber {
 
 		int den = this.denominator * other.denominator;
 
-				
 		RationalNumber newFraction = new RationalNumber(num, den);
 
 		return newFraction;
 
 	}
 
+
+	/**
+	 * The multiply method allows us to multiply a rational number by 
+	 * 		another rational number
+	 * @param other The other rational number you want to multiply by
+	 * @return The new rational number
+	 */
 
 	public RationalNumber multiply(RationalNumber other) {
 
@@ -63,19 +98,25 @@ public class RationalNumber {
 		return newFraction;
 	}
 
-	
+
+	/**
+	 * The divide method allows us to divide a rational number by another
+	 * 		rational number
+	 * @param other The other rational number you want to divide by
+	 * @return The new rational number
+	 */
+
 	public RationalNumber divide(RationalNumber other) {
 
 		int num = this.numerator*other.denominator;
 		int den = this.denominator*other.numerator;
-		
-		
+
 		RationalNumber newFraction = new RationalNumber(num, den);
 
 		return newFraction;
-		
+
 	}
-	
+
 
 	/**
      * toString method
@@ -91,6 +132,11 @@ public class RationalNumber {
 		return str;
 	}
 	
+
+	/**
+	 * The toDecimal method gets the decimal value of the rational number
+	 * @return the decimal of the rational number
+	 */
 
 	public double toDecimal() {
 		double dub = (numerator + 0.0) / (denominator);
@@ -116,31 +162,47 @@ public class RationalNumber {
 		} else { 
 			status = false; // No, the objects are not equal.
 		}
-		
+
 		// Return the value in status.
 		return status;
 	}
 
 
-	// Euclidean Algorithm
+	/**
+	 * The gcd method calculates the greatest common divisor of the two
+	 * numbers input
+	 * @param a The first of the two numbers you want the gcd of 
+	 * 			(numerator)
+	 * @param b The second of the two numbers you want the gcd of
+	 * 			(denominator)
+	 * @return The GCD of the two numbers
+	 */
+
 	public int gcd(int a, int b) {
-		
+
+		// Euclidean Algorithm
 		if (b == 0) {
 			return a;
 		} else {
-			return gcd(b,a%b);
+			return gcd(b, a%b);
 		}
-		
+
 	}
-	
-	
+
+
+	/**
+	 * The simplify method reduces the fraction to the smallest number
+	 * @param a The numerator of the rational number
+	 * @param b The denominator of the rational number
+	 */
+
 	public void simplify(int a, int b) {
-		
+
 		int gcd = gcd(a, b);
-	
+
 		a = a / gcd;
 		b = b / gcd;
-		
+
 		if (b < 0) {
 			denominator = -b;
 			if (a < 0) {
@@ -148,11 +210,10 @@ public class RationalNumber {
 			} else {
 				numerator = -a;
 			}
-		
+
 		} else {
 			denominator = b;
 			numerator = a;
 		}
-		
 	}
 }
