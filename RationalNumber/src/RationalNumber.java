@@ -15,19 +15,6 @@ public class RationalNumber {
 
 	public RationalNumber(int a, int b) {
 
-//		if (den < 0) {
-//			denominator = -den;
-//			if (num < 0) {
-//				numerator = num;
-//			} else {
-//				numerator = -num;
-//			}
-//		
-//		} else if (den > 0) {
-//			denominator = den;
-//			numerator = num;
-//		}
-
 		numerator = a;
 		denominator = b;
 		simplify(a,b);
@@ -37,116 +24,56 @@ public class RationalNumber {
 
 	public RationalNumber add(RationalNumber other) {
 
-		int tempNum = 0;
-		int tempDen = 0;
-		
-//		if (denominator == rat.denominator) {
-//
-//			tempNum = numerator + rat.numerator;
-//			tempDen = denominator;
-//			
-//		} else {
 
-		tempNum = (this.numerator * other.denominator) + 
+		int num = (this.numerator * other.denominator) + 
 					(other.numerator * this.denominator);
-		tempDen = denominator * other.denominator;
-
-//		}
-
-//		int gcd = gcd(tempNum, tempDen);
-//		tempNum = tempNum / gcd;
-//		tempDen = tempDen / gcd;
-
 		
-		
-		//RationalNumber newFraction = simplify(tempNum, tempDen);
+	    int den = this.denominator * other.denominator;
 
-		RationalNumber newFraction = new RationalNumber(tempNum, tempDen);
+		RationalNumber newFraction = new RationalNumber(num, den);
 
 		return newFraction;
 
 	}
 
 
-	public void subtract(RationalNumber rat) {
+	public RationalNumber subtract(RationalNumber other) {
 
-		int tempNum = 0;
-		int tempDen = 0;
-		
-//		if (denominator == rat.denominator) {
-//
-//			tempNum = numerator - rat.numerator;
-//			tempDen = denominator;
-//
-//		} else {
+		int num = (this.numerator * other.denominator) - 
+					(other.numerator * this.denominator);
 
-			tempNum = (numerator * rat.denominator) - 
-					(rat.numerator * denominator);
-			tempDen = denominator * rat.denominator;
+		int den = this.denominator * other.denominator;
 
-//		}
-		
-//		int gcd = gcd(tempNum, tempDen);
-//		tempNum = tempNum / gcd;
-//		tempDen = tempDen / gcd;
-		
-		//RationalNumber newFraction = simplify(tempNum, tempDen);
+				
+		RationalNumber newFraction = new RationalNumber(num, den);
 
-//		RationalNumber newFraction = new RationalNumber(tempNum, tempDen);
-
-		//return newFraction;
+		return newFraction;
 
 	}
 
 
-	public void multiply(RationalNumber rat) {
+	public RationalNumber multiply(RationalNumber other) {
 
-		int tempNum = 0;
-		int tempDen = 0;
+		int num = this.numerator*other.numerator; 
+
+		int den = this.denominator*other.denominator; 
 		
-		if (denominator == rat.denominator) {
+		RationalNumber newFraction = new RationalNumber(num, den);
 
-			tempNum = numerator * rat.numerator;
-			tempDen = denominator;
-
-		} else {
-
-			tempNum = numerator * rat.numerator;
-			tempDen = denominator * rat.denominator;
-
-		}
-		
-//		int gcd = gcd(tempNum, tempDen);
-//		tempNum = tempNum / gcd;
-//		tempDen = tempDen / gcd;
-		
-//		RationalNumber newFraction = new RationalNumber(tempNum, tempDen);
-//
-//		return newFraction;
-
-//		RationalNumber newFraction = simplify(tempNum, tempDen);
-//		return newFraction;
+		return newFraction;
 	}
 
 	
-	public void divide(RationalNumber other) {
+	public RationalNumber divide(RationalNumber other) {
 
-		int tempNum = 0;
-		int tempDen = 0;
+		int num = this.numerator*other.denominator;
+		int den = this.denominator*other.numerator;
 		
-		tempNum = this.numerator * other.denominator;
-		tempDen = other.numerator * this.denominator;
 		
-		int gcd = gcd(tempNum, tempDen);
-		tempNum = tempNum / gcd;
-		tempDen = tempDen / gcd;
+		RationalNumber newFraction = new RationalNumber(num, den);
+
+		return newFraction;
 		
-//		RationalNumber newFraction = new RationalNumber(tempNum, tempDen);
-//
-//		return newFraction;
-		
-		//RationalNumber newFraction = simplify(tempNum, tempDen);
-		//return newFraction;
 	}
 	
 
@@ -162,6 +89,12 @@ public class RationalNumber {
 
 		// Return the string.
 		return str;
+	}
+	
+
+	public double toDecimal() {
+		double dub = (numerator + 0.0) / (denominator);
+		return dub;
 	}
 
 	
@@ -203,34 +136,23 @@ public class RationalNumber {
 	
 	public void simplify(int a, int b) {
 		
-//		int tempNum = 0;
-//		int tempDen = 0;
-		
 		int gcd = gcd(a, b);
 	
 		a = a / gcd;
 		b = b / gcd;
 		
-		System.out.println("gcd " + gcd);
-
 		if (b < 0) {
 			denominator = -b;
 			if (a < 0) {
-				numerator = -a;
+				numerator = a;
 			} else {
 				numerator = -a;
 			}
 		
-		
 		} else {
-			System.out.println("abcdefghijkl");
 			denominator = b;
 			numerator = a;
 		}
 		
-		//RationalNumber newFraction = new RationalNumber(numerator, denominator);
-
-		//return newFraction;
-
 	}
 }
