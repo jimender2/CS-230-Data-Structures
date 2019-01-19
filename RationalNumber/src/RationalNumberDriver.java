@@ -6,6 +6,12 @@ public class RationalNumberDriver {
 
 	public static void main(String[] args) {
 
+		int numerator;
+		int denominator;
+		
+		RationalNumber num1;
+		RationalNumber num2;
+		
 		File inFile = new File("10_Random");
 		try {
 			Scanner file = new Scanner(inFile);
@@ -16,11 +22,10 @@ public class RationalNumberDriver {
 
 		Boolean test;
 		
-		RationalNumber rat = new RationalNumber(3,2);
+		RationalNumber rat = new RationalNumber(-4,-16);
+		RationalNumber r = new RationalNumber(1,-8);
 		
-		RationalNumber r = new RationalNumber(2,3);
-		
-		RationalNumber e = rat.multiply(r);
+		RationalNumber e = rat.add(r);
 		System.out.println(e.toString());
 	}
 
