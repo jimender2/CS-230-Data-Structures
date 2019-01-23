@@ -81,5 +81,9 @@ public class HourlyEmployee extends Employee {
 
 		String str = super.toString();
 
+		str = str.replace(str.charAt( str.length() - 1), ',');
+		str = str + " " +this.hours + ", " + this.rate + ", $" + this.computeSalary() + "]";
+
+		return str;
 	}
 }
