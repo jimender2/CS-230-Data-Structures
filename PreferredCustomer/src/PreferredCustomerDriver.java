@@ -11,12 +11,13 @@ public class PreferredCustomerDriver {
 		Scanner file = new Scanner(fileName);
 
 		String input,
-				split[];
+				split[] = new String[6];
 
 		while (file.hasNextLine()) {
 			input = file.nextLine();
 
 			split = input.split(";");
+			
 			
 		}
 	}

@@ -1,5 +1,5 @@
 
-public class Customer {
+public class Customer extends Person {
 
 	int CustomerNumber;
 
