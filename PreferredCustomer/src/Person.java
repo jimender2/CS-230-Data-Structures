@@ -29,13 +29,16 @@ public class Person {
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 
-		String[] parse = new String[5];
+		String[] parse = new String[3];
 		parse = address.split(",");
 
-		this.streetAddress = streetAddress;
-		this.city = city;
-		this.state = state;
-		this.zipCode = "";
+		String[] par = new String[2];
+		par = parse[2].split(" ");
+
+		this.streetAddress = parse[0];
+		this.city = parse[1];
+		this.state = par[0];
+		this.zipCode = par[1];
 
 	}
 
