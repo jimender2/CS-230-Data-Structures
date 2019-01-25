@@ -14,6 +14,18 @@ public class PreferredCustomer extends Customer {
 
 		this.purchaseAmount = purchaseAmount;
 
+		if ( purchaseAmount <= 2000) {
+			discount = 10;
+		} else if ( purchaseAmount >= 1500) {
+			discount = 7;
+		} else if ( purchaseAmount >= 1000) {
+			discount = 6;
+		} else if ( purchaseAmount >= 500) {
+			discount = 5;
+		} else {
+			discount = 0;
+		}
+
 	}
 	
 	PreferredCustomer(String name, String address, String phoneNumber,
@@ -24,9 +36,18 @@ public class PreferredCustomer extends Customer {
 
 		this.purchaseAmount = purchaseAmount;
 
-		if ( 500 <= this.purchaseAmount || this.purchaseAmount < 1000) {
+		if ( purchaseAmount <= 2000) {
+			discount = 10;
+		} else if ( purchaseAmount >= 1500) {
+			discount = 7;
+		} else if ( purchaseAmount >= 1000) {
+			discount = 6;
+		} else if ( purchaseAmount >= 500) {
 			discount = 5;
+		} else {
+			discount = 0;
 		}
+
 	}
 
 }
