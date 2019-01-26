@@ -42,4 +42,23 @@ public class Person {
 
 	}
 
+	public String name() {
+
+		return name;
+	}
+
+	public String address() {
+
+		String str = streetAddress + "\n" + city + ", " + state + " "
+				+ zipCode;
+		return str;
+	}
+
+	public String toString() {
+
+		String str = super.toString();
+		str = str + "\n" + streetAddress + "\n" + city + ", " + state + " "
+				+ zipCode;
+		return str;
+	}
 }

@@ -25,4 +25,15 @@ public class Customer extends Person {
 		this.mailingList = mailingList;
 
 	}
+
+	public String customerNumber() {
+
+		return customerNumber + "";
+	}
+	
+	public Boolean mailingList() {
+
+		return mailingList;
+	}
+
 }
