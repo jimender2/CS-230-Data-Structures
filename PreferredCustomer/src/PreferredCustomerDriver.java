@@ -49,10 +49,8 @@ public class PreferredCustomerDriver {
 
 		file.close();
 
-		System.out.println("Customer Name \t Customer’s Discount Level \t"
-				+ " Customer’s Number\n============= \t "
-				+ "========================= \t =================");
-
+		System.out.printf("%-20s %-30s %-20s\n", "Customer Name", "Customer’s Discount Level", "Customer’s Number");
+		System.out.printf("%-20s %-30s %-20s\n", "=============", "=========================", "=================");
 		int i = 0;
 
 		while (i < myList.size()) {
