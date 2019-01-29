@@ -1,6 +1,12 @@
+/**
+ * 
+ * @author Jonathan Meredith
+ *
+ */
 
 public class Person {
 
+	//Declare Variables
 	String name,
 			streetAddress,
 			city,
@@ -8,10 +14,16 @@ public class Person {
 			zipCode,
 			phoneNumber;
 
-	public Person() {
-		
-	}
 
+	/**
+	 * 
+	 * @param name
+	 * @param streetAddress
+	 * @param city
+	 * @param state
+	 * @param zipcode
+	 * @param phoneNumber
+	 */
 	public Person(String name, String streetAddress, String city,
 					String state, String zipcode, String phoneNumber) {
 
@@ -24,6 +36,13 @@ public class Person {
 
 	}
 
+
+	/**
+	 * 
+	 * @param name
+	 * @param address
+	 * @param phoneNumber
+	 */
 	public Person(String name, String address, String phoneNumber) {
 
 		this.name = name;
@@ -42,17 +61,31 @@ public class Person {
 
 	}
 
+
+	/**
+	 * 
+	 * @return
+	 */
 	public String name() {
 
 		return name;
 	}
 
+
+	/**
+	 * 
+	 * @return
+	 */
 	public String address() {
 
 		return streetAddress + "\n" + city + ", " + state + " "
 				+ zipCode;
 	}
 
+
+	/**
+	 * 
+	 */
 	@Override
 	public String toString() {
 
@@ -62,54 +95,135 @@ public class Person {
 		return str;
 	}
 
+
+	/**
+	 * 
+	 * @return
+	 */
 	public String getName() {
 
 		return name;
 	}
 
+
+	/**
+	 * 
+	 * @param name
+	 */
 	public void setName(String name) {
 
 		this.name = name;
 	}
 
+
+	/**
+	 * 
+	 * @return
+	 */
 	public String getStreetAddress() {
 
 		return streetAddress;
 	}
 
+
+	/**
+	 * 
+	 * @param streetAddress
+	 */
 	public void setStreetAddress(String streetAddress) {
 
 		this.streetAddress = streetAddress;
 	}
 
+
+	/**
+	 * 
+	 * @return
+	 */
 	public String getCity() {
 
 		return city;
 	}
 
+
+	/**
+	 * 
+	 * @param city
+	 */
 	public void setCity(String city) {
 
 		this.city = city;
 	}
 
+
+	/**
+	 * 
+	 * @return
+	 */
 	public String getState() {
 
 		return state;
 	}
 
+
+	/**
+	 * 
+	 * @param state
+	 */
 	public void setState(String state) {
 
 		this.state = state;
 	}
 
+
+	/**
+	 * 
+	 * @return
+	 */
 	public String getZipCode() {
 
 		return zipCode;
 	}
 
 
+	/**
+	 * 
+	 * @param zipCode
+	 */
+	public void setZipCode(String zipCode) {
+
+		this.zipCode = zipCode;
+	}
 
 
+	/**
+	 * 
+	 * @return
+	 */
+	public String getPhoneNumber() {
+
+		return phoneNumber;
+	}
+
+
+	/**
+	 * 
+	 * @param phoneNumber
+	 */
+	public void setPhoneNumber(String phoneNumber) {
+
+		this.phoneNumber = phoneNumber;
+	}
+
+
+
+
+
+
+
+	/**
+	 * 
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -125,6 +239,10 @@ public class Person {
 		return result;
 	}
 
+
+	/**
+	 * 
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -165,20 +283,5 @@ public class Person {
 		} else if (!zipCode.equals(other.zipCode))
 			return false;
 		return true;
-	}
-
-	public void setZipCode(String zipCode) {
-
-		this.zipCode = zipCode;
-	}
-
-	public String getPhoneNumber() {
-
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-
-		this.phoneNumber = phoneNumber;
 	}
 }

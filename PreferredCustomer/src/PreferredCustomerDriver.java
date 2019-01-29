@@ -45,14 +45,22 @@ public class PreferredCustomerDriver {
 
 		file.close();
 
+		System.out.println("Customer Name \t Customer’s Discount Level \t"
+				+ " Customer’s Number\n============= \t "
+				+ "========================= \t =================");
+
 		int i = 0;
 
 		while (i < myList.size()) {
 
-			System.out.println(myList.get(i).toString());
+			System.out.println(myList.get(i).name() + "\t\t\t" + 
+								myList.get(i).getDiscount() + "\t\t\t" +
+								myList.get(i).customerNumber());
 			i++;
 		}
 
+		System.out.println("Program is done.");
+		System.out.println("Bye!");
 	}
 
 }

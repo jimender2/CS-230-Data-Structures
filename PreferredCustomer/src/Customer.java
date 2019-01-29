@@ -1,10 +1,28 @@
+/**
+ * 
+ * @author Jonathan Meredith
+ *
+ */
 
 public class Customer extends Person {
 
+	//Declare Variables
 	String customerNumber;
 
 	Boolean mailingList;
 
+
+	/**
+	 * 
+	 * @param name
+	 * @param streetAddress
+	 * @param city
+	 * @param state
+	 * @param zipcode
+	 * @param phoneNumber
+	 * @param customerNumber
+	 * @param mailingList
+	 */
 	Customer(String name, String streetAddress, String city,
 			String state, String zipcode, String phoneNumber,
 			String customerNumber, Boolean mailingList) {
@@ -16,6 +34,15 @@ public class Customer extends Person {
 
 	}
 
+
+	/**
+	 * 
+	 * @param name
+	 * @param address
+	 * @param phoneNumber
+	 * @param customerNumber
+	 * @param mailingList
+	 */
 	Customer(String name, String address, String phoneNumber,
 			String customerNumber, Boolean mailingList) {
 		
@@ -26,16 +53,30 @@ public class Customer extends Person {
 
 	}
 
+
+	/**
+	 * 
+	 * @return
+	 */
 	public String customerNumber() {
 
 		return customerNumber + "";
 	}
-	
+
+
+	/**
+	 * 
+	 * @return
+	 */
 	public Boolean mailingList() {
 
 		return mailingList;
 	}
-	
+
+
+	/**
+	 * 
+	 */
 	@Override
 	public String toString() {
 
@@ -44,21 +85,41 @@ public class Customer extends Person {
 		return str;
 	}
 
+
+	/**
+	 * 
+	 * @return
+	 */
 	public String getCustomerNumber() {
 
 		return customerNumber;
 	}
 
+
+	/**
+	 * 
+	 * @param customerNumber
+	 */
 	public void setCustomerNumber(String customerNumber) {
 
 		this.customerNumber = customerNumber;
 	}
 
+
+	/**
+	 * 
+	 * @return
+	 */
 	public Boolean getMailingList() {
 
 		return mailingList;
 	}
 
+
+	/**
+	 * 
+	 * @param mailingList
+	 */
 	public void setMailingList(Boolean mailingList) {
 
 		this.mailingList = mailingList;
@@ -68,7 +129,9 @@ public class Customer extends Person {
 
 
 
-
+	/**
+	 * 
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -80,6 +143,10 @@ public class Customer extends Person {
 		return result;
 	}
 
+
+	/**
+	 * 
+	 */
 	@Override
 	public boolean equals(Object obj) {
 
@@ -110,11 +177,11 @@ public class Customer extends Person {
 			if (other.mailingList != null) {
 				return false;
 			}
+
 		} else if (!mailingList.equals(other.mailingList)) {
 			return false;
-		} else {
-			return true;
 		}
+
 		return true;
 
 	}
