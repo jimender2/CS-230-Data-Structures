@@ -13,36 +13,45 @@ public class PreferredCustomerDriver {
 
 		String input,
 				split[] = new String[6];
-		
-		Boolean bool = false;
-		
-		double purchaseAmount = 0.0;
-		
+
+		Boolean bool;
+
+		double purchaseAmount;
+
 		ArrayList<PreferredCustomer> myList = new ArrayList<>();
 
 		while (file.hasNextLine()) {
+
 			input = file.nextLine();
 
-			split = input.split(";");
+			split = input.split("; ");
 
 			split[4] = split[4].toLowerCase();
-			
-			if (split[4] == "true") {
+
+			if (split[4].equals("true")) {
 				bool = true;
+
 			} else {
 				bool = false;
+
 			}
 
 			purchaseAmount = Double.parseDouble(split[5]);
 
 			myList.add(new PreferredCustomer(split[0], split[1], split[2],
 					split[3], bool, purchaseAmount));
+
 		}
-		
-		
-		System.out.println(myList.get(0).toString());
-		System.out.println(myList.get(1).toString());
-		System.out.println(myList.get(2).toString());
+
+		file.close();
+
+		int i = 0;
+
+		while (i < myList.size()) {
+
+			System.out.println(myList.get(i).toString());
+			i++;
+		}
 
 	}
 
