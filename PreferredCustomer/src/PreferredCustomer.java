@@ -1,9 +1,28 @@
+/**
+ * 
+ * @author Jonathan Meredith
+ *
+ */
 
 public class PreferredCustomer extends Customer {
 
+	//Declare Variables
 	double purchaseAmount;
 	int discount;
 
+
+	/**
+	 * 
+	 * @param name
+	 * @param streetAddress
+	 * @param city
+	 * @param state
+	 * @param zipcode
+	 * @param phoneNumber
+	 * @param customerNumber
+	 * @param mailingList
+	 * @param purchaseAmount
+	 */
 	PreferredCustomer(String name, String streetAddress, String city,
 			String state, String zipcode, String phoneNumber,
 			String customerNumber, Boolean mailingList,
@@ -18,6 +37,16 @@ public class PreferredCustomer extends Customer {
 
 	}
 
+
+	/**
+	 * 
+	 * @param name
+	 * @param address
+	 * @param phoneNumber
+	 * @param customerNumber
+	 * @param mailingList
+	 * @param purchaseAmount
+	 */
 	PreferredCustomer(String name, String address, String phoneNumber,
 			String customerNumber, Boolean mailingList,
 			double purchaseAmount) {
@@ -30,6 +59,10 @@ public class PreferredCustomer extends Customer {
 
 	}
 
+
+	/**
+	 * 
+	 */
 	public void discount() {
 
 		if (purchaseAmount <= 2000) {
@@ -51,21 +84,41 @@ public class PreferredCustomer extends Customer {
 
 	}
 
+
+	/**
+	 * 
+	 * @return
+	 */
 	public double getPurchaseAmount() {
 
 		return purchaseAmount;
 	}
 
+
+	/**
+	 * 
+	 * @param purchaseAmount
+	 */
 	public void setPurchaseAmount(double purchaseAmount) {
 
 		this.purchaseAmount = purchaseAmount;
 	}
 
+
+	/**
+	 * 
+	 * @return
+	 */
 	public int getDiscount() {
 
 		return discount;
 	}
 
+
+	/**
+	 * 
+	 * @param discount
+	 */
 	public void setDiscount(int discount) {
 
 		this.discount = discount;
@@ -75,6 +128,9 @@ public class PreferredCustomer extends Customer {
 
 
 
+	/**
+	 * 
+	 */
 	@Override
 	public int hashCode() {
 
@@ -88,6 +144,10 @@ public class PreferredCustomer extends Customer {
 
 	}
 
+
+	/**
+	 * 
+	 */
 	@Override
 	public boolean equals(Object obj) {
 
