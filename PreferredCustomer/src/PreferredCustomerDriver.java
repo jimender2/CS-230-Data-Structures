@@ -49,17 +49,49 @@ public class PreferredCustomerDriver {
 
 		file.close();
 
-		System.out.printf("%-20s %-30s %-20s\n", "Customer Name", "Customer’s Discount Level", "Customer’s Number");
-		System.out.printf("%-20s %-30s %-20s\n", "=============", "=========================", "=================");
+		System.out.printf("%-20s %-30s %-20s%n", "Customer Name",
+				"Customer’s Discount Level", "Customer’s Number");
+		System.out.printf("%-20s %-30s %-20s%n", "=============",
+				"=========================", "=================");
 		int i = 0;
 
 		while (i < myList.size()) {
 
-			System.out.println(myList.get(i).name() + "\t\t\t" + 
-								myList.get(i).getDiscount() + "\t\t\t" +
-								myList.get(i).customerNumber());
+			System.out.printf("%-20s %-30s %-20s%n", myList.get(i).name(),
+					myList.get(i).getDiscount() + "%",
+					myList.get(i).customerNumber());
 			i++;
 		}
+
+		System.out.println("");
+
+
+
+		String mailingList = "",
+				phoneList = "";
+
+		i = 0;
+		while (i< myList.size()) {
+
+			if (myList.get(i).mailingList()) {
+				mailingList = mailingList + "\t" + myList.get(i).name() +
+						"\n\t" + myList.get(i).getStreetAddress() + "\n\t"
+						+ myList.get(i).getCity() + ", " + 
+						myList.get(i).getState() + " " +
+						myList.get(i).getZipCode() + "\n\n";
+				
+				phoneList = phoneList + "\t" + myList.get(i).name() + "\t"
+							+ myList.get(i).getPhoneNumber() + "\n";
+			}
+
+			i++;
+		}
+
+		System.out.println("Mailing List:");
+		System.out.print(mailingList);
+		
+		System.out.println("Phone List:");
+		System.out.println(phoneList);
 
 		System.out.println("Program is done.");
 		System.out.println("Bye!");

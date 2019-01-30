@@ -15,26 +15,26 @@ public class Person {
 			phoneNumber;
 
 
-	/**
-	 * 
-	 * @param name
-	 * @param streetAddress
-	 * @param city
-	 * @param state
-	 * @param zipcode
-	 * @param phoneNumber
-	 */
-	public Person(String name, String streetAddress, String city,
-					String state, String zipcode, String phoneNumber) {
-
-		this.name = name;
-		this.streetAddress = streetAddress;
-		this.city = city;
-		this.state = state;
-		this.zipCode = zipcode;
-		this.phoneNumber = phoneNumber;
-
-	}
+//	/**
+//	 * 
+//	 * @param name
+//	 * @param streetAddress
+//	 * @param city
+//	 * @param state
+//	 * @param zipcode
+//	 * @param phoneNumber
+//	 */
+//	public Person(String name, String streetAddress, String city,
+//					String state, String zipcode, String phoneNumber) {
+//
+//		this.name = name;
+//		this.streetAddress = streetAddress;
+//		this.city = city;
+//		this.state = state;
+//		this.zipCode = zipcode;
+//		this.phoneNumber = phoneNumber;
+//
+//	}
 
 
 	/**
@@ -49,7 +49,7 @@ public class Person {
 		this.phoneNumber = phoneNumber;
 
 		String[] parse = new String[3];
-		parse = address.split(",");
+		parse = address.split(", ");
 
 		String[] par = new String[2];
 		par = parse[2].split(" ");

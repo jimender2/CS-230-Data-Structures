@@ -11,31 +11,31 @@ public class PreferredCustomer extends Customer {
 	int discount;
 
 
-	/**
-	 * 
-	 * @param name
-	 * @param streetAddress
-	 * @param city
-	 * @param state
-	 * @param zipcode
-	 * @param phoneNumber
-	 * @param customerNumber
-	 * @param mailingList
-	 * @param purchaseAmount
-	 */
-	PreferredCustomer(String name, String streetAddress, String city,
-			String state, String zipcode, String phoneNumber,
-			String customerNumber, Boolean mailingList,
-			double purchaseAmount) {
-
-		super(name, streetAddress, city, state, zipcode, phoneNumber,
-				customerNumber, mailingList);
-
-		this.purchaseAmount = purchaseAmount;
-
-		discount();
-
-	}
+//	/**
+//	 * 
+//	 * @param name
+//	 * @param streetAddress
+//	 * @param city
+//	 * @param state
+//	 * @param zipcode
+//	 * @param phoneNumber
+//	 * @param customerNumber
+//	 * @param mailingList
+//	 * @param purchaseAmount
+//	 */
+//	PreferredCustomer(String name, String streetAddress, String city,
+//			String state, String zipcode, String phoneNumber,
+//			String customerNumber, Boolean mailingList,
+//			double purchaseAmount) {
+//
+//		super(name, streetAddress, city, state, zipcode, phoneNumber,
+//				customerNumber, mailingList);
+//
+//		this.purchaseAmount = purchaseAmount;
+//
+//		discount();
+//
+//	}
 
 
 	/**
