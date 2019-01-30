@@ -65,7 +65,7 @@ public class PreferredCustomer extends Customer {
 	 */
 	public void discount() {
 
-		if (purchaseAmount <= 2000) {
+		if (purchaseAmount >= 2000) {
 			discount = 10;
 
 		} else if (purchaseAmount >= 1500) {
