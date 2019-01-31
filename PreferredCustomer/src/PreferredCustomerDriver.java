@@ -57,7 +57,8 @@ public class PreferredCustomerDriver {
 
 		while (i < myList.size()) {
 
-			System.out.printf("%-20s %-30s %-20s%n", myList.get(i).name(),
+			System.out.printf("%-20s %-30s %-20s%n",
+					myList.get(i).getName(),
 					myList.get(i).getDiscount() + "%",
 					myList.get(i).customerNumber());
 			i++;
@@ -74,14 +75,14 @@ public class PreferredCustomerDriver {
 		while (i< myList.size()) {
 
 			if (myList.get(i).mailingList()) {
-				mailingList = mailingList + "\t" + myList.get(i).name() +
-						"\n\t" + myList.get(i).getStreetAddress() + "\n\t"
-						+ myList.get(i).getCity() + ", " + 
-						myList.get(i).getState() + " " +
-						myList.get(i).getZipCode() + "\n\n";
+				mailingList = mailingList + "\t" + myList.get(i).getName()
+						+ "\n\t" + myList.get(i).getStreetAddress()
+						+ "\n\t" + myList.get(i).getCity() + ", " 
+						+ myList.get(i).getState() + " "
+						+ myList.get(i).getZipCode() + "\n\n";
 				
-				phoneList = phoneList + "\t" + myList.get(i).name() + "\t"
-							+ myList.get(i).getPhoneNumber() + "\n";
+				phoneList = phoneList + "\t" + myList.get(i).getName()
+						+ "\t" + myList.get(i).getPhoneNumber() + "\n";
 			}
 
 			i++;

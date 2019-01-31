@@ -38,10 +38,12 @@ public class Person {
 
 
 	/**
-	 * 
-	 * @param name
-	 * @param address
-	 * @param phoneNumber
+	 * Constructor for the person class
+	 * @param name First and Last Name of the person
+	 * @param address Address of the person in the format
+	 * 			860 Stone Creek Blvd, Ashland, OH 44805
+	 * @param phoneNumber Phone number of the person in the format
+	 * 			419-555-1111
 	 */
 	public Person(String name, String address, String phoneNumber) {
 
@@ -63,20 +65,11 @@ public class Person {
 
 
 	/**
-	 * 
-	 * @return
+	 * getAddress
+	 * @return The full address of the person in the format 
+	 * 			860 Stone Creek Blvd, Ashland, OH 44805
 	 */
-	public String name() {
-
-		return name;
-	}
-
-
-	/**
-	 * 
-	 * @return
-	 */
-	public String address() {
+	public String getAddress() {
 
 		return streetAddress + "\n" + city + ", " + state + " "
 				+ zipCode;
