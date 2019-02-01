@@ -7,32 +7,9 @@
 public class Customer extends Person {
 
 	//Declare Variables
-	String customerNumber;
+	private String customerNumber;
 
-	Boolean mailingList;
-
-
-//	/**
-//	 * 
-//	 * @param name
-//	 * @param streetAddress
-//	 * @param city
-//	 * @param state
-//	 * @param zipcode
-//	 * @param phoneNumber
-//	 * @param customerNumber
-//	 * @param mailingList
-//	 */
-//	Customer(String name, String streetAddress, String city,
-//			String state, String zipcode, String phoneNumber,
-//			String customerNumber, Boolean mailingList) {
-//
-//		super(name, streetAddress, city, state, zipcode, phoneNumber);
-//
-//		this.customerNumber = customerNumber;
-//		this.mailingList = mailingList;
-//
-//	}
+	private Boolean mailingList;
 
 
 	/**

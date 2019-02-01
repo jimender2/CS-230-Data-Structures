@@ -7,34 +7,12 @@
 public class Person {
 
 	//Declare Variables
-	String name,
+	private String name,
 			streetAddress,
 			city,
 			state,
 			zipCode,
 			phoneNumber;
-
-
-//	/**
-//	 * 
-//	 * @param name
-//	 * @param streetAddress
-//	 * @param city
-//	 * @param state
-//	 * @param zipcode
-//	 * @param phoneNumber
-//	 */
-//	public Person(String name, String streetAddress, String city,
-//					String state, String zipcode, String phoneNumber) {
-//
-//		this.name = name;
-//		this.streetAddress = streetAddress;
-//		this.city = city;
-//		this.state = state;
-//		this.zipCode = zipcode;
-//		this.phoneNumber = phoneNumber;
-//
-//	}
 
 
 	/**
@@ -77,7 +55,8 @@ public class Person {
 
 
 	/**
-	 * 
+	 * toString
+	 * @return a generic response
 	 */
 	@Override
 	public String toString() {
@@ -90,8 +69,8 @@ public class Person {
 
 
 	/**
-	 * 
-	 * @return
+	 * getName
+	 * @return the name of the person
 	 */
 	public String getName() {
 
@@ -100,8 +79,8 @@ public class Person {
 
 
 	/**
-	 * 
-	 * @param name
+	 * setName
+	 * @param name the name of the person
 	 */
 	public void setName(String name) {
 
