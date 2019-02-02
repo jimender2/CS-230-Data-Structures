@@ -34,7 +34,32 @@ public class PreferredCustomer extends Customer {
 
 
 	/**
-	 * 
+	 * Blank Constructor
+	 */
+	PreferredCustomer() {
+		super();
+
+		purchaseAmount = 0;
+		discount();
+	}
+
+
+	/**
+	 * Copy Constructor
+	 */
+	PreferredCustomer(PreferredCustomer other) {
+		super(other.getName(), other.getFullAddress(),
+				other.getPhoneNumber(),	other.getCustomerNumber(),
+				other.getMailingList());
+
+		this.purchaseAmount = other.getPurchaseAmount();
+
+		discount();
+	}
+
+
+	/**
+	 * Calculates the discount amount from purchaseAmount
 	 */
 	public void discount() {
 
@@ -59,8 +84,8 @@ public class PreferredCustomer extends Customer {
 
 
 	/**
-	 * 
-	 * @return
+	 * getPurchaseAmount
+	 * @return the amount the customer has purchased
 	 */
 	public double getPurchaseAmount() {
 
@@ -69,18 +94,19 @@ public class PreferredCustomer extends Customer {
 
 
 	/**
-	 * 
-	 * @param purchaseAmount
+	 * setPurchaseAmount
+	 * @param purchaseAmount Sets the amount the customer has purchased
 	 */
 	public void setPurchaseAmount(double purchaseAmount) {
 
 		this.purchaseAmount = purchaseAmount;
+		discount();
 	}
 
 
 	/**
-	 * 
-	 * @return
+	 * getDiscount
+	 * @return the discount based on how much the user has purchased
 	 */
 	public int getDiscount() {
 
@@ -89,37 +115,20 @@ public class PreferredCustomer extends Customer {
 
 
 	/**
-	 * 
-	 * @param discount
+	 * Copy method
+	 * @return the address to the copied object
 	 */
-	public void setDiscount(int discount) {
+	public PreferredCustomer copy() {
 
-		this.discount = discount;
-	}
-
-
-
-
-
-	/**
-	 * 
-	 */
-	@Override
-	public int hashCode() {
-
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + discount;
-		long temp;
-		temp = Double.doubleToLongBits(purchaseAmount);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		return result;
+		return new PreferredCustomer(getName(), getFullAddress(),
+				getPhoneNumber(), getCustomerNumber(), getMailingList(),
+				getPurchaseAmount());
 
 	}
 
 
 	/**
-	 * 
+	 * Sees if this instance is equal to another instance of this class
 	 */
 	@Override
 	public boolean equals(Object obj) {

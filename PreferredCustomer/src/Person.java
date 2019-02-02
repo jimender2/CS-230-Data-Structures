@@ -1,5 +1,6 @@
 /**
- * 
+ * This class is the person class for assignment 2 of CS 230 Data
+ * Structures
  * @author Jonathan Meredith
  *
  */
@@ -42,6 +43,31 @@ public class Person {
 	}
 
 
+	Person(Person other) {
+
+		name = other.getName();
+		phoneNumber = other.getPhoneNumber();
+
+		streetAddress = other.getAddress();
+		city = other.getCity();
+		state = other.getState();
+		zipCode = other.getZipCode();
+	}
+
+
+	/**
+	 * Blank Constructor
+	 */
+	public Person() {
+
+		name = "";
+		phoneNumber = "";
+		streetAddress = "";
+		city = "";
+		state = "";
+		zipCode = "";
+	}
+
 	/**
 	 * getAddress
 	 * @return The full address of the person in the format 
@@ -51,6 +77,12 @@ public class Person {
 
 		return streetAddress + "\n" + city + ", " + state + " "
 				+ zipCode;
+	}
+
+
+	public String getFullAddress() {
+
+		return streetAddress + ", " + city + ", " + state + " " + zipCode;
 	}
 
 
@@ -89,8 +121,8 @@ public class Person {
 
 
 	/**
-	 * 
-	 * @return
+	 * getStreetAddress
+	 * @return Gets the house number and the street of the person
 	 */
 	public String getStreetAddress() {
 
@@ -99,8 +131,8 @@ public class Person {
 
 
 	/**
-	 * 
-	 * @param streetAddress
+	 * setStreetAddress
+	 * @return Sets the house number and the street of the person
 	 */
 	public void setStreetAddress(String streetAddress) {
 
@@ -109,8 +141,8 @@ public class Person {
 
 
 	/**
-	 * 
-	 * @return
+	 * getCity
+	 * @return Gets the city of the person
 	 */
 	public String getCity() {
 
@@ -119,8 +151,8 @@ public class Person {
 
 
 	/**
-	 * 
-	 * @param city
+	 * setCity
+	 * @param city Sets the city of the person
 	 */
 	public void setCity(String city) {
 
@@ -129,8 +161,8 @@ public class Person {
 
 
 	/**
-	 * 
-	 * @return
+	 * getState
+	 * @return gets the state of the person
 	 */
 	public String getState() {
 
@@ -139,8 +171,8 @@ public class Person {
 
 
 	/**
-	 * 
-	 * @param state
+	 * setState
+	 * @param state sets the city of the person
 	 */
 	public void setState(String state) {
 
@@ -149,8 +181,8 @@ public class Person {
 
 
 	/**
-	 * 
-	 * @return
+	 * getZipCode
+	 * @return gets the zipcode of the person
 	 */
 	public String getZipCode() {
 
@@ -159,8 +191,8 @@ public class Person {
 
 
 	/**
-	 * 
-	 * @param zipCode
+	 * setZipCode
+	 * @param zipCode sets the zipcode of the person
 	 */
 	public void setZipCode(String zipCode) {
 
@@ -169,8 +201,8 @@ public class Person {
 
 
 	/**
-	 * 
-	 * @return
+	 * getPhoneNumber
+	 * @return the phonenumber of the person
 	 */
 	public String getPhoneNumber() {
 
@@ -179,8 +211,8 @@ public class Person {
 
 
 	/**
-	 * 
-	 * @param phoneNumber
+	 * setPhoneNumber
+	 * @param phoneNumber Sets the phoneNumber of the person
 	 */
 	public void setPhoneNumber(String phoneNumber) {
 
@@ -188,72 +220,74 @@ public class Person {
 	}
 
 
-
-
-
-
-
 	/**
-	 * 
+	 * Copy Method
+	 * @return the address to the copied object
 	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((city == null) ? 0 : city.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result
-				+ ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
-		result = prime * result + ((state == null) ? 0 : state.hashCode());
-		result = prime * result
-				+ ((streetAddress == null) ? 0 : streetAddress.hashCode());
-		result = prime * result + ((zipCode == null) ? 0 : zipCode.hashCode());
-		return result;
+	public Person copy() {
+
+		return new Person(getName(), getFullAddress(), getPhoneNumber());
+
 	}
 
 
 	/**
-	 * 
+	 * Sees if this instance is equal to another instance of this class
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		Person other = (Person) obj;
 		if (city == null) {
-			if (other.city != null)
+			if (other.city != null) {
 				return false;
-		} else if (!city.equals(other.city))
+			}
+		} else if (!city.equals(other.city)) {
 			return false;
+		}
 		if (name == null) {
-			if (other.name != null)
+			if (other.name != null) {
 				return false;
-		} else if (!name.equals(other.name))
+			}
+		} else if (!name.equals(other.name)) {
 			return false;
+		}
 		if (phoneNumber == null) {
-			if (other.phoneNumber != null)
+			if (other.phoneNumber != null) {
 				return false;
-		} else if (!phoneNumber.equals(other.phoneNumber))
+			}
+		} else if (!phoneNumber.equals(other.phoneNumber)) {
 			return false;
+		}
 		if (state == null) {
-			if (other.state != null)
+			if (other.state != null) {
 				return false;
-		} else if (!state.equals(other.state))
+			}
+		} else if (!state.equals(other.state)) {
 			return false;
+		}
 		if (streetAddress == null) {
-			if (other.streetAddress != null)
+			if (other.streetAddress != null) {
 				return false;
-		} else if (!streetAddress.equals(other.streetAddress))
+			}
+		} else if (!streetAddress.equals(other.streetAddress)) {
 			return false;
+		}
 		if (zipCode == null) {
-			if (other.zipCode != null)
+			if (other.zipCode != null) {
 				return false;
-		} else if (!zipCode.equals(other.zipCode))
+			}
+		} else if (!zipCode.equals(other.zipCode)) {
 			return false;
+		}
 		return true;
 	}
 }

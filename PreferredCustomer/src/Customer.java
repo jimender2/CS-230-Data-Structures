@@ -22,7 +22,7 @@ public class Customer extends Person {
 	 */
 	Customer(String name, String address, String phoneNumber,
 			String customerNumber, Boolean mailingList) {
-		
+
 		super(name, address, phoneNumber);
 
 		this.customerNumber = customerNumber;
@@ -32,27 +32,34 @@ public class Customer extends Person {
 
 
 	/**
-	 * 
-	 * @return
+	 * Copy Constructor
 	 */
-	public String customerNumber() {
+	Customer(Customer other) {
 
-		return customerNumber + "";
+		super(other.getName(), other.getFullAddress(),
+				other.getPhoneNumber());
+
+		customerNumber = other.getCustomerNumber();
+		mailingList = other.getMailingList();
+
 	}
 
 
 	/**
-	 * 
-	 * @return
+	 * blank constructor
 	 */
-	public Boolean mailingList() {
+	Customer() {
 
-		return mailingList;
+		super();
+
+		customerNumber = "";
+		mailingList = false;
+
 	}
 
 
 	/**
-	 * 
+	 * Generic toString method
 	 */
 	@Override
 	public String toString() {
@@ -64,8 +71,8 @@ public class Customer extends Person {
 
 
 	/**
-	 * 
-	 * @return
+	 * getCustomerNumber
+	 * @return the number assigned to the customer
 	 */
 	public String getCustomerNumber() {
 
@@ -74,8 +81,8 @@ public class Customer extends Person {
 
 
 	/**
-	 * 
-	 * @param customerNumber
+	 * setCustomerNumber
+	 * @param customerNumber sets the number assigned to the customer
 	 */
 	public void setCustomerNumber(String customerNumber) {
 
@@ -84,8 +91,8 @@ public class Customer extends Person {
 
 
 	/**
-	 * 
-	 * @return
+	 * getMailingList
+	 * @return if the customer is in the mailing list or not
 	 */
 	public Boolean getMailingList() {
 
@@ -94,35 +101,30 @@ public class Customer extends Person {
 
 
 	/**
-	 * 
-	 * @param mailingList
+	 * setMailingList
+	 * @param mailingList sets if the customer is in the mailing list or
+	 * not
 	 */
 	public void setMailingList(Boolean mailingList) {
 
 		this.mailingList = mailingList;
 	}
 
-	
-
-
 
 	/**
-	 * 
+	 * Copy Method
+	 * @return the address to the copied object
 	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result
-				+ ((customerNumber == null) ? 0 : customerNumber.hashCode());
-		result = prime * result
-				+ ((mailingList == null) ? 0 : mailingList.hashCode());
-		return result;
+	public Customer copy() {
+
+		return new Customer(getName(), getFullAddress(), getPhoneNumber(),
+				getCustomerNumber(), getMailingList());
+
 	}
 
 
 	/**
-	 * 
+	 * Sees if this instance is equal to another instance of this class
 	 */
 	@Override
 	public boolean equals(Object obj) {

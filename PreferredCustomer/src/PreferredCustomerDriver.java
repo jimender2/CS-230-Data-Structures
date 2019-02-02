@@ -60,7 +60,7 @@ public class PreferredCustomerDriver {
 			System.out.printf("%-20s %-30s %-20s%n",
 					myList.get(i).getName(),
 					myList.get(i).getDiscount() + "%",
-					myList.get(i).customerNumber());
+					myList.get(i).getCustomerNumber());
 			i++;
 		}
 
@@ -74,7 +74,7 @@ public class PreferredCustomerDriver {
 		i = 0;
 		while (i< myList.size()) {
 
-			if (myList.get(i).mailingList()) {
+			if (myList.get(i).getMailingList()) {
 				mailingList = mailingList + "\t" + myList.get(i).getName()
 						+ "\n\t" + myList.get(i).getStreetAddress()
 						+ "\n\t" + myList.get(i).getCity() + ", " 
