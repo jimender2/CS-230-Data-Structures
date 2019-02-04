@@ -15,13 +15,35 @@ public class ABStack<T> {
 
 		if( capacity <= 0) {
 			System.out.println( "Invalid capacity provided. Default capacity will be used.");
-			top = -1;
+
 			stack = (T[]) new Object[CAPACITY];
 		}
-		else {
-			top = -1;
+		else
 			stack = (T[]) new Object[capacity];
+
+		top = -1;		
+	}
+	
+	public void push ( T item) {
+
+		if( isFull()) {
+			int newSize = top + 1 + CAPACITY;
+			T[] newStack = (T[]) new Object[newSize];
+
+			for( int index = 0; index < top; index++)
+				newStack[index] = stack[index];
+			stack = newStack;
 		}
+		top++;
+		stack[top] = item;
+	}
+
+	public boolean isFull() {
+
+		if(stack.length -1 == top)
+			return true;
+		return false;
 		
+		// return( stack.length-1 == top);
 	}
 }
