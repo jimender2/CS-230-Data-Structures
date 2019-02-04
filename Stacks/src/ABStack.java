@@ -10,4 +10,18 @@ public class ABStack<T> {
 		top = -1;
 		stack = (T[]) new Object[CAPACITY];
 	}
+
+	public ABStack( int capacity) {
+
+		if( capacity <= 0) {
+			System.out.println( "Invalid capacity provided. Default capacity will be used.");
+			top = -1;
+			stack = (T[]) new Object[CAPACITY];
+		}
+		else {
+			top = -1;
+			stack = (T[]) new Object[capacity];
+		}
+		
+	}
 }
