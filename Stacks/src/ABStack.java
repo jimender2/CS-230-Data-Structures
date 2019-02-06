@@ -46,4 +46,48 @@ public class ABStack<T> {
 		
 		// return( stack.length-1 == top);
 	}
+
+	public boolean isEmpty() {
+
+		return(top == -1);
+	}
+
+	public T pop( ) {
+		
+		T topItem = null;
+
+		if( !isEmpty()) {
+
+			topItem = stack[top];
+			top--;
+		}
+		else
+			System.out.println( "Stack is Empty.");
+		
+		return topItem;
+	}
+
+	public T peek( ) {
+
+		T topItem = null;
+
+		if( !isEmpty())
+			topItem = stack[top];
+		else
+			System.out.println( "Stack is Empty.");
+		
+		return topItem;
+	}
+
+	public String toString() {
+
+		String str = "[";
+
+		for( int index = 0 ; index <= top ; index ++)
+			str = str + stack[index] + ", ";
+		str += "]";
+
+		return str;
+	}
 }
+// will need to add a copy method and constructor
