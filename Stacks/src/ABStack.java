@@ -15,15 +15,14 @@ public class ABStack<T> {
 
 		if( capacity <= 0) {
 			System.out.println( "Invalid capacity provided. Default capacity will be used.");
-
 			stack = (T[]) new Object[CAPACITY];
 		}
 		else
 			stack = (T[]) new Object[capacity];
 
-		top = -1;		
+		top = -1;
 	}
-	
+
 	public void push ( T item) {
 
 		if( isFull()) {
@@ -43,7 +42,7 @@ public class ABStack<T> {
 		if(stack.length -1 == top)
 			return true;
 		return false;
-		
+
 		// return( stack.length-1 == top);
 	}
 
@@ -53,7 +52,7 @@ public class ABStack<T> {
 	}
 
 	public T pop( ) {
-		
+
 		T topItem = null;
 
 		if( !isEmpty()) {
@@ -63,7 +62,7 @@ public class ABStack<T> {
 		}
 		else
 			System.out.println( "Stack is Empty.");
-		
+
 		return topItem;
 	}
 
@@ -75,7 +74,7 @@ public class ABStack<T> {
 			topItem = stack[top];
 		else
 			System.out.println( "Stack is Empty.");
-		
+
 		return topItem;
 	}
 
