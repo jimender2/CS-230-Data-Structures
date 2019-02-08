@@ -29,7 +29,7 @@ public class ABStack<T> {
 			int newSize = top + 1 + CAPACITY;
 			T[] newStack = (T[]) new Object[newSize];
 
-			for( int index = 0; index < top; index++)
+			for( int index = 0; index <= top; index++)
 				newStack[index] = stack[index];
 			stack = newStack;
 		}
