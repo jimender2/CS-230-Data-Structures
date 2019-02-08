@@ -28,6 +28,8 @@ public class MatchingParenthesis {
 			while( !stack.isEmpty())
 				System.out.println("( at index " + stack.pop() + " does not have a matching ).");
 		}
+
+		keyboard.close();
 	}
 
 }
