@@ -13,12 +13,12 @@ public class TrackingOnlineAuction {
 		File fileIn = new File("bids.txt");
 		Scanner file = new Scanner(fileIn);
 
-		ABStack person = new ABStack<String>();
-		ABStack bid = new ABStack<Integer>();
+		ABStack<String> person = new ABStack<>();
+		ABStack<Integer> bid = new ABStack<>();
 
-		int tempBid,
-			currentBid,
-			maxBid;
+		int tempBid = 0,
+			currentBid = 0,
+			maxBid = 0;
 
 		String tempPerson,
 				highBidder,
@@ -29,6 +29,7 @@ public class TrackingOnlineAuction {
 		while(file.hasNext()) {
 			tempBid = file.nextInt();
 			tempPerson = file.nextLine();
+			System.out.println(tempBid);
 			if (bid.isEmpty()) {
 				bid.push(1);
 				person.push(tempPerson);
@@ -36,14 +37,26 @@ public class TrackingOnlineAuction {
 				currentBid = 1;
 				maxBid = tempBid;
 				System.out.println(tempBid + " " + tempPerson + "   New High Bidder  " + highBidder + "    " + currentBid + " " + maxBid);
-			} else if ( tempBid < (int) bid.peek() ) {
+			} else if ( tempBid < currentBid ) {
 				//Do nothing
-			} else if ( tempBid == (int) bid.peek()) {
+				//works
+			} else if ( tempBid == currentBid ) {
 				currentBid = tempBid;
+				bid.push(currentBid);
+				person.push(person.peek());
+				highBidder = tempPerson;
+				maxBid = tempBid;
 				//Need to fix this part
-				//System.out.println(tempBid + " " + tempPerson + "   New High Bidder  " + highBidder + "    " + currentBid + " " + maxBid);
+				System.out.println(tempBid + " " + tempPerson + "   Increase bid  " + highBidder + "    " + currentBid + " " + maxBid);
 			} else {
-				//Increase bid
+				currentBid = tempBid;
+				highBidder = tempPerson;
+				bid.push(currentBid);
+				person.push(highBidder);
+				maxBid = tempBid;
+				//Need to fix this part
+				System.out.println(tempBid + " " + tempPerson + "   Increase bid  " + highBidder + "    " + currentBid + " " + maxBid);
+
 			}
 		}
 		
