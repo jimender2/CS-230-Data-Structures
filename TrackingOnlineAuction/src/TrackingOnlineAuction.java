@@ -21,7 +21,7 @@ public class TrackingOnlineAuction {
 			maxBid = 0;
 
 		String tempPerson,
-				highBidder;
+				highBidder = null;
 
 		System.out.println("New Bid      Result      High Bidder           High Bid             Maximum Bid");
 		System.out.println("-------------------------------------------------------------------------------");
@@ -42,9 +42,13 @@ public class TrackingOnlineAuction {
 
 				if (tempBid < maxBid) {
 					currentBid = tempBid;
-					bid.push(currentBid);
-					person.push(person.peek());
-					System.out.println(tempBid + " " + tempPerson + "   high bid increased  " + person.peek() + "    " + currentBid + " " + maxBid);
+					if (tempBid == (int) bid.peek()) {
+						System.out.println(tempBid + " " + tempPerson + "   no change  " + person.peek() + "    " + currentBid + " " + maxBid);
+					} else {
+						bid.push(currentBid);
+						person.push(person.peek());
+						System.out.println(tempBid + " " + tempPerson + "   high bid increased  " + person.peek() + "    " + currentBid + " " + maxBid);
+					}
 
 				} else if (tempBid > maxBid) {
 					currentBid = maxBid + 1;
@@ -52,6 +56,7 @@ public class TrackingOnlineAuction {
 					bid.push(currentBid);
 					person.push(tempPerson);
 					System.out.println(tempBid + " " + tempPerson + "   new high bidder  " + person.peek() + "    " + currentBid + " " + maxBid);
+
 				}
 
 			}
