@@ -39,7 +39,7 @@ public class TrackingOnlineAuction {
 				//Do nothing
 				//works
 			} else if (tempBid >= currentBid) {
-				
+
 				if (tempBid < maxBid) {
 					currentBid = tempBid;
 					bid.push(currentBid);
@@ -52,7 +52,6 @@ public class TrackingOnlineAuction {
 					bid.push(currentBid);
 					person.push(tempPerson);
 					System.out.println(tempBid + " " + tempPerson + "   new high bidder  " + person.peek() + "    " + currentBid + " " + maxBid);
-
 				}
 
 			}
