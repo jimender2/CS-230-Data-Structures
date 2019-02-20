@@ -14,7 +14,7 @@ public class InfixToPostfix {
 			System.out.print( "Enter infix expression: ");
 			infixExpression = keyboard.nextLine();
 			postfixExpression = convertToPostfix( infixExpression);
-			value = evaluatePostfix( postfixExpression);
+			// value = evaluatePostfix( postfixExpression);
 			System.out.println( infixExpression + " = " + postfixExpression + " = " + value);
 		}
 		
