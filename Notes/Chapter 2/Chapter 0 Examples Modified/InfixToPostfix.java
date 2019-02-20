@@ -105,21 +105,54 @@ public class InfixToPostfix {
 			token = infix.charAt( index);	
 			switch( token) {	
 				case LP:
-					
+					stack.push( token);
 					break;
 				case RP:
 					for( ; ; ) {
-						
+						stackToken = stack.pop();
+						if ( stackToken == LP)
+							break;
+						else
+							postfix = postfix + BLANKSTR + stackToken;
 					}
 					break;
 				case ADD: case SUB:
 					for( ; ; ) {
-						
+						if( stack.isEmpty()) {
+							stack.push( token);
+							break;
+						}
+						else {
+							stackToken = stack.peek();
+							if( stackToken == LP) {
+								stack.push( token);
+								break;
+							}
+							else {
+								stackToken = stack.pop();
+								postfix = postfix + BLANKSTR + stackToken;
+							}
+						}
 					}
 					break;
 				case MUL: case DIV:
 					for( ; ; ) {
-						
+						if( stack.isEmpty()) {
+							stack.push( token);
+							break;
+						}
+						else {
+							stackToken = stack.peek();
+							if( stackToken == LP || stackToken == ADD || stackToken == SUB) {
+								stack.push( token);
+								break;
+							}
+							else {
+								stackToken = stack.pop();
+								postfix = postfix + BLANKSTR + stackToken;
+							}
+						}
+
 					}
 					break;
 				default:
