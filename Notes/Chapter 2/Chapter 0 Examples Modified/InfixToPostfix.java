@@ -14,7 +14,7 @@ public class InfixToPostfix {
 			System.out.print( "Enter infix expression: ");
 			infixExpression = keyboard.nextLine();
 			postfixExpression = convertToPostfix( infixExpression);
-			// value = evaluatePostfix( postfixExpression);
+			value = evaluatePostfix( postfixExpression);
 			System.out.println( infixExpression + " = " + postfixExpression + " = " + value);
 		}
 		
@@ -43,23 +43,36 @@ public class InfixToPostfix {
 			switch( token) {
 			
 			case ADD:
-				
+				operand2 = stack.pop();
+				operand1 = stack.pop();
+				answer = operand1 + operand2;
+				stack.push( answer);
 				break;
 			
 			case SUB:
-				
+				operand2 = stack.pop();
+				operand1 = stack.pop();
+				answer = operand1 - operand2;
+				stack.push( answer);
 				break;
 				
 			case MUL:
-				
+				operand2 = stack.pop();
+				operand1 = stack.pop();
+				answer = operand1 * operand2;
+				stack.push( answer);
 				break;
 				
 			case DIV:
-				
+				operand2 = stack.pop();
+				operand1 = stack.pop();
+				answer = operand1 / operand2;
+				stack.push( answer);
 				break;
 				
 			default:
-				
+				String str = "";
+				stack.push( Integer.parseInt( str + token));
 			}
 		}
 		
