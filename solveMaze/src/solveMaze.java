@@ -18,34 +18,90 @@ public class solveMaze {
 //						};
 		int p = 10;
 		int q = 10;
-		char[][] maze = mazeGenerate(p, q);
+		char[][] maze = mazeGenerate();
 		
-		int X = 0;
-		int Y = 0;
+		int i = 0, j = 0;
+//		while (i<p){
+//			j=0;
+//			while (j<q) {
+//				System.out.println(maze[i][j]);
+//				j++;
+//			}
+//			i++;
+//		}
+		int X = 2;
+		int Y = 2;
 		//System.out.println(maze[1][1]);
 		
-		//mazeTraverse(maze, X, Y);
+		mazeTraverse(maze, X, Y);
 	}
 	
-	private static char[][] mazeGenerate( int p, int q) {
+	private static char[][] mazeGenerate() {
 
-		char[][] maze = new char[p][q];
-		
 		Random rand = new Random();
-		int start = rand.nextInt(q);
-		return null;
+		
+		int X = rand.nextInt(10);
+		int Y = rand.nextInt(10);
+
+		if (X % 2 == 0)
+			X = X + 1;
+		if (Y % 2 == 0)
+			Y = Y + 1;
+
+		char[][] maze = new char[X][Y];
+
+		for ( int t = 0; t < X; t++) {
+			maze[0][t] = 'X';
+			System.out.println("p");
+		}
+		int i = 0;
+		int j = 0;
+
+		while (i<X) {
+			j = 0;
+			while (j<Y) {
+				System.out.print(maze[i][j] + " ");
+				j++;
+			}
+			System.out.println("");
+			i++;
+		}
+
+		return maze;
 	}
 
-	public static void mazeTraverse(char[][] maze, int X, int Y) {
+	public static void mazeTraverse(char[][] maze, int XS, int YS) {
 
+		boolean visited[][] = new boolean[XS][YS];
+
+		XS = XS - 1;
+		YS = YS - 1;
 		boolean found = false;
+		LinkedStack<Integer> X = new LinkedStack<Integer>();
+		LinkedStack<Integer> Y = new LinkedStack<Integer>();
+
+		X.push(XS);
+		Y.push(YS);
 		
-		while (found) {
-			if (maze[X+1][Y] == '.') {
-				
-			} else if ( maze[1][1] == '1') {
-				
+		System.out.println(maze);
+		int lastX = XS;
+		int lastY = YS;
+		while (found == false) {
+			System.out.println(X.peek() + " " + Y.peek());
+
+			if ((maze[(int)X.peek()][(int)Y.peek()+1] == '.' ) && ((X.peek() != lastX) && Y.peek() != lastY)) {
+				System.out.println("test1");
+			} else if ((maze[X.peek()][Y.peek()-1] == '.') && ((X.peek() != lastX) && Y.peek() != lastY)) {
+				System.out.println("test2");
+			} else if ((maze[X.peek()+1][Y.peek()] == '.') && ((X.peek() != lastX) && Y.peek() != lastY)) {
+				System.out.println("test3");
+			} else if ((maze[X.peek()-1][Y.peek()] == '.') && ((X.peek() != lastX) && Y.peek() != lastY)) {
+				System.out.println("test4");
+			} else {
+				found = true;
+				System.out.println("shhoot");
 			}
+				
 		}
 		
 	}
