@@ -93,10 +93,11 @@ public class solveMaze {
 		X.push(XS);
 		Y.push(YS);
 
+		maze[YS][XS] = 'X';
 		maze[Y.peek()][X.peek()] = 'X';
 		boolean found = false;
 		while (!found) {
-			System.out.println("Test");
+			
 		}
 	}
 
