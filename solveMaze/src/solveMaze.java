@@ -114,25 +114,25 @@ public class solveMaze {
 		while (!found) {
 			System.out.println("I am at : " + X.peek() + " " + Y.peek());
 			if( (Y.peek() + 1) < maze.length)
-				if( (maze[Y.peek()+1][X.peek()] != '#') && (maze[Y.peek()+1][X.peek()] != '-') && (maze[Y.peek()+1][X.peek()] != '@')) {
+				if( (maze[Y.peek()+1][X.peek()] != '#') && (maze[Y.peek()+1][X.peek()] != '-') && (maze[Y.peek()+1][X.peek()] != '@') && (maze[Y.peek()+1][X.peek()] != '-')) {
 					dir = dir + "S";
 				}
 			if( (Y.peek() - 1) >= 0)
-				if( (maze[Y.peek()-1][X.peek()] != '#') && (maze[Y.peek()-1][X.peek()] != '-') && (maze[Y.peek()-1][X.peek()] != '@')) {
+				if( (maze[Y.peek()-1][X.peek()] != '#') && (maze[Y.peek()-1][X.peek()] != '-') && (maze[Y.peek()-1][X.peek()] != '@') && (maze[Y.peek()-1][X.peek()] != '-')) {
 					dir = dir + "N";
 				}
 			if( (X.peek() + 1) < maze[0].length) 
-				if( (maze[Y.peek()][X.peek()+1] != '#') && (maze[Y.peek()][X.peek()+1] != '-') && (maze[Y.peek()][X.peek()+1] != '@')) {
+				if( (maze[Y.peek()][X.peek()+1] != '#') && (maze[Y.peek()][X.peek()+1] != '-') && (maze[Y.peek()][X.peek()+1] != '@') && (maze[Y.peek()][X.peek()+1] != '-')) {
 					dir = dir + "E";
 				}
 			if( (X.peek() - 1) >= 0)
-				if( (maze[Y.peek()][X.peek()+1] != '#') && (maze[Y.peek()][X.peek()+1] != '-') && (maze[Y.peek()][X.peek()+1] != '@')) {
+				if( (maze[Y.peek()][X.peek()-1] != '#') && (maze[Y.peek()][X.peek()-1] != '-') && (maze[Y.peek()][X.peek()-1] != '@') && (maze[Y.peek()][X.peek()-1] != '-')) {
 					dir = dir + "W";
 				}
 
 
 			System.out.println(dir);
-			if( dir == "") {
+			if( dir.equals("")) {
 				maze[Y.peek()][X.peek()] = '@';
 				X.pop();
 				Y.pop();
@@ -189,7 +189,7 @@ public class solveMaze {
 
 			dir = "";
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
