@@ -16,15 +16,15 @@ public class solveMaze {
 
 //Over then down
 		char[][] maze = {
-						{'#', '.', '.', '.', '.', '#', '#', '#', '#', '#'},
-						{'.', '.', '#', '#', '.', '#', '#', '#', '#', '#'},
-						{'#', '#', '#', '#', '.', '.', '.', '#', '#', '#'},
-						{'#', '.', '#', '#', '.', '#', '.', '.', '.', '#'},
+						{'#', '.', '.', '.', '.', '#', '#', '#', '.', '#'},
+						{'.', '.', '#', '#', '.', '#', '#', '#', '.', '#'},
+						{'#', '#', '#', '#', '.', '.', '.', '#', '.', '#'},
+						{'#', '.', '#', '#', '.', '#', '.', '#', '#', '#'},
 						{'#', '.', '.', '.', '.', '.', '#', '#', '.', '#'},
-						{'#', '#', '#', '.', '#', '#', '#', '#', '.', '#'},
-						{'#', '#', '#', '.', '#', '#', '.', '#', '.', '#'},
-						{'#', '#', '#', '#', '#', '#', '.', '#', '.', '#'},
-						{'#', '#', '#', '#', '#', '#', '.', '.', '.', '.'},
+						{'#', '#', '#', '.', '#', '.', '#', '#', '.', '#'},
+						{'#', '#', '#', '#', '#', '.', '.', '.', '.', '#'},
+						{'#', '#', '#', '#', '#', '#', '.', '#', '#', '#'},
+						{'#', '#', '#', '#', '#', '#', '.', '.', '.', '#'},
 						{'#', '#', '#', '#', '#', '#', '#', '#', '.', '#'}
 						};
 //		int p = 10;
@@ -114,55 +114,55 @@ public class solveMaze {
 		while (!found) {
 			System.out.println("I am at : " + X.peek() + " " + Y.peek());
 			if( (Y.peek() + 1) < maze.length)
-				if( (maze[Y.peek()+1][X.peek()] != '#')) {// || (maze[Y.peek()+1][X.peek()] != '~')) {
+				if( (maze[Y.peek()+1][X.peek()] != '#') && (maze[Y.peek()+1][X.peek()] != '-') && (maze[Y.peek()+1][X.peek()] != '@')) {
 					dir = dir + "S";
 				}
 			if( (Y.peek() - 1) >= 0)
-				if( (maze[Y.peek()-1][X.peek()] != '#')) {// || (maze[Y.peek()-1][X.peek()] != '~')) {
+				if( (maze[Y.peek()-1][X.peek()] != '#') && (maze[Y.peek()-1][X.peek()] != '-') && (maze[Y.peek()-1][X.peek()] != '@')) {
 					dir = dir + "N";
 				}
 			if( (X.peek() + 1) < maze[0].length) 
-				if( (maze[Y.peek()][X.peek()+1] != '#')) {// || (maze[Y.peek()][X.peek()+1] != '~')) {
+				if( (maze[Y.peek()][X.peek()+1] != '#') && (maze[Y.peek()][X.peek()+1] != '-') && (maze[Y.peek()][X.peek()+1] != '@')) {
 					dir = dir + "E";
 				}
 			if( (X.peek() - 1) >= 0)
-				if( (maze[Y.peek()][X.peek()+1] != '#')) {// || (maze[Y.peek()][X.peek()+1] != '~')) {
+				if( (maze[Y.peek()][X.peek()+1] != '#') && (maze[Y.peek()][X.peek()+1] != '-') && (maze[Y.peek()][X.peek()+1] != '@')) {
 					dir = dir + "W";
 				}
 
 
 			System.out.println(dir);
 			if( dir == "") {
-				maze[Y.peek()][X.peek()] = '#';
+				maze[Y.peek()][X.peek()] = '@';
 				X.pop();
 				Y.pop();
 				maze[Y.peek()][X.peek()] = '-';
+			} else {
+				if( dir.contains("E")) {
+					maze[Y.peek()][X.peek()] = '-';
+					Y.push(Y.peek());
+					X.push(X.peek()+1);
+					dir = "";
+				}
+				if( dir.contains("N")) {
+					maze[Y.peek()][X.peek()] = '-';
+					Y.push(Y.peek()-1);
+					X.push(X.peek());
+					dir = "";
+				}
+				if( dir.contains("S")) {
+					maze[Y.peek()][X.peek()] = '-';
+					Y.push(Y.peek()+1);
+					X.push(X.peek());
+					dir = "";
+				}
+				if( dir.contains("W")) {
+					maze[Y.peek()][X.peek()] = '-';
+					Y.push(Y.peek());
+					X.push(X.peek()-1);
+					dir = "";
+				}
 			}
-			if( dir.contains("E")) {
-				maze[Y.peek()][X.peek()] = '-';
-				Y.push(Y.peek());
-				X.push(X.peek()+1);
-				dir = "";
-			}
-			if( dir.contains("N")) {
-				maze[Y.peek()][X.peek()] = '-';
-				Y.push(Y.peek()-1);
-				X.push(X.peek());
-				dir = "";
-			}
-			if( dir.contains("S")) {
-				maze[Y.peek()][X.peek()] = '-';
-				Y.push(Y.peek()+1);
-				X.push(X.peek());
-				dir = "";
-			}
-			if( dir.contains("W")) {
-				maze[Y.peek()][X.peek()] = '-';
-				Y.push(Y.peek());
-				X.push(X.peek()-1);
-				dir = "";
-			}
-			
 			int i = 0;
 			int j = 0;
 
