@@ -15,21 +15,21 @@ public class solveMaze {
 	public static void main(String[] args) {
 
 //Over then down
-//		char[][] maze = {
-//						{'#', '.', '.', '.', '.', '#', '#', '#', '#', '#'},
-//						{'.', '.', '#', '#', '.', '#', '#', '#', '#', '#'},
-//						{'#', '#', '#', '#', '.', '.', '.', '#', '#', '#'},
-//						{'#', '.', '#', '#', '.', '#', '.', '.', '.', '#'},
-//						{'#', '.', '.', '.', '.', '.', '#', '#', '.', '#'},
-//						{'#', '#', '#', '.', '#', '#', '#', '#', '.', '#'},
-//						{'#', '#', '#', '.', '#', '#', '.', '#', '.', '#'},
-//						{'#', '#', '#', '#', '#', '#', '.', '#', '.', '#'},
-//						{'#', '#', '#', '#', '#', '#', '.', '.', '.', '#'},
-//						{'#', '#', '#', '#', '#', '#', '#', '#', '.', '#'}
-//						};
+		char[][] maze = {
+						{'#', '.', '.', '.', '.', '#', '#', '#', '#', '#'},
+						{'.', '.', '#', '#', '.', '#', '#', '#', '#', '#'},
+						{'#', '#', '#', '#', '.', '.', '.', '#', '#', '#'},
+						{'#', '.', '#', '#', '.', '#', '.', '.', '.', '#'},
+						{'#', '.', '.', '.', '.', '.', '#', '#', '.', '#'},
+						{'#', '#', '#', '.', '#', '#', '#', '#', '.', '#'},
+						{'#', '#', '#', '.', '#', '#', '.', '#', '.', '#'},
+						{'#', '#', '#', '#', '#', '#', '.', '#', '.', '#'},
+						{'#', '#', '#', '#', '#', '#', '.', '.', '.', '.'},
+						{'#', '#', '#', '#', '#', '#', '#', '#', '.', '#'}
+						};
 //		int p = 10;
 //		int q = 10;
-		char[][] maze = mazeGenerate();
+//		char[][] maze = mazeGenerate();
 //		
 //		int i = 0, j = 0;
 ////		while (i<p){
@@ -65,8 +65,8 @@ public class solveMaze {
 		char[][] maze = new char[Y][X];
 
 		for ( int t = 0; t < Y; t++) {
-			maze[t][0] = 'X';
-			maze[t][X-1] = 'X';
+			maze[t][0] = '#';
+			maze[t][X-1] = '#';
 		}
 
 		int i = 0;
@@ -93,12 +93,17 @@ public class solveMaze {
 		X.push(XS);
 		Y.push(YS);
 
-		maze[YS][XS] = 'X';
+		maze[YS][XS] = '#';
 
 		String dir = "";
-		maze[Y.peek()][X.peek()] = 'X';
+		maze[Y.peek()][X.peek()] = '#';
 		boolean found = false;
 		while (!found) {
+			if( (X.peek() >= (maze[0].length)-1)) {
+				found = true;
+				System.out.println("I found the exit");
+				break;
+			}
 			System.out.println("I am at : " + X.peek() + " " + Y.peek());
 			if( (Y.peek() + 1) < maze.length)
 				if( (maze[Y.peek()+1][X.peek()] != '#')) {// || (maze[Y.peek()+1][X.peek()] != '~')) {
@@ -116,6 +121,7 @@ public class solveMaze {
 				if( (maze[Y.peek()][X.peek()+1] != '#')) {// || (maze[Y.peek()][X.peek()+1] != '~')) {
 					dir = dir + "W";
 				}
+
 
 			System.out.println(dir);
 			if( dir == "") {
@@ -157,6 +163,20 @@ public class solveMaze {
 					dir = "";
 				//}
 			}
+			
+			int i = 0;
+			int j = 0;
+
+			while (i<maze[0].length) {
+				j = 0;
+				while (j<maze.length) {
+					System.out.print(maze[i][j] + " ");
+					j++;
+				}
+				System.out.println("");
+				i++;
+			}
+
 			dir = "";
 			try {
 				Thread.sleep(2000);
