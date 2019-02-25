@@ -47,6 +47,19 @@ public class solveMaze {
 		int X = 0;
 		int Y = 1;
 		mazeTraverse(maze, X, Y);
+		
+		int i = 0;
+		int j = 0;
+
+		while (i<maze[0].length) {
+			j = 0;
+			while (j<maze.length) {
+				System.out.print(maze[i][j] + " ");
+				j++;
+			}
+			System.out.println("");
+			i++;
+		}
 	}
 	
 	private static char[][] mazeGenerate() {
@@ -99,11 +112,6 @@ public class solveMaze {
 		maze[Y.peek()][X.peek()] = '#';
 		boolean found = false;
 		while (!found) {
-			if( (X.peek() >= (maze[0].length)-1)) {
-				found = true;
-				System.out.println("I found the exit");
-				break;
-			}
 			System.out.println("I am at : " + X.peek() + " " + Y.peek());
 			if( (Y.peek() + 1) < maze.length)
 				if( (maze[Y.peek()+1][X.peek()] != '#')) {// || (maze[Y.peek()+1][X.peek()] != '~')) {
@@ -125,43 +133,34 @@ public class solveMaze {
 
 			System.out.println(dir);
 			if( dir == "") {
-				System.out.println("Test");
 				maze[Y.peek()][X.peek()] = '#';
 				X.pop();
 				Y.pop();
-				maze[Y.peek()][X.peek()] = '.';
+				maze[Y.peek()][X.peek()] = '-';
 			}
 			if( dir.contains("E")) {
-				//if( maze[Y.peek()][X.peek()+1] != '#') {
-					maze[Y.peek()][X.peek()] = '#';
-					Y.push(Y.peek());
-					X.push(X.peek()+1);
-					dir = "";
-				//}
+				maze[Y.peek()][X.peek()] = '-';
+				Y.push(Y.peek());
+				X.push(X.peek()+1);
+				dir = "";
 			}
 			if( dir.contains("N")) {
-				//if( maze[Y.peek()-1][X.peek()] != '#') {
-					maze[Y.peek()][X.peek()] = '#';
-					Y.push(Y.peek()-1);
-					X.push(X.peek());
-					dir = "";
-				//}
+				maze[Y.peek()][X.peek()] = '-';
+				Y.push(Y.peek()-1);
+				X.push(X.peek());
+				dir = "";
 			}
 			if( dir.contains("S")) {
-				//if( maze[Y.peek()+1][X.peek()] != '#') {
-					maze[Y.peek()][X.peek()] = '#';
-					Y.push(Y.peek()+1);
-					X.push(X.peek());
-					dir = "";
-				//}
+				maze[Y.peek()][X.peek()] = '-';
+				Y.push(Y.peek()+1);
+				X.push(X.peek());
+				dir = "";
 			}
 			if( dir.contains("W")) {
-				//if( maze[Y.peek()][X.peek()-1] != '#') {
-					maze[Y.peek()][X.peek()] = '#';
-					Y.push(Y.peek());
-					X.push(X.peek()-1);
-					dir = "";
-				//}
+				maze[Y.peek()][X.peek()] = '-';
+				Y.push(Y.peek());
+				X.push(X.peek()-1);
+				dir = "";
 			}
 			
 			int i = 0;
@@ -175,6 +174,17 @@ public class solveMaze {
 				}
 				System.out.println("");
 				i++;
+			}
+			
+			if( (X.peek() >= (maze[0].length)-1)) {
+				found = true;
+				System.out.println("I found the exit");
+				
+				while (!X.isEmpty() && !Y.isEmpty()) {
+					maze[Y.pop()][X.pop()] = '-';
+				}
+				
+				break;
 			}
 
 			dir = "";
