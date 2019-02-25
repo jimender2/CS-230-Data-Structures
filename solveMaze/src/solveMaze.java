@@ -15,21 +15,21 @@ public class solveMaze {
 	public static void main(String[] args) {
 
 //Over then down
-		char[][] maze = {
-						{'#', '.', '.', '.', '.', '#', '#', '#', '#', '#'},
-						{'.', '.', '#', '#', '.', '#', '#', '#', '#', '#'},
-						{'#', '#', '#', '#', '.', '.', '.', '#', '#', '#'},
-						{'#', '.', '#', '#', '.', '#', '.', '.', '.', '#'},
-						{'#', '.', '.', '.', '.', '.', '#', '#', '.', '#'},
-						{'#', '#', '#', '.', '#', '#', '#', '#', '.', '#'},
-						{'#', '#', '#', '.', '#', '#', '.', '#', '.', '#'},
-						{'#', '#', '#', '#', '#', '#', '.', '#', '.', '#'},
-						{'#', '#', '#', '#', '#', '#', '.', '.', '.', '#'},
-						{'#', '#', '#', '#', '#', '#', '#', '#', '.', '#'}
-						};
+//		char[][] maze = {
+//						{'#', '.', '.', '.', '.', '#', '#', '#', '#', '#'},
+//						{'.', '.', '#', '#', '.', '#', '#', '#', '#', '#'},
+//						{'#', '#', '#', '#', '.', '.', '.', '#', '#', '#'},
+//						{'#', '.', '#', '#', '.', '#', '.', '.', '.', '#'},
+//						{'#', '.', '.', '.', '.', '.', '#', '#', '.', '#'},
+//						{'#', '#', '#', '.', '#', '#', '#', '#', '.', '#'},
+//						{'#', '#', '#', '.', '#', '#', '.', '#', '.', '#'},
+//						{'#', '#', '#', '#', '#', '#', '.', '#', '.', '#'},
+//						{'#', '#', '#', '#', '#', '#', '.', '.', '.', '#'},
+//						{'#', '#', '#', '#', '#', '#', '#', '#', '.', '#'}
+//						};
 //		int p = 10;
 //		int q = 10;
-//		char[][] maze = mazeGenerate();
+		char[][] maze = mazeGenerate();
 //		
 //		int i = 0, j = 0;
 ////		while (i<p){
@@ -49,41 +49,41 @@ public class solveMaze {
 		mazeTraverse(maze, X, Y);
 	}
 	
-//	private static char[][] mazeGenerate() {
-//
-//		Random rand = new Random();
-//		
-//		int X = rand.nextInt(10) + 2;
-//		int Y = rand.nextInt(10) + 2;
-//		if (X % 2 == 0)
-//			X = X + 1;
-//		if (Y % 2 == 0)
-//			Y = Y + 1;
-//		System.out.println(X + " " + Y);
-//
-//
-//		char[][] maze = new char[Y][X];
-//
-//		for ( int t = 0; t < Y; t++) {
-//			maze[0][t] = 'X';
-//			maze[Y-1][t] = 'X';
-//		}
-//
-//		int i = 0;
-//		int j = 0;
-//
-//		while (i<X) {
-//			j = 0;
-//			while (j<Y) {
-//				System.out.print(maze[i][j] + " ");
-//				j++;
-//			}
-//			System.out.println("");
-//			i++;
-//		}
-//
-//		return maze;
-//	}
+	private static char[][] mazeGenerate() {
+
+		Random rand = new Random();
+		
+		int X = rand.nextInt(10) + 2;
+		int Y = rand.nextInt(10) + 2;
+		if (X % 2 == 0)
+			X = X + 1;
+		if (Y % 2 == 0)
+			Y = Y + 1;
+		System.out.println(X + " " + Y);
+
+
+		char[][] maze = new char[Y][X];
+
+		for ( int t = 0; t < Y; t++) {
+			maze[t][0] = 'X';
+			maze[t][X-1] = 'X';
+		}
+
+		int i = 0;
+		int j = 0;
+
+		while (i<X) {
+			j = 0;
+			while (j<Y) {
+				System.out.print(maze[j][i] + " ");
+				j++;
+			}
+			System.out.println("");
+			i++;
+		}
+
+		return maze;
+	}
 
 	public static void mazeTraverse(char[][] maze, int XS, int YS) {
 
