@@ -1,114 +1,94 @@
-import java.io.IOException;
 import java.util.Random;
+ /**
+  * This program implements a maze generation and maze solving algorithm.
+  * It may not be the most efficient but it gets the job done.
+  * Please run in windows. The sound beep may not work in linux or mac os.
+  * 
+  * @author Jonathan Meredith
+  *
+  */
 
 public class solveMaze {
 
-	public class Position {
-		private int X;
-		private int Y;
-
-		public Position( int X, int Y) {
-			this.X = X;
-			this.Y = Y;
-		}
-	}
-	
 	public static void main(String[] args) {
 
-//Over then down
-		char[][] maze = {
-						{'#', '.', '.', '.', '.', '#', '#', '#', '.', '#'},
-						{'.', '.', '#', '#', '.', '#', '#', '#', '.', '#'},
-						{'#', '#', '#', '#', '.', '.', '.', '#', '.', '#'},
-						{'#', '.', '#', '#', '.', '#', '.', '#', '#', '#'},
-						{'#', '.', '.', '.', '.', '.', '#', '#', '.', '#'},
-						{'#', '#', '#', '.', '#', '.', '#', '#', '.', '#'},
-						{'#', '#', '#', '#', '#', '.', '.', '.', '.', '.'},
-						{'#', '#', '#', '#', '#', '#', '.', '#', '#', '#'},
-						{'#', '#', '#', '#', '#', '#', '.', '.', '.', '#'},
-						{'#', '#', '#', '#', '#', '#', '#', '#', '.', '#'}
-						};
+		//declare variables
+		Random rand = new Random();
+		int yWide = rand.nextInt(5) + 5;
+		int xWide = rand.nextInt(5) + 5;
 
-//		int p = 10;
-//		int q = 10;
-//		char[][] maze = mazeGenerate();
-//		
-//		int i = 0, j = 0;
-////		while (i<p){
-////			j=0;
-////			while (j<q) {
-////				System.out.println(maze[i][j]);
-////				j++;
-////			}
-////			i++;
-////		}
-//		int X = 2;
-//		int Y = 2;
-//		//System.out.println(maze[1][1]);
-		
+		//make maze
+		char[][] maze = new char[yWide][xWide];
+
+		//mix up maze
+		maze = mazeGenerate(maze, yWide, xWide);
+
+		//make starting position
 		int X = 0;
-		int Y = 1;
+		int Y = rand.nextInt(yWide);
+
+		//make sure starting position is not on a corner
+		if (Y == 0) {
+			Y++;
+		} else if (Y == maze.length-1) {
+			Y--;
+		}
+
+		//traverse maze
 		mazeTraverse(maze, X, Y);
 
+		//clear @s
+		clearBadPaths(maze);
+
+		//display and beep when done
+		display(maze);
 		java.awt.Toolkit.getDefaultToolkit().beep();
 
-		int i = 0;
-		int j = 0;
-
-		while (i<maze[0].length) {
-			j = 0;
-			while (j<maze.length) {
-				System.out.print(maze[i][j] + " ");
-				j++;
-			}
-			System.out.println("");
-			i++;
-		}
-
 	}
-	
-	private static char[][] mazeGenerate() {
 
+	public static char[][] mazeGenerate(char[][] maze, int widthOfMaze,
+			int heightOfMaze) {
+
+		//declare variable
 		Random rand = new Random();
-		
-		int X = rand.nextInt(10) + 2;
-		int Y = rand.nextInt(10) + 2;
-		if (X % 2 == 0)
-			X = X + 1;
-		if (Y % 2 == 0)
-			Y = Y + 1;
-		System.out.println(X + " " + Y);
 
+		//Initialize maze
+		for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze[i].length; j++) {
+                maze[i][j] = '#';
+            }
+        }		
 
-		char[][] maze = new char[Y][X];
+		//declare variables and decide how many spots to change
+		int row,
+			col;
+		int percent = (int) (widthOfMaze * heightOfMaze * 1.5);
 
-		for ( int t = 0; t < Y; t++) {
-			maze[t][0] = '#';
-			maze[t][X-1] = '#';
-		}
+		//randomly change spots
+		for( int i = 1; i <= percent; i++) {
+			row = rand.nextInt(widthOfMaze);
+			col = rand.nextInt(heightOfMaze);
 
-		for ( int t = 0; t < X; t++) {
-			maze[0][t] = '#';
-			maze[Y-1][t] = '#';
-		}
-		
-		for ( int t = 1; t < Y; t++) {
-			
-		}
-
-		int i = 0;
-		int j = 0;
-
-		while (i<X) {
-			j = 0;
-			while (j<Y) {
-				System.out.print(maze[j][i] + " ");
-				j++;
+			if(maze[row][col]=='#') {
+				maze[row][col]= '.';
 			}
-			System.out.println("");
-			i++;
 		}
 
+		//add border to this
+		int _i = maze.length;
+		int _j = maze[0].length;
+		for (int i = 0; i < _i; i++) {
+		    for (int j = 0; j < _j; j++) {
+		        if(i==0 || j == 0 || i == _i - 1|| j == _j - 1){
+		            maze[i][j] = '#';
+		        }
+		    }
+		}
+
+		//add random end
+		maze[rand.nextInt(maze.length - 3) + 1][maze[0].length - 1] = '.';
+
+		//return
 		return maze;
 	}
 
@@ -131,139 +111,133 @@ public class solveMaze {
 		while (!found) {
 			//clear screen for animation
 			blankScreen();
-			//debug
-			System.out.println("I am at : " + X.peek() + " " + Y.peek());
-			
+						
 			//determine if I can go south
 			if( (Y.peek() + 1) < maze.length)
-				//check to make sure that if I went there the character is not a # a - or a @
-				if( (maze[Y.peek()+1][X.peek()] != '#') && (maze[Y.peek()+1][X.peek()] != '-') && (maze[Y.peek()+1][X.peek()] != '@')) {
+				//check to make sure that if I went there the character 
+				//is not a # a - or a @
+				if( (maze[Y.peek() + 1][X.peek()] != '#')
+						&& (maze[Y.peek() + 1][X.peek()] != '-')
+						&& (maze[Y.peek() + 1][X.peek()] != '@')) {
 					dir = dir + "S";
 				}
 			//north?
 			if( (Y.peek() - 1) >= 0)
-				if( (maze[Y.peek()-1][X.peek()] != '#') && (maze[Y.peek()-1][X.peek()] != '-') && (maze[Y.peek()-1][X.peek()] != '@')) {
+				if( (maze[Y.peek() - 1][X.peek()] != '#')
+						&& (maze[Y.peek() - 1][X.peek()] != '-')
+						&& (maze[Y.peek() - 1][X.peek()] != '@')) {
 					dir = dir + "N";
 				}
 			//east?
 			if( (X.peek() + 1) < maze[0].length) 
-				if( (maze[Y.peek()][X.peek()+1] != '#') && (maze[Y.peek()][X.peek()+1] != '-') && (maze[Y.peek()][X.peek()+1] != '@')) {
+				if( (maze[Y.peek()][X.peek() + 1] != '#')
+						&& (maze[Y.peek()][X.peek() + 1] != '-')
+						&& (maze[Y.peek()][X.peek() + 1] != '@')) {
 					dir = dir + "E";
 				}
 			//west?
 			if( (X.peek() - 1) >= 0)
-				if( (maze[Y.peek()][X.peek()-1] != '#') && (maze[Y.peek()][X.peek()-1] != '-') && (maze[Y.peek()][X.peek()-1] != '@')) {
+				if( (maze[Y.peek()][X.peek() - 1] != '#')
+						&& (maze[Y.peek()][X.peek() - 1] != '-')
+						&& (maze[Y.peek()][X.peek() - 1] != '@')) {
 					dir = dir + "W";
 				}
-
-			//debug
-			System.out.println(dir);
 			
 			//if I cant go any direction then I need to pop
 			if( dir.equals("")) {
-				//set the popped location to be an @ so I dont go down the path again
-				maze[Y.pop()][X.pop()] = '@';
-				maze[Y.peek()][X.peek()] = '-';
+				//catch the exception if stack is empty
+				try {
+					//set the popped location to be an @ so I dont go down the path again
+					maze[Y.pop()][X.pop()] = '@';
+					maze[Y.peek()][X.peek()] = '-';
+				} catch ( Exception e) {
+					blankScreen();
+					System.out.println("This maze has no valid path");
+					java.awt.Toolkit.getDefaultToolkit().beep();
+					break;
+				}
 			} else {
 				//I should be able to go a different direction so lets try to go east first
 				if( dir.contains("E")) {
 					maze[Y.peek()][X.peek()] = '-';
 					Y.push(Y.peek());
-					X.push(X.peek()+1);
-					dir = "";
+					X.push(X.peek() + 1);
 				}
 				//if that does not work I might be able to go north
-				if( dir.contains("N")) {
+				else if( dir.contains("N")) {
 					maze[Y.peek()][X.peek()] = '-';
-					Y.push(Y.peek()-1);
+					Y.push(Y.peek() - 1);
 					X.push(X.peek());
-					dir = "";
 				}
 				//possibly south?
-				if( dir.contains("S")) {
+				else if( dir.contains("S")) {
 					maze[Y.peek()][X.peek()] = '-';
-					Y.push(Y.peek()+1);
+					Y.push(Y.peek() + 1);
 					X.push(X.peek());
-					dir = "";
 				}
 				//must be west then
-				if( dir.contains("W")) {
+				else if( dir.contains("W")) {
 					maze[Y.peek()][X.peek()] = '-';
 					Y.push(Y.peek());
-					X.push(X.peek()-1);
-					dir = "";
+					X.push(X.peek() - 1);
 				}
+
+				dir = "";
 			}
 
 			//print maze out
-			int i = 0;
-			int j = 0;
-			while (i < maze.length) {
-				j = 0;
-				while (j < maze[0].length) {
-					System.out.print(maze[i][j] + " ");
-					j++;
-				}
-				System.out.println("");
-				i++;
-			}
-			
+			display(maze);
+
 			//If I reach the farthest east side I must have found the exit
-			if( (X.peek() >= (maze[0].length)-1)) {
+			if( (X.peek() >= (maze[0].length) - 1)) {
 				found = true;
 				blankScreen();
-				System.out.println("I found the exit");
+				System.out.println("I found a path to the exit!!");
+
 				//change the maze to be all spaces along the path
 				while (!X.isEmpty() && !Y.isEmpty()) {
-					maze[Y.pop()][X.pop()] = ' ';
+					maze[Y.pop()][X.pop()] = '-';
 				}
-				
+
 				//skip the rest of the loops
 				break;
 			}
 
 			//reset directions that the thing can go
 			dir = "";
-			
+
 			//pause the program for a second
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
 
-	private static void blankScreen() {
+	public static void blankScreen() {
 		for ( int t = 1; t <= 50; t++) {
 			System.out.println("");
 		}
 	}
 
-}
+	public static void clearBadPaths(char[][] maze) {
+		for(int q = 0; q < maze.length; q++) {
+			for(int p = 0; p < maze[q].length; p++) {
+				if(maze[q][p] == '@') {
+					maze[q][p] = '.';
+				}
+			}
+		}
+	}
 
-////Find a path from (1,1) to the exit (m,m).
-////Initialize wall of obstacles around the maze
-////Initialize variables to keep track of our current
-////position in the maze
-//Position here;
-//here.row = 1;
-//here.col = 1;
-////Prevent return to entrance
-//maze[1][1] = 'X';
-////Search for a path to the exit
-//while( not at exit) do {
-//find a neighbor to move to;
-//if( there is such a neighbor) {
-//add position here to path stack;
-//// Move to and block neighbor
-//here = neighbor;
-//maze[here.row][here.col] = 'X';
-//}
-//else { // Cannot move forward, backup
-//if( path empty) return false;
-//back up to position here which is at top of path stack;
-//}
-//return true;
-//}
+	public static void display(char[][] maze) {
+		for (int i = 0; i < maze.length; i++) {
+
+			for (int j = 0; j < maze[i].length; j++) {
+				System.out.print(maze[i][j] + " ");
+			}
+			System.out.println("");
+		}
+	}
+}
