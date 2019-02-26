@@ -114,63 +114,79 @@ public class solveMaze {
 
 	public static void mazeTraverse(char[][] maze, int XS, int YS) {
 
+		//declare stacks
 		LinkedStack<Integer> X = new LinkedStack<>();
 		LinkedStack<Integer> Y = new LinkedStack<>();
 		
+		//add the starting coordinates to the stacks
 		X.push(XS);
 		Y.push(YS);
 
-		maze[YS][XS] = '#';
+		//set this equal to the path
+		maze[YS][XS] = '-';
 
+		//detect which ways I can move (this part should have been combined with the section underneath but I kept it in)
 		String dir = "";
-		maze[Y.peek()][X.peek()] = '#';
 		boolean found = false;
 		while (!found) {
+			//clear screen for animation
 			blankScreen();
+			//debug
 			System.out.println("I am at : " + X.peek() + " " + Y.peek());
+			
+			//determine if I can go south
 			if( (Y.peek() + 1) < maze.length)
-				if( (maze[Y.peek()+1][X.peek()] != '#') && (maze[Y.peek()+1][X.peek()] != '-') && (maze[Y.peek()+1][X.peek()] != '@') && (maze[Y.peek()+1][X.peek()] != '-')) {
+				//check to make sure that if I went there the character is not a # a - or a @
+				if( (maze[Y.peek()+1][X.peek()] != '#') && (maze[Y.peek()+1][X.peek()] != '-') && (maze[Y.peek()+1][X.peek()] != '@')) {
 					dir = dir + "S";
 				}
+			//north?
 			if( (Y.peek() - 1) >= 0)
-				if( (maze[Y.peek()-1][X.peek()] != '#') && (maze[Y.peek()-1][X.peek()] != '-') && (maze[Y.peek()-1][X.peek()] != '@') && (maze[Y.peek()-1][X.peek()] != '-')) {
+				if( (maze[Y.peek()-1][X.peek()] != '#') && (maze[Y.peek()-1][X.peek()] != '-') && (maze[Y.peek()-1][X.peek()] != '@')) {
 					dir = dir + "N";
 				}
+			//east?
 			if( (X.peek() + 1) < maze[0].length) 
-				if( (maze[Y.peek()][X.peek()+1] != '#') && (maze[Y.peek()][X.peek()+1] != '-') && (maze[Y.peek()][X.peek()+1] != '@') && (maze[Y.peek()][X.peek()+1] != '-')) {
+				if( (maze[Y.peek()][X.peek()+1] != '#') && (maze[Y.peek()][X.peek()+1] != '-') && (maze[Y.peek()][X.peek()+1] != '@')) {
 					dir = dir + "E";
 				}
+			//west?
 			if( (X.peek() - 1) >= 0)
-				if( (maze[Y.peek()][X.peek()-1] != '#') && (maze[Y.peek()][X.peek()-1] != '-') && (maze[Y.peek()][X.peek()-1] != '@') && (maze[Y.peek()][X.peek()-1] != '-')) {
+				if( (maze[Y.peek()][X.peek()-1] != '#') && (maze[Y.peek()][X.peek()-1] != '-') && (maze[Y.peek()][X.peek()-1] != '@')) {
 					dir = dir + "W";
 				}
 
-
+			//debug
 			System.out.println(dir);
+			
+			//if I cant go any direction then I need to pop
 			if( dir.equals("")) {
-				maze[Y.peek()][X.peek()] = '@';
-				X.pop();
-				Y.pop();
+				//set the popped location to be an @ so I dont go down the path again
+				maze[Y.pop()][X.pop()] = '@';
 				maze[Y.peek()][X.peek()] = '-';
 			} else {
+				//I should be able to go a different direction so lets try to go east first
 				if( dir.contains("E")) {
 					maze[Y.peek()][X.peek()] = '-';
 					Y.push(Y.peek());
 					X.push(X.peek()+1);
 					dir = "";
 				}
+				//if that does not work I might be able to go north
 				if( dir.contains("N")) {
 					maze[Y.peek()][X.peek()] = '-';
 					Y.push(Y.peek()-1);
 					X.push(X.peek());
 					dir = "";
 				}
+				//possibly south?
 				if( dir.contains("S")) {
 					maze[Y.peek()][X.peek()] = '-';
 					Y.push(Y.peek()+1);
 					X.push(X.peek());
 					dir = "";
 				}
+				//must be west then
 				if( dir.contains("W")) {
 					maze[Y.peek()][X.peek()] = '-';
 					Y.push(Y.peek());
@@ -178,9 +194,10 @@ public class solveMaze {
 					dir = "";
 				}
 			}
+
+			//print maze out
 			int i = 0;
 			int j = 0;
-
 			while (i < maze.length) {
 				j = 0;
 				while (j < maze[0].length) {
@@ -191,18 +208,24 @@ public class solveMaze {
 				i++;
 			}
 			
+			//If I reach the farthest east side I must have found the exit
 			if( (X.peek() >= (maze[0].length)-1)) {
 				found = true;
+				blankScreen();
 				System.out.println("I found the exit");
-				
+				//change the maze to be all spaces along the path
 				while (!X.isEmpty() && !Y.isEmpty()) {
-					maze[Y.pop()][X.pop()] = '-';
+					maze[Y.pop()][X.pop()] = ' ';
 				}
 				
+				//skip the rest of the loops
 				break;
 			}
 
+			//reset directions that the thing can go
 			dir = "";
+			
+			//pause the program for a second
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
