@@ -41,6 +41,28 @@ public class AdditionProblem {
 		return answer;
 	}
 	
+	public void setLeftOperand( int operand)
+	{
+		leftOperand = operand;
+		answer = leftOperand + rightOperand;
+		return;
+	}
+
+	public void setRightOperand( int operand)
+	{
+		rightOperand = operand;
+		answer = leftOperand + rightOperand;
+		return;
+	}
+	
+	public void setOperands( int operand1, int operand2)
+	{
+		leftOperand = operand1;
+		rightOperand = operand2;
+		answer = leftOperand + rightOperand;
+		return;
+	}
+	
 	public AdditionProblem getAdditionProblem()
 	{
 		AdditionProblem problem = new AdditionProblem( leftOperand, rightOperand);
