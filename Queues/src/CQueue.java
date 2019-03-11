@@ -86,10 +86,18 @@ public class CQueue<T> {
 		
 		String str = "[ ";
 		
-		if( !isEmpty())
-			for( int index = 0 ; index < back ; index++ )
+		if( front < back)
+			for( int index = front ; index < back ; index++ )
 				str = str + queue[index] + " ";
-		
+		else {
+			int index = front;
+			while( index < queue.length) {
+				str = str + queue[index] + " ";
+				index++;
+			}
+			for( index = 0 ; index < back ; index++)
+				str = str + queue[index] + " ";
+		}
 		str += "]";
 		
 		return str;

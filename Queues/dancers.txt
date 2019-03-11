@@ -6,3 +6,6 @@ M Thad
 M Joey
 M Scott
 F Jane
+M Bob
+M Conner
+F Connie
