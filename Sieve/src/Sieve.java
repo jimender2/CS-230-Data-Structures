@@ -15,6 +15,7 @@ public class Sieve {
 			CQueue<Integer> tempQueue = new CQueue<Integer>();
 			ABQueue<Integer> prime = new ABQueue<Integer>();
 			int temp;
+			int a;
 
 
 			int i = 2;
@@ -25,10 +26,11 @@ public class Sieve {
 				i++;
 			}
 
-			
-			while (!queue.isEmpty()) {
+			while (queue.peekAtFront() < Math.sqrt(queue.peekAtBack())) {
 				tempQueue = new CQueue<Integer>();
+
 				
+
 			}
 //			i = (int) Math.sqrt(queue.peekAtBack());
 //            do {            
