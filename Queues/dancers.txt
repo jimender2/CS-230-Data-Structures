@@ -9,3 +9,6 @@ F Jane
 M Bob
 M Conner
 F Connie
+F Jamie
+F Nicole
+F Janet

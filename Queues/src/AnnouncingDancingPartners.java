@@ -18,12 +18,22 @@ public class AnnouncingDancingPartners {
 			else
 				mqueue.enqueue( dancer.substring( 2));
 		}
-		
-		System.out.println( "Announcing Dancers: " + fqueue);
-		System.out.println( "Announcing Dancers: " + mqueue);
 
-		
-		
+		System.out.println( "Announcing Dancers: ");
+		//System.out.println( "Announcing Dancers: " + mqueue);
+
+		while( !fqueue.isEmpty() && !mqueue.isEmpty()) {
+
+			System.out.println( fqueue.dequeue() + " will be dancing with " + mqueue.dequeue());
+		}
+
+		if( !fqueue.isEmpty() || !mqueue.isEmpty() )
+			System.out.println( "The following need to wait:");
+		while( !fqueue.isEmpty())
+			System.out.println( fqueue.dequeue());
+		while( !mqueue.isEmpty())
+			System.out.println( mqueue.dequeue());
+
 		infile.close();
 		return;
 	}
