@@ -31,7 +31,11 @@ public class LQueue<T> {
 			this.back = null;			
 			T dataValue;
 			Node<T> currentNode = otherQueue.front;
-
+			while( currentNode != null) {
+				dataValue = currentNode.data;
+				this.enqueue( dataValue);
+				currentNode = currentNode.next;
+			}
 		}
 	}
 
@@ -39,8 +43,15 @@ public class LQueue<T> {
 
 		Node<T> newNode = new Node<T>( dataValue);
 
-
-
+		if( isEmpty()) {
+			front = newNode;
+			back = newNode;
+			nodeCount++;
+			return;
+		}
+		back.next = newNode;
+		back = newNode;
+		nodeCount++;
 		return;
 	}
 
@@ -79,7 +90,7 @@ public class LQueue<T> {
 
 	public boolean isEmpty() {
 
-		return( );
+		return( nodeCount == 0);
 	}
 
 	public int size() {
