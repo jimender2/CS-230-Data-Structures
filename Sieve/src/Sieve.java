@@ -10,7 +10,7 @@ public class Sieve {
 		
 		while (again) {
 			num = getNumber();
-			
+
 			CQueue<Integer> queue = new CQueue<Integer>();
 			CQueue<Integer> tempQueue = new CQueue<Integer>();
 			ABQueue<Integer> prime = new ABQueue<Integer>();
@@ -19,7 +19,7 @@ public class Sieve {
 
 
 			int i = 2;
-			
+
 			while (i <= num) {
 				queue.enqueue(i);
 //				prime.enqueue(i);
@@ -32,6 +32,7 @@ public class Sieve {
 				
 
 			}
+
 //			i = (int) Math.sqrt(queue.peekAtBack());
 //            do {            
 //            	temp = numList.dequeue();
