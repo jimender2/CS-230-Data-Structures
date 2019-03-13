@@ -7,7 +7,6 @@ M Joey
 M Scott
 F Jane
 M Bob
-M Conner
 F Connie
 F Jamie
 F Nicole
