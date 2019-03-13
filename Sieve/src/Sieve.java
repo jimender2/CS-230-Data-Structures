@@ -5,7 +5,8 @@ public class Sieve {
 	static Scanner scan = new Scanner (System.in);
 	public static void main(String[] args) {
 		
-		int num;
+		Integer num;
+		Integer temp2;
 		boolean again = true;
 		
 		while (again) {
@@ -26,29 +27,9 @@ public class Sieve {
 				i++;
 			}
 
-			while (queue.peekAtFront() < Math.sqrt(queue.peekAtBack())) {
-				tempQueue = new CQueue<Integer>();
-
-				
-
-			}
-
-//			i = (int) Math.sqrt(queue.peekAtBack());
-//            do {            
-//            	temp = numList.dequeue();
-// 
-//            	if (num != null){
-//            		primes.enqueue(num);
-//
-//            		for (int i = 0; i < numList.size(); i++){
-//            			Integer num2 = numList.dequeue();
-//            			if (num2 % num != 0){
-//                            temp.enqueue(num2);
-//                        }
-//                    }
-//            		numList = temp;
-//                }
-//            }   while (num < Math.sqrt(num));
+			
+			//ADD THE STUFF IN HERE
+			
 
 			System.out.println(queue.toString());
 
