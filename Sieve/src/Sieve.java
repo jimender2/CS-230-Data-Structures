@@ -39,7 +39,7 @@ public class Sieve {
 // 
 //            	if (num != null){
 //            		primes.enqueue(num);
-//             
+//
 //            		for (int i = 0; i < numList.size(); i++){
 //            			Integer num2 = numList.dequeue();
 //            			if (num2 % num != 0){
