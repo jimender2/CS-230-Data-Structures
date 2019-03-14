@@ -7,7 +7,7 @@ public class Sieve {
 		
 		Integer num;
 		boolean again = true;
-		int p;
+		int working;
 		
 		while (again) {
 			num = getNumber();
@@ -15,31 +15,29 @@ public class Sieve {
 			CQueue<Integer> queue = new CQueue<Integer>();
 			ABQueue<Integer> prime = new ABQueue<Integer>();
 
-
 			int i = 2;
 
 			while (i <= num) {
 				queue.enqueue(i);
-//				prime.enqueue(i);
 				i++;
 			}
 
 			do {
-				p = queue.dequeue();
+				working = queue.dequeue();
 
-				prime.enqueue(p); 
+				prime.enqueue(working); 
 
 				int size = queue.size();
 			 
 				for (int j = 0; j < size; j++){ 
 					int element = queue.dequeue(); 
 			 
-					if ((element % p) != 0){ 
+					if ((element % working) != 0){ 
 						queue.enqueue(element); 
 					} 
 				} 
 
-			} while(p < Math.sqrt(num)+1);
+			} while(working < Math.sqrt(num)+1);
 
 			System.out.println(queue.toString());
 
