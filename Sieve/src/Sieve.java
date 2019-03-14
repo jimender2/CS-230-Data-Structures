@@ -6,17 +6,14 @@ public class Sieve {
 	public static void main(String[] args) {
 		
 		Integer num;
-		Integer temp2;
 		boolean again = true;
+		int p;
 		
 		while (again) {
 			num = getNumber();
 
 			CQueue<Integer> queue = new CQueue<Integer>();
-			CQueue<Integer> tempQueue = new CQueue<Integer>();
 			ABQueue<Integer> prime = new ABQueue<Integer>();
-			int temp;
-			int a;
 
 
 			int i = 2;
@@ -27,10 +24,29 @@ public class Sieve {
 				i++;
 			}
 
-			
-			//ADD THE STUFF IN HERE
-			
+			do {
+				p = queue.dequeue();
 
+				prime.enqueue(p); 
+
+				int size = queue.size();
+			 
+				for (int j = 0; j < size; j++){ 
+					int element = queue.dequeue(); 
+			 
+					if ((element % p) != 0){ 
+						queue.enqueue(element); 
+					} 
+				} 
+
+			} while(p < Math.sqrt(num)+1);
+
+			System.out.println(queue.toString());
+
+			while(!queue.isEmpty()) {
+				prime.enqueue(queue.dequeue());
+			}
+			
 			System.out.println(queue.toString());
 
 			display(prime);
