@@ -5,9 +5,9 @@ public class Sieve {
 	static Scanner scan = new Scanner (System.in);
 	public static void main(String[] args) {
 		
-		Integer num;
+		int num;
 		boolean again = true;
-		int working;
+		int first;
 		
 		while (again) {
 			num = getNumber();
@@ -23,30 +23,24 @@ public class Sieve {
 			}
 
 			do {
-				working = queue.dequeue();
-
-				prime.enqueue(working); 
+				prime.enqueue(queue.dequeue()); 
 
 				int size = queue.size();
 			 
-				for (int j = 0; j < size; j++){ 
-					int element = queue.dequeue(); 
+				for (int d = 0; d < size; d++){ 
+					first = queue.dequeue(); 
 			 
-					if ((element % working) != 0){ 
-						queue.enqueue(element); 
+					if ((first % prime.peekAtBack()) != 0){ 
+						queue.enqueue(first); 
 					} 
 				} 
 
-			} while(working < Math.sqrt(num)+1);
-
-			System.out.println(queue.toString());
+			} while(prime.peekAtBack() < Math.sqrt(num));
 
 			while(!queue.isEmpty()) {
 				prime.enqueue(queue.dequeue());
 			}
 			
-			System.out.println(queue.toString());
-
 			display(prime);
 
 			again = runAgain();
