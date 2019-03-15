@@ -13,19 +13,33 @@ public class ProcessingFootnotes {
 		final char END_FOOTNOTE = '}';
 		final char BEGIN_FOOTNOTE = '{';
 		Scanner infile = new Scanner( new File( "document.txt"));
-		LinkedQueue<String> footnotes = new LinkedQueue<String>();
+		LQueue<String> footnotes = new LQueue<String>();
 		
 		while( infile.hasNextLine()) {
 			line = infile.nextLine();
 			for( index = 0 ; index < line.length() ; index++) {
-				
-				
+				ch = line.charAt( index);
+				if( ch != BEGIN_FOOTNOTE && ch != END_FOOTNOTE)
+					System.out.print( ch);
+				else {
+					footnote = "";
+					if( ch == BEGIN_FOOTNOTE) {
+						index++;
+						footnoteIndex++;
+						footnote = footnote + "[" + footnoteIndex + "] ";
+						while( ch != END_FOOTNOTE) {
+							ch = line.charAt( index);
+							footnote += ch;
+							index++;
+						}
+						footnotes.enqueue( footnote);
+					}
+				}
 			}
 			System.out.println();
 		}
 		
 		System.out.println( "\n\n\n");
-		
 
 		infile.close();
 		return;
