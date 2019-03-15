@@ -59,8 +59,23 @@ public class LQueue<T> {
 
 		T item = null;
 
+		if( isEmpty()) {
+			System.out.println( "Queue is empty.");
+			return item;
+		}
 
+		if( nodeCount == 1) {
+			// reset();
+			item = front.data;
+			front = null;
+			back = null;
+			nodeCount--;
+			return item;
+		}
 
+		item = front.data;
+		front = front.next;
+		nodeCount--;
 		return item;
 	}
 
@@ -119,7 +134,10 @@ public class LQueue<T> {
 		}
 
 		Node<T> currentNode = front;	
-
+		while( currentNode != null) {
+			str = str + currentNode.data + " ";
+			currentNode = currentNode.next;
+		}
 
 		return str;
 	}
