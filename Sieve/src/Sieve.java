@@ -4,12 +4,12 @@ public class Sieve {
 
 	static Scanner scan = new Scanner (System.in);
 	public static void main(String[] args) {
-		
+
 		int num;
 		boolean again = true;
-		int first;
-		
-		while (again) {
+		int number;
+
+		do {
 			num = getNumber();
 
 			CQueue<Integer> queue = new CQueue<Integer>();
@@ -23,17 +23,16 @@ public class Sieve {
 			}
 
 			do {
-				prime.enqueue(queue.dequeue()); 
+				prime.enqueue(queue.dequeue());
 
 				int size = queue.size();
-			 
-				for (int d = 0; d < size; d++){ 
-					first = queue.dequeue(); 
-			 
-					if ((first % prime.peekAtBack()) != 0){ 
-						queue.enqueue(first); 
-					} 
-				} 
+
+				for (int d = 0; d < size; d++){
+					number = queue.dequeue();
+
+					if ((number % prime.peekAtBack()) != 0)
+						queue.enqueue(number);
+				}
 
 			} while(prime.peekAtBack() < Math.sqrt(num));
 
@@ -44,7 +43,7 @@ public class Sieve {
 			display(prime);
 
 			again = runAgain();
-		}
+		} while(again);
 		scan.close();
 	}
 
@@ -93,9 +92,7 @@ public class Sieve {
 
 	public static void display(ABQueue queue) {
 		int num = queue.size() / 10;
-		int extra = (queue.size() % 10) + 1;
 		int i = 0;
-		int k = 0;
 
 		while (i < num) {
 			for (int f = 1; f <= 10; f++)
@@ -104,10 +101,8 @@ public class Sieve {
 			i++;
 		}
 
-		while (k < extra) {
+		while (!queue.isEmpty())
 			System.out.print(queue.dequeue() + " ");
-			k++;
-		}
 
 		System.out.println("");
 
