@@ -30,8 +30,9 @@ public class CQueue<T> {
 		
 		if( isFull()) {
 			T[] newQueue = (T[]) new Object[queue.length + 50];
-			for(int index = 0 ; index < back; index++)
+			for(int index = 0 ; index < queue.length; index++)
 				newQueue[index] = queue[index];
+			back = queue.length;
 			queue = newQueue;
 		}
 		queue[back] = element;
