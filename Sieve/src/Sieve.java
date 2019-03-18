@@ -52,7 +52,7 @@ public class Sieve {
 		boolean again = true;
 
 		while (again) {
-			System.out.print("Please enter a number between 2 and infinitity:");
+			System.out.print("Please enter a number greater than two:");
 			try {
 				num = scan.nextInt();
 				System.out.println();
@@ -60,11 +60,13 @@ public class Sieve {
 					scan.nextLine();
 					return num;
 				} else {
-					System.out.println("I'm sorry, the number you entered was invalid. Please try again.");
+					System.out.println("I'm sorry, the number you entered"
+							+ " was invalid. Please try again.");
 				}
 			} catch (Exception InputMismatchException) {
 				System.out.println();
-				System.out.println("I'm sorry, what you entered was not a valid number. Please try again.");
+				System.out.println("I'm sorry, what you entered was not a "
+						+ "valid number. Please try again.");
 				scan.next();
 			}
 
@@ -85,7 +87,8 @@ public class Sieve {
 			} else if (response.charAt(0) == 'N') {
 				return false;
 			}
-			System.out.println("I'm sorry, that was not a valid input. Please answer Y or N.");
+			System.out.println("I'm sorry, that was not a valid input. "
+					+ "Please answer Y or N.");
 		}
 		return false;
 	}
