@@ -27,19 +27,24 @@ public class ProcessingFootnotes {
 						index++;
 						footnoteIndex++;
 						footnote = footnote + "[" + footnoteIndex + "] ";
+						ch = line.charAt( index);
 						while( ch != END_FOOTNOTE) {
-							ch = line.charAt( index);
+
 							footnote += ch;
 							index++;
+							ch = line.charAt( index);
 						}
 						footnotes.enqueue( footnote);
+						System.out.print( "[" + footnoteIndex + "]");
 					}
 				}
 			}
 			System.out.println();
 		}
-		
+
 		System.out.println( "\n\n\n");
+		while( !footnotes.isEmpty()) 
+			System.out.println( footnotes.dequeue());
 
 		infile.close();
 		return;
