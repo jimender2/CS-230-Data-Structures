@@ -17,10 +17,10 @@ public class Task implements Comparable<Task> {
 	}
 	
 	public String getTask() {
-		
+
 		return this.task;
 	}
-	
+
 	public char getPrimary() {
 		
 		return this.primary;
