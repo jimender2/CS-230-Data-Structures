@@ -13,11 +13,11 @@ public class PalindromicDates {
 		boolean again = true;
 		String yearString;
 		String temp;
-		LQueue<String> queue = new LQueue<String>();
+		LQueue<String> queue;
 
 		while(again) {
 			year = getNumber();
-			
+			queue = new LQueue<String>();
 			yearString = Integer.toString(year);
 			i = yearString.length() - 1;
 			while (i >= 0) {
