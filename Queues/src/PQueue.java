@@ -55,7 +55,7 @@ public class PQueue<T extends Comparable<T>> {
 			Node<T> trailCurrentNode = front;
 
 			while( currentNode != null && !found) {
-				if( currentNode.data.compareTo( dataValue) 	> 0)
+				if( currentNode.data.compareTo( dataValue) < 0)
 					found = true;
 				else {
 					trailCurrentNode = currentNode;
