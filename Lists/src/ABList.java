@@ -117,16 +117,19 @@ public class ABList<T> {
 		return list[index];
 	}
 
+	private void enlargeList( ) {
+		int newSize = itemsCount + 10;
+		T[] newList = (T[]) new Object[newSize];
+		for( int index = 0 ; index < itemsCount ; index++)
+			newList[index] = list[index];
+		list = newList;
+	}
 	public boolean insert( T element) {
 
 		if( isFull()) {
 			//System.out.println( "List is full.");
 			//return false;
-			int newSize = itemsCount + 10;
-			T[] newList = (T[]) new Object[newSize];
-			for( int index = 0 ; index < itemsCount ; index++)
-				newList[index] = list[index];
-			list = newList;
+			enlargeList();
 		}
 
 		list[itemsCount] = element;
@@ -136,18 +139,25 @@ public class ABList<T> {
 
 	public void insert( T element, int index) {
 
-		if( isFull()) {
-			System.out.println( "List is full.");
-			return;
-		}
-
 		if( index < 0) {
 			System.out.println( "Invalid index.");
 			return;
 		}
 
+		if( isFull()) {
+			enlargeList();
+		}
 
+		if( index >= itemsCount) {
+			list[itemsCount] = element;
+			itemsCount++;
+			return;
+		}
 
+		for( int i = itemsCount ; i > index ; i--)
+			list[i] = list[i-1];
+		list[index] = element;
+		itemsCount++;
 		return;
 	}
 
