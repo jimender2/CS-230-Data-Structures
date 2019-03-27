@@ -120,8 +120,13 @@ public class ABList<T> {
 	public boolean insert( T element) {
 
 		if( isFull()) {
-			System.out.println( "List is full.");
-			return false;
+			//System.out.println( "List is full.");
+			//return false;
+			int newSize = itemsCount + 10;
+			T[] newList = (T[]) new Object[newSize];
+			for( int index = 0 ; index < itemsCount ; index++)
+				newList[index] = list[index];
+			list = newList;
 		}
 
 		list[itemsCount] = element;
@@ -158,7 +163,7 @@ public class ABList<T> {
 			return;
 		}
 
-		for( int i = index ; i < itemsCount-1 ; i++) 
+		for( int i = index ; i < itemsCount-1 ; i++)
 			list[i] = list[i+1];
 
 		itemsCount--;
@@ -176,7 +181,7 @@ public class ABList<T> {
 		find( element);
 
 		if( found)
-			for( int i = location ; i < itemsCount-1 ; i++) 
+			for( int i = location ; i < itemsCount-1 ; i++)
 				list[i] = list[i+1];
 
 		itemsCount--;
@@ -184,6 +189,7 @@ public class ABList<T> {
 		return true;
 	}
 
+	@Override
 	public String toString() {
 
 		String str = "[";
