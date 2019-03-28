@@ -55,7 +55,8 @@ public class PalindromicDates {
 		boolean again = true;
 
 		while (again) {
-			System.out.print("Please enter a year:");
+			System.out.print("Please enter a year (between 1000 and 9999 "
+					+ "inclusive:");
 			try {
 				num = scan.nextInt();
 				System.out.println();
@@ -154,7 +155,6 @@ public class PalindromicDates {
 		temp = queue.dequeue() + queue.dequeue();
 		day = Integer.parseInt(temp);
 
-		//Not a month
 		if (month == 0 || month > 12) {
 			noPal(year, print);
 			return false;
