@@ -23,10 +23,15 @@ public class MergingLists {
 				C.insert( A[i]);
 				i++;
 			}
-			while( B[j] <= A[i]) {
-				C.insert( B[j]);
-				j++;
-			}
+			System.out.println( i);
+//			if( i >= A.length || j >= B.length)
+//				break;
+
+//			while( B[j] <= A[i]) {
+//				C.insert( B[j]);
+//				j++;
+//			}
+
 		}
 		while( i < A.length)
 			C.insert( A[i++]);
