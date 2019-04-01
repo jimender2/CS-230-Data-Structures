@@ -28,6 +28,13 @@ public class MergingLists {
 				j++;
 			}
 		}
+		while( i < A.length)
+			C.insert( A[i++]);
+
+		while( j < B.length)
+			C.insert( B[j++]);
+
+		System.out.println( C);
 	}
 
 	public static int[] bubbleSort( int[] X) {
