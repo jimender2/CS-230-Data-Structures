@@ -16,21 +16,23 @@ public class MergingLists {
 
 		A = bubbleSort( A);
 		B = bubbleSort( B);
+		for (int index = 0 ; index < A.length ; index++)
+			System.out.print( A[index] + " ");
+		System.out.println();
+		for (int index = 0 ; index < B.length ; index++)
+			System.out.print( B[index] + " ");
+		System.out.println();
 
 		i = j = 0;
 		while( i < A.length && j < B.length) {
-			while( A[i] <= B[j]) {
+			if( A[i] <= B[j]) {
 				C.insert( A[i]);
 				i++;
 			}
-			System.out.println( i);
-//			if( i >= A.length || j >= B.length)
-//				break;
-
-//			while( B[j] <= A[i]) {
-//				C.insert( B[j]);
-//				j++;
-//			}
+			else {
+				C.insert( B[j]);
+				j++;
+			}
 
 		}
 		while( i < A.length)
