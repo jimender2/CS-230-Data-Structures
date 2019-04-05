@@ -149,6 +149,8 @@ public class LinkedList<T extends Comparable<T>> {
 		Node<T> currentNode = firstNode;
 		while( currentNode.next != lastNode)
 			currentNode = currentNode.next;
+		lastNode = currentNode;
+		lastNode.next = null;
 		return data;
 	}
 
@@ -159,7 +161,18 @@ public class LinkedList<T extends Comparable<T>> {
 		if( !found)
 			return;
 
+		if( firstNode == targetNode) {
+			removeFromFront();
+			return;
+		}
 
+		if( targetNode == lastNode) {
+			removeFromBack();
+			return;
+		}
+
+		trailTargetNode.next = targetNode.next;
+		targetNode.next = null;
 		return;
 	}
 
