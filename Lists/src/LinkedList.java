@@ -25,8 +25,16 @@ public class LinkedList<T extends Comparable<T>> {
 		trailTargetNode = firstNode;
 		found = false;
 
+		while( targetNode != null && !targetNode.data.equals( target)) {
+			trailTargetNode = targetNode;
+			targetNode = targetNode.next;
+		}
 
-
+		// if(targetNode!= null) found = true;
+		if( targetNode == null)
+			return;
+		else
+			found = true;
 		return;
 	}
 
@@ -86,7 +94,8 @@ public class LinkedList<T extends Comparable<T>> {
 			return;
 		}
 
-
+		lastNode.next = newNode;
+		lastNode = newNode; // lastNode = lastNode.next;
 		return;
 	}
 
@@ -99,7 +108,8 @@ public class LinkedList<T extends Comparable<T>> {
 			return;
 		}
 
-
+		newNode.next = firstNode;
+		firstNode = newNode;
 		return;
 	}
 
@@ -112,6 +122,11 @@ public class LinkedList<T extends Comparable<T>> {
 			return data;
 		}
 
+		data = firstNode.data;
+		if( firstNode == lastNode) // if( size() == 1)
+			firstNode = lastNode = null; // reset();
+		else
+			firstNode = firstNode.next;
 
 		return data;
 	}
@@ -125,7 +140,15 @@ public class LinkedList<T extends Comparable<T>> {
 			return data;
 		}
 
+		data = lastNode.data;
+		if( firstNode == lastNode) { // if( size() == 1)
+			firstNode = lastNode = null; // reset();
+			return data;
+		}
 
+		Node<T> currentNode = firstNode;
+		while( currentNode.next != lastNode)
+			currentNode = currentNode.next;
 		return data;
 	}
 
