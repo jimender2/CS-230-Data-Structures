@@ -21,6 +21,12 @@ public class LargeInteger {
 
 		size1 = largeInt1.size();
 		size2 = largeInt2.size();
+		if( size1 < size2 )
+			for( int count = 1 ; count <= size2-size1 ; count++)
+				largeInt1.insertAtBack( (byte) 0);
+		else
+			for( int count = 1 ; count <= size1-size2 ; count++)
+				largeInt2.insertAtBack( (byte) 0);
 
 		System.out.println( largeInt1);
 		System.out.println( largeInt2);
@@ -38,7 +44,11 @@ public class LargeInteger {
 		int length = line.length();
 		LinkedList<Byte> largeInt = new LinkedList<Byte>();
 
-
+		for( int index = 0 ; index < length ; index ++) {
+			str = line.substring( index, index+1);
+			x = Byte.parseByte( str);
+			largeInt.insertAtBack( x);
+		}
 
 		return largeInt;
 	}
