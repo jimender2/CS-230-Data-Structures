@@ -201,4 +201,27 @@ public class LinkedList<T extends Comparable<T>> {
 		return str;
 	}
 
+	public void reverse( ){
+
+		reverseThisList( firstNode);
+		return;
+	}
+
+	private void reverseThisList ( Node<T> currentNode) {
+
+		if( currentNode == null)
+			return;
+
+		if( currentNode == this.lastNode) {
+			this.lastNode = this.firstNode;
+			this.firstNode = currentNode;
+			return;
+		}
+
+		reverseThisList( currentNode.next);
+		currentNode.next.next = currentNode;
+		currentNode.next = null;
+		return;
+
+	}
 }
