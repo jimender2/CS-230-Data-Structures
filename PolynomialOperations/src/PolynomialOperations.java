@@ -119,6 +119,10 @@ public class PolynomialOperations {
 	}
 
 
+
+
+
+
 	// Driver program to test above functions
 	public static void main(String[] args) {
 
@@ -151,7 +155,7 @@ public class PolynomialOperations {
 		printPolyABList(poly2);
 		int sum[] = add(A, B);
 		ABList<Integer> polySum = addPoly(poly1, poly2);
-		//		int size = max(m, n);
+
 		System.out.println("\nsum polynomial is");
 		printPoly(sum);
 		System.out.println();
