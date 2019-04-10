@@ -23,16 +23,19 @@ public class LargeInteger {
 		size2 = largeInt2.size();
 		if( size1 < size2 )
 			for( int count = 1 ; count <= size2-size1 ; count++)
-				largeInt1.insertAtBack( (byte) 0);
+				largeInt1.insertAtFront( (byte) 0);
 		else
 			for( int count = 1 ; count <= size1-size2 ; count++)
-				largeInt2.insertAtBack( (byte) 0);
+				largeInt2.insertAtFront( (byte) 0);
 
 		System.out.println( largeInt1);
 		System.out.println( largeInt2);
 		largeInt1.reverse();
 		largeInt2.reverse();
+		System.out.println( largeInt1);
+		System.out.println( largeInt2);
 		sum = add( largeInt1, largeInt2);
+		sum.reverse();
 		System.out.println( sum);
 		return;
 	}
@@ -59,6 +62,18 @@ public class LargeInteger {
 		Byte x, y, z, carry = 0;
 		LinkedList<Byte> largeInt = new LinkedList<Byte>();
 
+		for( int count = 1 ; count <= size ; count++) {
+			x = num1.removeFromFront();
+			y = num2.removeFromFront();
+			z = (byte) (x + y + carry);
+			if( z >= 10) {
+				z = (byte) (z % 10);
+				carry = 1;
+			}
+			else
+				carry = 0;
+			largeInt.insertAtBack( z);
+		}
 
 		return largeInt;
 	}
