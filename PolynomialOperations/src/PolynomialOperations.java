@@ -74,8 +74,21 @@ public class PolynomialOperations {
 			sum.insert((Integer)poly2.get(i)+(Integer)poly1.get(i),i);
 		}
 
+		int temp = sum.size();
+
+		while( temp < sizeOfPoly1) {
+			sum.insert((Integer)poly1.get(temp));
+			temp++;
+		}
+
+		while( temp < sizeOfPoly2) {
+			sum.insert((Integer)poly2.get(temp));
+			temp++;
+		}
+
 		return sum;
 	}
+
 	// A utility function to print a polynomial
 	static void printPoly(int poly[]) {
 
