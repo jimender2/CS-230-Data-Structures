@@ -62,22 +62,19 @@ public class PolynomialOperations {
 		int size = max(poly1.size(), poly2.size());
 		ABList<Integer> sum = new ABList<Integer>(size);
 
-		int sizeOfPoly1 = poly1.size();
-		int sizeOfPoly2 = poly2.size();
-
 		// Take every term of first polynomial
-		for (int i = 0; i < sizeOfPoly1 && i < sizeOfPoly2; i++) {
-			sum.insert((Integer)poly2.get(i)+(Integer)poly1.get(i),i);
+		for (int i = 0; i < poly1.size() && i < poly2.size(); i++) {
+			sum.insert((Integer)poly1.get(i)+(Integer)poly2.get(i),i);
 		}
 
 		int temp = sum.size();
 
-		while( temp < sizeOfPoly1) {
+		while( temp < poly1.size()) {
 			sum.insert((Integer)poly1.get(temp));
 			temp++;
 		}
 
-		while( temp < sizeOfPoly2) {
+		while( temp < poly2.size()) {
 			sum.insert((Integer)poly2.get(temp));
 			temp++;
 		}
@@ -90,22 +87,19 @@ public class PolynomialOperations {
 		int size = max(poly1.size(), poly2.size());
 		ABList<Integer> sum = new ABList<Integer>(size);
 
-		int sizeOfPoly1 = poly1.size();
-		int sizeOfPoly2 = poly2.size();
-
 		// Take every term of first polynomial
-		for (int i = 0; i < sizeOfPoly1 && i < sizeOfPoly2; i++) {
-			sum.insert((Integer)poly2.get(i)+(Integer)poly1.get(i),i);
+		for (int i = 0; i < poly1.size() && i < poly2.size(); i++) {
+			sum.insert((Integer)poly1.get(i)-(Integer)poly2.get(i),i);
 		}
 
 		int temp = sum.size();
 
-		while( temp < sizeOfPoly1) {
+		while( temp < poly1.size()) {
 			sum.insert((Integer)poly1.get(temp));
 			temp++;
 		}
 
-		while( temp < sizeOfPoly2) {
+		while( temp < poly2.size()) {
 			sum.insert((Integer)poly2.get(temp));
 			temp++;
 		}
@@ -171,25 +165,26 @@ public class PolynomialOperations {
 		int B[] = {1, 2, 4};
 
 		System.out.println("First polynomial is");
-		printPoly(A);
 		System.out.println();
 		printPolyABList(poly1);
 		System.out.println("\nSecond polynomial is");
-		printPoly(B);
 		System.out.println();
 		printPolyABList(poly2);
+
+		System.out.println();
+		System.out.println();
+
+		ABList<Integer> polySub = subtractPoly(poly1, poly2);
+		printPolyABList(polySub);
+		System.out.println();
+
 		int sum[] = add(A, B);
 		ABList<Integer> polySum = addPoly(poly1, poly2);
 
 		System.out.println("\nsum polynomial is");
-		printPoly(sum);
-		System.out.println();
 		printPolyABList(polySum);
 		System.out.println();
 		System.out.println();
-		printPolyABList(poly1);
-		System.out.println();
-		printPolyABList(poly2);
 
 	}
 
