@@ -35,32 +35,10 @@ public class PolynomialOperations {
 			return m;
 	}
 
-	// A[] represents coefficients of first polynomial
-	// B[] represents coefficients of second polynomial
-	// m and n are sizes of A[] and B[] respectively
-	static int[] add(int A[], int B[]) {
-		int m = A.length;
-		int n = B.length;
-		int size = max(m, n);
-		int sum[] = new int[size];
-
-		// Initialize the product polynomial
-		for (int i = 0; i < m; i++) {
-			sum[i] = A[i];
-		}
-
-		// Take ever term of first polynomial
-		for (int i = 0; i < n; i++) {
-			sum[i] += B[i];
-		}
-
-		return sum;
-	}
-
 	static ABList addPoly(ABList poly1, ABList poly2) {
 
 		int size = max(poly1.size(), poly2.size());
-		ABList<Integer> sum = new ABList<Integer>(size);
+		ABList<Integer> sum = new ABList<>(size);
 
 		// Take every term of first polynomial
 		for (int i = 0; i < poly1.size() && i < poly2.size(); i++) {
@@ -85,11 +63,11 @@ public class PolynomialOperations {
 	static ABList subtractPoly(ABList poly1, ABList poly2) {
 
 		int size = max(poly1.size(), poly2.size());
-		ABList<Integer> sum = new ABList<Integer>(size);
+		ABList<Integer> sum = new ABList<>(size);
 
 		// Take every term of first polynomial
 		for (int i = 0; i < poly1.size() && i < poly2.size(); i++) {
-			sum.insert((Integer)poly1.get(i)-(Integer)poly2.get(i),i);
+			sum.insert((Integer)poly1.get(i) - (Integer)poly2.get(i),i);
 		}
 
 		int temp = sum.size();
@@ -100,27 +78,23 @@ public class PolynomialOperations {
 		}
 
 		while( temp < poly2.size()) {
-			sum.insert((Integer)poly2.get(temp));
+			sum.insert(((Integer)poly2.get(temp) * -1));
 			temp++;
 		}
 
 		return sum;
 	}
 
+	static int evaluate(ABList poly, int x) {
 
-	// A utility function to print a polynomial
-	static void printPoly(int poly[]) {
+		int sum = 0;
 
-		int n = poly.length;
-		for (int i = 0; i < n; i++) {
-			System.out.print(poly[i]);
-			if (i != 0) {
-				System.out.print("x^" + i);
-			}
-			if (i != n - 1) {
-				System.out.print(" + ");
-			}
+		for (int i = 0; i < poly.size(); i++) {
+			sum = sum + (((int) Math.pow(x, i)) * (int) poly.get(i));
 		}
+
+		return sum;
+
 	}
 
 	static void printPolyABList(ABList poly) {
@@ -151,13 +125,13 @@ public class PolynomialOperations {
 		poly1.insert(Integer.parseInt("5"));
 		poly1.insert(Integer.parseInt("0"));
 		poly1.insert(Integer.parseInt("10"));
-		poly1.insert(Integer.parseInt("6"));
+		poly1.insert(Integer.parseInt("-6"));
 
 		poly2.insert(Integer.parseInt("1"));
 		poly2.insert(Integer.parseInt("2"));
 		poly2.insert(Integer.parseInt("4"));
 
-
+		int x = -1;
 		// The following array represents polynomial 5 + 10x^2 + 6x^3
 		int A[] = {5, 0, 10, 6};
 
@@ -165,10 +139,8 @@ public class PolynomialOperations {
 		int B[] = {1, 2, 4};
 
 		System.out.println("First polynomial is");
-		System.out.println();
 		printPolyABList(poly1);
 		System.out.println("\nSecond polynomial is");
-		System.out.println();
 		printPolyABList(poly2);
 
 		System.out.println();
@@ -176,9 +148,7 @@ public class PolynomialOperations {
 
 		ABList<Integer> polySub = subtractPoly(poly1, poly2);
 		printPolyABList(polySub);
-		System.out.println();
 
-		int sum[] = add(A, B);
 		ABList<Integer> polySum = addPoly(poly1, poly2);
 
 		System.out.println("\nsum polynomial is");
@@ -186,6 +156,8 @@ public class PolynomialOperations {
 		System.out.println();
 		System.out.println();
 
+		int xEvaluatedTo = evaluate( polySum, x);
+		System.out.println(xEvaluatedTo);
 	}
 
 }
