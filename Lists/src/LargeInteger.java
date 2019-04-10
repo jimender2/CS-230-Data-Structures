@@ -32,8 +32,6 @@ public class LargeInteger {
 		System.out.println( largeInt2);
 		largeInt1.reverse();
 		largeInt2.reverse();
-		System.out.println( largeInt1);
-		System.out.println( largeInt2);
 		sum = add( largeInt1, largeInt2);
 		sum.reverse();
 		System.out.println( sum);
@@ -74,6 +72,9 @@ public class LargeInteger {
 				carry = 0;
 			largeInt.insertAtBack( z);
 		}
+
+		if( carry == 0)
+			largeInt.insertAtBack( carry);
 
 		return largeInt;
 	}
