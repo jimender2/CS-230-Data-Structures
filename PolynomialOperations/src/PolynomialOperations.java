@@ -64,10 +64,6 @@ public class PolynomialOperations {
 
 		int sizeOfPoly1 = poly1.size();
 		int sizeOfPoly2 = poly2.size();
-		// Initialize the product polynomial
-		for (int i = 0; i < sizeOfPoly2; i++) {
-			//sum.insert((Integer) poly2.get(i));
-		}
 
 		// Take every term of first polynomial
 		for (int i = 0; i < sizeOfPoly1 && i < sizeOfPoly2; i++) {
@@ -88,6 +84,35 @@ public class PolynomialOperations {
 
 		return sum;
 	}
+
+	static ABList subtractPoly(ABList poly1, ABList poly2) {
+
+		int size = max(poly1.size(), poly2.size());
+		ABList<Integer> sum = new ABList<Integer>(size);
+
+		int sizeOfPoly1 = poly1.size();
+		int sizeOfPoly2 = poly2.size();
+
+		// Take every term of first polynomial
+		for (int i = 0; i < sizeOfPoly1 && i < sizeOfPoly2; i++) {
+			sum.insert((Integer)poly2.get(i)+(Integer)poly1.get(i),i);
+		}
+
+		int temp = sum.size();
+
+		while( temp < sizeOfPoly1) {
+			sum.insert((Integer)poly1.get(temp));
+			temp++;
+		}
+
+		while( temp < sizeOfPoly2) {
+			sum.insert((Integer)poly2.get(temp));
+			temp++;
+		}
+
+		return sum;
+	}
+
 
 	// A utility function to print a polynomial
 	static void printPoly(int poly[]) {
