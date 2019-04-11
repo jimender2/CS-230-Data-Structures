@@ -6,7 +6,7 @@ public class PolynomialOperations {
 
 	// Java program to add two polynomials
 
-	// A utility function to return maximum of two integers
+	// Return maximum of two integers
 	static int max(int m, int n) {
 		if (m < n)
 			return n;
@@ -14,96 +14,99 @@ public class PolynomialOperations {
 			return m;
 	}
 
-	static ABList addPoly(ABList poly1, ABList poly2) {
+	// Add two Polynomials
+	static ABList<Integer> addPoly(ABList<Integer> poly1, ABList<Integer> poly2) {
 
 		int size = max(poly1.size(), poly2.size());
 		ABList<Integer> sum = new ABList<>(size);
 
 		// Take every term of first polynomial
-		for (int i = 0; i < poly1.size() && i < poly2.size(); i++) {
-			sum.insert((Integer)poly1.get(i)+(Integer)poly2.get(i),i);
-		}
+		for (int i = 0; i < poly1.size() && i < poly2.size(); i++)
+			sum.insert(poly1.get(i) + poly2.get(i), i);
 
 		int temp = sum.size();
 
 		while( temp < poly1.size()) {
-			sum.insert((Integer)poly1.get(temp));
+			sum.insert(poly1.get(temp));
 			temp++;
 		}
 
 		while( temp < poly2.size()) {
-			sum.insert((Integer)poly2.get(temp));
+			sum.insert(poly2.get(temp));
 			temp++;
 		}
 
 		return sum;
 	}
 
-	static ABList subtractPoly(ABList poly1, ABList poly2) {
+	static ABList<Integer> subtractPoly(ABList<Integer> poly1, ABList<Integer> poly2) {
 
 		int size = max(poly1.size(), poly2.size());
 		ABList<Integer> sum = new ABList<>(size);
 
-		// Take every term of first polynomial
-		for (int i = 0; i < poly1.size() && i < poly2.size(); i++) {
-			sum.insert((Integer)poly1.get(i) - (Integer)poly2.get(i),i);
-		}
+		for (int i = 0; i < poly1.size() && i < poly2.size(); i++)
+			sum.insert(poly1.get(i) - poly2.get(i), i);
 
 		int temp = sum.size();
 
 		while( temp < poly1.size()) {
-			sum.insert((Integer)poly1.get(temp));
+			sum.insert(poly1.get(temp));
 			temp++;
 		}
 
 		while( temp < poly2.size()) {
-			sum.insert(((Integer)poly2.get(temp) * -1));
+			sum.insert((poly2.get(temp) * -1));
 			temp++;
 		}
 
 		return sum;
 	}
 
-	static int evaluate(ABList poly, int x) {
+	static int evaluate(ABList<Integer> poly, int x) {
 
 		int sum = 0;
 
 		for (int i = 0; i < poly.size(); i++) {
-			sum = sum + (((int) Math.pow(x, i)) * (int) poly.get(i));
+			sum = sum + (((int) Math.pow(x, i)) * poly.get(i));
 		}
 
 		return sum;
 
 	}
 
-	static void printPolyABList(ABList poly) {
+	static void printPolyABList(ABList<Integer> poly) {
 
 		int n = poly.size();
+		System.out.print("(");
 		for (int i = 0; i < n; i++) {
-			System.out.print(poly.get(i));
-			if (i != 0) {
-				System.out.print("x^" + i);
-			}
-			if (i != n - 1) {
-				System.out.print(" + ");
+			if(poly.get(i) == 0) {
+				//do nothing
+			} else {
+				if(poly.get(i) != 1 || i == 0) {
+					System.out.print(poly.get(i));
+				}
+				if (i != 0) {
+					if (i != 1)
+						System.out.print("x^" + i);
+					else
+						System.out.print("x");
+				}
+				if (i != n - 1) {
+					System.out.print(" + ");
+				}
 			}
 		}
+		System.out.print(")");
 	}
 
-
-
-
-
-
-	// Driver program to test above functions
+	// Main method
 	public static void main(String[] args) throws FileNotFoundException {
-		//
+
 		File fileIn = new File("polynomials.txt");
 		Scanner file = new Scanner(fileIn);
-		//
+
 		int x;
 		String read;
-		String[] numberStrs;
 
 		x = file.nextInt();
 
@@ -123,7 +126,7 @@ public class PolynomialOperations {
 
 
 		read = file.nextLine();
-		ABList<Integer> poly2 = new ABList<Integer>();
+		ABList<Integer> poly2 = new ABList<>();
 		exponent = 0;
 		coefficient = 0;
 		while (exponent < read.length() - 1) {
@@ -133,41 +136,56 @@ public class PolynomialOperations {
 			coefficient = exponent + 2;
 		}
 
-		System.out.println("Test");
+		System.out.println("Program is reading input file to obtain the "
+				+ "two polynomials. The two input polynomials are:");
+
+		System.out.print("p(x) = ");
 		printPolyABList(poly1);
 		System.out.println();
-		System.out.println("Test2");
+
+		System.out.print("q(x) = ");
 		printPolyABList(poly2);
-
-		System.out.println();
 		System.out.println();
 
-		System.out.println("poly1: " + poly1);
-		System.out.println("poly2 : " + poly2);
-
-
-
-		System.out.println("First polynomial is");
+		System.out.println();
+		System.out.println("Program is now performing arithmetic "
+				+ "operations on the two polynomials…");
 		printPolyABList(poly1);
-		System.out.println("\nSecond polynomial is");
+		System.out.print(" + ");
 		printPolyABList(poly2);
-		//
-		System.out.println();
-		System.out.println();
-		//
-		System.out.println("Subtract");
-		ABList<Integer> polySub = subtractPoly(poly1, poly2);
-		printPolyABList(polySub);
+		System.out.print(" = ");
 
-		ABList<Integer> polySum = addPoly(poly1, poly2);
-
-		System.out.println("\nsum polynomial is");
-		printPolyABList(polySum);
-		System.out.println();
+		ABList<Integer> sum;
+		sum = addPoly(poly1, poly2);
+		printPolyABList(sum);
 		System.out.println();
 
-		int xEvaluatedTo = evaluate( polySum, x);
-		System.out.println(xEvaluatedTo);
+
+		printPolyABList(poly1);
+		System.out.print(" - ");
+		printPolyABList(poly2);
+		System.out.print(" = ");
+
+		ABList<Integer> sub;
+		sub = subtractPoly(poly1, poly2);
+		printPolyABList(sub);
+
+		System.out.println();
+		System.out.println();
+		System.out.println("Program is now evaluating each polynomial "
+				+ "using x = " + x);
+
+		int poly1evaluation = evaluate(poly1, x);
+		System.out.println("p(" + x + ") = " + poly1evaluation);
+
+		int poly2evaluation = evaluate(poly2, x);
+		System.out.println("q(" + x + ") = " + poly2evaluation);
+
+		System.out.println();
+		System.out.println("Program is done.");
+		System.out.println("Bye!");
+
+		file.close();
 	}
 
 }
