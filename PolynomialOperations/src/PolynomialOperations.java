@@ -146,24 +146,7 @@ public class PolynomialOperations {
 		System.out.println("poly2 : " + poly2);
 
 
-		//		ABList<Integer> poly1 = new ABList<Integer>();
-		//		ABList<Integer> poly2 = new ABList<Integer>();
-		//
-		//		poly1.insert(Integer.parseInt("5"));
-		//		poly1.insert(Integer.parseInt("0"));
-		//		poly1.insert(Integer.parseInt("10"));
-		//		poly1.insert(Integer.parseInt("-6"));
-		//
-		//		poly2.insert(Integer.parseInt("1"));
-		//		poly2.insert(Integer.parseInt("2"));
-		//		poly2.insert(Integer.parseInt("4"));
-		//
-		//		// The following array represents polynomial 5 + 10x^2 + 6x^3
-		//		int A[] = {5, 0, 10, 6};
-		//
-		//		// The following array represents polynomial 1 + 2x + 4x^2
-		//		int B[] = {1, 2, 4};
-		//
+
 		System.out.println("First polynomial is");
 		printPolyABList(poly1);
 		System.out.println("\nSecond polynomial is");
