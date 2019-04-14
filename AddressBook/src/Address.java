@@ -15,55 +15,142 @@ public class Address {
 		answer = 0;
 	}
 
-	public int getLeftOperand() {
-		return leftOperand;
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
 	}
 
-	public int getRightOperand() {
-		return rightOperand;
+
+
+	/**
+	 * @return the streetAddress
+	 */
+	public String getStreetAddress() {
+		return streetAddress;
 	}
 
-	public int getAnswer() {
-		return answer;
+
+
+	/**
+	 * @return the city
+	 */
+	public String getCity() {
+		return city;
 	}
 
-	public void setLeftOperand( int operand) {
-		leftOperand = operand;
-		answer = leftOperand + rightOperand;
-		return;
+
+
+	/**
+	 * @return the state
+	 */
+	public String getState() {
+		return state;
 	}
 
-	public void setRightOperand( int operand) {
-		rightOperand = operand;
-		answer = leftOperand + rightOperand;
-		return;
+
+
+	/**
+	 * @return the zip
+	 */
+	public String getZip() {
+		return zip;
 	}
 
-	public void setOperands( int operand1, int operand2) {
-		leftOperand = operand1;
-		rightOperand = operand2;
-		answer = leftOperand + rightOperand;
-		return;
+
+
+	/**
+	 * @return the country
+	 */
+	public String getCountry() {
+		return country;
 	}
 
-	public AdditionProblem getAdditionProblem() {
-		AdditionProblem problem = new AdditionProblem( leftOperand, rightOperand);
 
-		return problem;
+
+	/**
+	 * @return the phoneNumber
+	 */
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
+
+
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	/**
+	 * @param streetAddress the streetAddress to set
+	 */
+	public void setStreetAddress(String streetAddress) {
+		this.streetAddress = streetAddress;
+	}
+
+
+
+	/**
+	 * @param city the city to set
+	 */
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+
+	/**
+	 * @param state the state to set
+	 */
+	public void setState(String state) {
+		this.state = state;
+	}
+
+
+
+	/**
+	 * @param zip the zip to set
+	 */
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
+
+
+	/**
+	 * @param country the country to set
+	 */
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+
+
+	/**
+	 * @param phoneNumber the phoneNumber to set
+	 */
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+
 
 	@Override
 	public String toString() {
 		String str = "";
 
-		str = str + leftOperand + " + " + rightOperand + " = ";
 		return str;
 	}
 
 	public String displayAnswer() {
 		String str = "";
 
-		str = str + leftOperand + " + " + rightOperand + " = " + answer;
 		return str;
 	}
 }
