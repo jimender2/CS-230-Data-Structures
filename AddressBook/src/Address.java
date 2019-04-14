@@ -1,7 +1,8 @@
 
-public class Address {
+public class Address implements Comparable<Address> {
 
-	private String name;
+	private String fName;
+	private String lName;
 	private String streetAddress;
 	private String city;
 	private String state;
@@ -10,8 +11,9 @@ public class Address {
 	private String phoneNumber;
 
 	public Address() {
-		name = "";
-		streetAddress = "";
+		fName = "";
+		lName = ""
+				streetAddress = "";
 		city = "";
 		state = "";
 		zip = "";
@@ -19,15 +21,27 @@ public class Address {
 		phoneNumber = "";
 	}
 
-	public Address(String name, String streetAddress, String city,
-			String state, String zip, String country, String phoneNumber) {
-		this.name = name;
+	public Address(String fName, String lName, String streetAddress,
+			String city, String state, String zip, String country,
+			String phoneNumber) {
+
+		this.fName = fName;
+		this.lName = lName;
 		this.streetAddress = streetAddress;
 		this.city = city;
 		this.state = state;
 		this.zip = zip;
 		this.country = country;
 		this.phoneNumber = phoneNumber;
+	}
+
+	@Override
+	public int compareTo(Address o) {
+		int comp = this.lastName.compareTo(o.lastName);
+		if(comp == 0) {
+			comp = this.firstName.compareTo(o.firstName);
+		}
+		return 0;
 	}
 
 	/**
