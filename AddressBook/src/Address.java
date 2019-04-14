@@ -10,9 +10,24 @@ public class Address {
 	private String phoneNumber;
 
 	public Address() {
-		leftOperand = 0;
-		rightOperand = 0;
-		answer = 0;
+		name = "";
+		streetAddress = "";
+		city = "";
+		state = "";
+		zip = "";
+		country = "";
+		phoneNumber = "";
+	}
+
+	public Address(String name, String streetAddress, String city,
+			String state, String zip, String country, String phoneNumber) {
+		this.name = name;
+		this.streetAddress = streetAddress;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.country = country;
+		this.phoneNumber = phoneNumber;
 	}
 
 	/**
@@ -22,16 +37,12 @@ public class Address {
 		return name;
 	}
 
-
-
 	/**
 	 * @return the streetAddress
 	 */
 	public String getStreetAddress() {
 		return streetAddress;
 	}
-
-
 
 	/**
 	 * @return the city
@@ -40,16 +51,12 @@ public class Address {
 		return city;
 	}
 
-
-
 	/**
 	 * @return the state
 	 */
 	public String getState() {
 		return state;
 	}
-
-
 
 	/**
 	 * @return the zip
@@ -58,16 +65,12 @@ public class Address {
 		return zip;
 	}
 
-
-
 	/**
 	 * @return the country
 	 */
 	public String getCountry() {
 		return country;
 	}
-
-
 
 	/**
 	 * @return the phoneNumber
@@ -76,16 +79,12 @@ public class Address {
 		return phoneNumber;
 	}
 
-
-
 	/**
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
 
 	/**
 	 * @param streetAddress the streetAddress to set
@@ -94,16 +93,12 @@ public class Address {
 		this.streetAddress = streetAddress;
 	}
 
-
-
 	/**
 	 * @param city the city to set
 	 */
 	public void setCity(String city) {
 		this.city = city;
 	}
-
-
 
 	/**
 	 * @param state the state to set
@@ -112,16 +107,12 @@ public class Address {
 		this.state = state;
 	}
 
-
-
 	/**
 	 * @param zip the zip to set
 	 */
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
-
-
 
 	/**
 	 * @param country the country to set
@@ -130,8 +121,6 @@ public class Address {
 		this.country = country;
 	}
 
-
-
 	/**
 	 * @param phoneNumber the phoneNumber to set
 	 */
@@ -139,18 +128,14 @@ public class Address {
 		this.phoneNumber = phoneNumber;
 	}
 
-
-
 	@Override
 	public String toString() {
 		String str = "";
 
-		return str;
-	}
-
-	public String displayAnswer() {
-		String str = "";
+		str = name + " " + streetAddress + " " + city + " " + zip + " "
+				+ country + " " + phoneNumber;
 
 		return str;
 	}
+
 }
