@@ -2,9 +2,9 @@ Binary Search Trees
 -------------------
 
 Types of Traversals
-Inorder (LNR)
-Preorder (NLR)
-Postorder (LRN)
+Inorder (LNR) decending to ascending (infix)
+Preorder (NLR) order of the tree (preorder)
+Postorder (LRN) (postfix)
 
 Evaluate from the bottom up
 
