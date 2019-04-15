@@ -69,7 +69,9 @@ public class DLList<T> {
 			firstNode = newNode;
 		}
 		else {
-
+			newNode.next = firstNode;
+			firstNode.prev = newNode;
+			firstNode = newNode;
 		}
 		nodeCount++;
 		return;
@@ -82,9 +84,11 @@ public class DLList<T> {
 		if( isEmpty())
 			firstNode = newNode;
 		else {
-			newNode.next = firstNode;
-			firstNode.prev = newNode;
-			firstNode = newNode;
+			Node<T> currentNode = firstNode;
+			while( currentNode.next != null)
+				currentNode = currentNode.next;
+			newNode.prev = currentNode;
+			currentNode.next = newNode;
 		}
 		nodeCount++;
 		return;
@@ -97,59 +101,44 @@ public class DLList<T> {
 			return false;
 		}
 
-		if( nodeCount == 1) {
-			reset();
-			return true;
-		}
-
 		Node<T> currentNode = firstNode;
-		while( currentNode != null && !currentNode.data.equals( target))
+		Node<T> trailCurrentNode = firstNode;
+		while( currentNode != null && !currentNode.data.equals( target)) {
+			trailCurrentNode = currentNode;
 			currentNode = currentNode.next;
+		}
 
 		if( currentNode == null) {
 			System.out.println( target + " not found");
 			return false;
 		}
 
-		// if( currentNode == firstNode) {
-
+		if( nodeCount == 1) {
+			reset();
+			return true;
 		}
 
-		// if( currentNode == lastNode) {
-
+		if( currentNode == firstNode) {
+			firstNode = firstNode.next;
+			firstNode.prev = null;
+			nodeCount--;
+			return true;
 		}
 
+		if( currentNode.next == null) {
+			trailCurrentNode.next = currentNode.next;
+			currentNode.prev = null;
+			nodeCount--;
+			return true;
+		}
 
+		trailCurrentNode.next = currentNode.next;
+		currentNode.prev = null;
+		currentNode.next.prev = trailCurrentNode;
+		nodeCount--;
 		return true;
 	}
 
-	public T removeFromFront() {
-
-		T data = firstNode.data;
-
-		if( nodeCount == 1) {
-			reset();
-			return data;
-		}
-
-		//
-
-		return data;
-	}
-
-	public T removeFromBack() {
-
-		T data = lastNode.data;
-
-		if( nodeCount == 1) {
-			reset();
-			return data;
-		}
-
-		//
-
-		return data;
-	}
 
 	public boolean contains(T target) {
 

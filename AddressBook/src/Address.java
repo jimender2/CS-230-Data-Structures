@@ -12,8 +12,8 @@ public class Address implements Comparable<Address> {
 
 	public Address() {
 		fName = "";
-		lName = ""
-				streetAddress = "";
+		lName = "";
+		streetAddress = "";
 		city = "";
 		state = "";
 		zip = "";
@@ -37,18 +37,35 @@ public class Address implements Comparable<Address> {
 
 	@Override
 	public int compareTo(Address o) {
-		int comp = this.lastName.compareTo(o.lastName);
-		if(comp == 0) {
-			comp = this.firstName.compareTo(o.firstName);
+		if( this.lName.compareTo(o.lName) < 0) {
+			return -1;
+		} else if( this.lName.compareTo( o.lName) == 0) {
+			if( this.fName.compareTo( o.fName) < 0) {
+				return -1;
+			}
+			if( this.fName.compareTo( o.fName) == 0) {
+				return 0;
+			} else {
+				return 1;
+			}
+
+		} else {
+			return 1;
 		}
-		return 0;
 	}
 
 	/**
-	 * @return the name
+	 * @return the fName
 	 */
-	public String getName() {
-		return name;
+	public String getfName() {
+		return fName;
+	}
+
+	/**
+	 * @return the lName
+	 */
+	public String getlName() {
+		return lName;
 	}
 
 	/**
@@ -94,10 +111,17 @@ public class Address implements Comparable<Address> {
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param fName the fName to set
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setfName(String fName) {
+		this.fName = fName;
+	}
+
+	/**
+	 * @param lName the lName to set
+	 */
+	public void setlName(String lName) {
+		this.lName = lName;
 	}
 
 	/**
@@ -146,8 +170,8 @@ public class Address implements Comparable<Address> {
 	public String toString() {
 		String str = "";
 
-		str = name + " " + streetAddress + " " + city + " " + zip + " "
-				+ country + " " + phoneNumber;
+		str = fName + " " + lName + " " + streetAddress + " " + city + " "
+				+ zip + " "	+ country + " " + phoneNumber;
 
 		return str;
 	}

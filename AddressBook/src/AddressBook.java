@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class AddressBook {
 
 	static Scanner scan = new Scanner(System.in);
-	LinkedList<Address> list = new LinkedList<Address>();
+	LinkedList<Address> list = new LinkedList<>();
 
 
 	public static void main(String[] args) {
