@@ -35,6 +35,29 @@ public class BST<T extends Comparable<T>> {
 
 		BSTNode<T> newNode = new BSTNode<T>(item);
 
+		if (isEmpty()) {
+			root = newNode;
+			return;
+		}
+
+		BSTNode<T> currentNode = root;
+		BSTNode<T> trailCurrentNode = root;
+
+		while (currentNode != null) {
+			if (currentNode.data.compareTo(item) <= 0) {
+				trailCurrentNode = currentNode;
+				currentNode = currentNode.leftChild;
+			} else {
+				trailCurrentNode = currentNode;
+				currentNode = currentNode.rightChild;
+			}
+		}
+
+		if (trailCurrentNode.data.compareTo(item) <= 0)// flag I think this should be < not <=
+			trailCurrentNode.rightChild = newNode;
+		else
+			trailCurrentNode.leftChild = newNode;
+
 		return;
 	}
 
@@ -43,6 +66,9 @@ public class BST<T extends Comparable<T>> {
 		if (subTreeRoot == null)
 			return;
 
+		System.out.print(subTreeRoot.data + " ");
+		traversePreOrderStartingAt(subTreeRoot.leftChild);
+		traversePreOrderStartingAt(subTreeRoot.rightChild);
 		return;
 	}
 
