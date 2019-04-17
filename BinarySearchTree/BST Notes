@@ -13,3 +13,10 @@ Height is max level
 We indicate what subtree that we want by using some variation of LNR
 Left Node Right
 Do this recursively
+
+
+Needed Stuff
+Traversals - recursion
+NodeCount - recursion
+Height - recursion
+LeafNodesCount - recursion
