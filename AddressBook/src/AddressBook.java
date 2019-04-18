@@ -3,12 +3,13 @@ import java.util.Scanner;
 public class AddressBook {
 
 	static Scanner scan = new Scanner(System.in);
-	LinkedList<Address> list = new LinkedList<>();
+	static LinkedList<Address> list = new LinkedList<>();
+	static boolean saved = false;
 
 
 	public static void main(String[] args) {
-		int selection = 0;
-		while(selection != 8) {
+		int selection = -1;
+		while(selection != 0) {
 
 			printOptions();
 
@@ -28,11 +29,33 @@ public class AddressBook {
 				retrieveRecord();
 			else if(selection == 7)
 				printRecord();
+			else if(selection == 8) {
+				if (!saved){
+					System.out.println("It looks like your address book"
+							+ "is not saved.");
+					System.out.println("Would you like to save? (Y or N)");
+					String s = scan.nextLine();
+					s = s.toLowerCase();
+					if (s.charAt(0) == 'Y')
+						saveRecord();
+				}
+				selection = 0;
+			}
 		}
 	}
 
 	private static void printRecord() {
-
+		Address address = new Address("fName", "lName", "streetAddress",
+				"city", "state", "zip", "country", "phoneNumber");
+		list.insertAtBack(address);
+		Address address1 = new Address("fName1", "lName1", "streetAddress1",
+				"city1", "state1", "zip1", "country1", "phoneNumber1");
+		list.insertAtBack(address1);
+		LinkedList<Address> use = new LinkedList<Address>(list);
+		System.out.println("Here are all of the addresses stored in your address book!!\n\n");
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(use.removeFromFront() + "\n");
+		}
 	}
 
 	private static void retrieveRecord() {
