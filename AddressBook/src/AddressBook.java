@@ -45,12 +45,6 @@ public class AddressBook {
 	}
 
 	private static void printRecord() {
-		Address address = new Address("fName", "lName", "streetAddress",
-				"city", "state", "zip", "country", "phoneNumber");
-		list.insertAtBack(address);
-		Address address1 = new Address("fName1", "lName1", "streetAddress1",
-				"city1", "state1", "zip1", "country1", "phoneNumber1");
-		list.insertAtBack(address1);
 		LinkedList<Address> use = new LinkedList<Address>(list);
 		System.out.println("Here are all of the addresses stored in your address book!!\n\n");
 		for(int i = 0; i < list.size(); i++) {
@@ -79,7 +73,36 @@ public class AddressBook {
 	}
 
 	private static void addRecord() {
+		print("I will interactivly guide you to create an entry in your "
+				+ "address book.");
+		print("");
+		print("What is the first name of the entry?");
+		String fName = scan.nextLine();
 
+		print("What is the last name of the entry?");
+		String lName = scan.nextLine();
+
+		print("What is the street address of the entry?");
+		String streetAddress = scan.nextLine();
+
+		print("What is the city of the entry?");
+		String city = scan.nextLine();
+
+		print("What is the state of the entry?");
+		String state = scan.nextLine();
+
+		print("What is the zip code of the entry?");
+		String zip = scan.nextLine();
+
+		print("What is the country of the entry?");
+		String country = scan.nextLine();
+
+		print("What is the phone number of the entry?");
+		String phoneNumber = scan.nextLine();
+
+		Address address = new Address(fName, lName, streetAddress,
+				city, state, zip, country, phoneNumber);
+		list.insertAtBack(address);
 	}
 
 	public static void printOptions() {
