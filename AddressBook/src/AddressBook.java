@@ -53,26 +53,27 @@ public class AddressBook {
 	}
 
 	private static void retrieveRecord() {
-
+		clear();
 	}
 
 	private static void saveRecord() {
-
+		clear();
 	}
 
 	private static void modifyRecord() {
-
+		clear();
 	}
 
 	private static void deleteRecord() {
-
+		clear();
 	}
 
 	private static void viewRecord() {
-
+		clear();
 	}
 
 	private static void addRecord() {
+		clear();
 		boolean correct = false;
 		while(!correct) {
 			print("I will interactivly guide you to create an entry in "
@@ -105,7 +106,6 @@ public class AddressBook {
 
 			Address address = new Address(fName, lName, streetAddress,
 					city, state, zip, country, phoneNumber);
-			list.insertAtBack(address);
 
 			print("Is the following information correct? (Y or N)");
 			print("");
@@ -121,13 +121,19 @@ public class AddressBook {
 
 			String s = scan.nextLine();
 			s = s.toLowerCase();
-			if (s.charAt(0) == 'y')
+			if (s.charAt(0) == 'y') {
 				correct = true;
+				list.insertAtBack(address);
+			} else if (s.charAt(0) == 'n'){
+				print("I will allow you to redo this entry. Please enter"
+						+ " the information.");
+			}
+
 		}
 	}
 
 	public static void printOptions() {
-
+		clear();
 		print("Please Select a Number Below:");
 		print("1. Add a new address record");
 		print("2. View an existing address record");
@@ -169,5 +175,10 @@ public class AddressBook {
 
 		}
 		return num;
+	}
+
+	public static void clear() {
+		for(int i = 0; i < 100; i++)
+			System.out.println();
 	}
 }
