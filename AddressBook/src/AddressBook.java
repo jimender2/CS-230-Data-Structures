@@ -73,49 +73,57 @@ public class AddressBook {
 	}
 
 	private static void addRecord() {
-		print("I will interactivly guide you to create an entry in your "
-				+ "address book.");
-		print("");
+		boolean correct = false;
+		while(!correct) {
+			print("I will interactivly guide you to create an entry in "
+					+ "your address book.");
+			print("");
 
-		print("What is the first name of the entry?");
-		String fName = scan.nextLine();
+			print("What is the first name of the entry?");
+			String fName = scan.nextLine();
 
-		print("What is the last name of the entry?");
-		String lName = scan.nextLine();
+			print("What is the last name of the entry?");
+			String lName = scan.nextLine();
 
-		print("What is the street address of the entry?");
-		String streetAddress = scan.nextLine();
+			print("What is the street address of the entry?");
+			String streetAddress = scan.nextLine();
 
-		print("What is the city of the entry?");
-		String city = scan.nextLine();
+			print("What is the city of the entry?");
+			String city = scan.nextLine();
 
-		print("What is the state of the entry?");
-		String state = scan.nextLine();
+			print("What is the state of the entry?");
+			String state = scan.nextLine();
 
-		print("What is the zip code of the entry?");
-		String zip = scan.nextLine();
+			print("What is the zip code of the entry?");
+			String zip = scan.nextLine();
 
-		print("What is the country of the entry?");
-		String country = scan.nextLine();
+			print("What is the country of the entry?");
+			String country = scan.nextLine();
 
-		print("What is the phone number of the entry?");
-		String phoneNumber = scan.nextLine();
+			print("What is the phone number of the entry?");
+			String phoneNumber = scan.nextLine();
 
-		Address address = new Address(fName, lName, streetAddress,
-				city, state, zip, country, phoneNumber);
-		list.insertAtBack(address);
+			Address address = new Address(fName, lName, streetAddress,
+					city, state, zip, country, phoneNumber);
+			list.insertAtBack(address);
 
-		print("Is the following information correct? (Y or N)");
-		print("");
+			print("Is the following information correct? (Y or N)");
+			print("");
 
-		print("First Name: " + address.getfName());
-		print("Last Name:  " + address.getlName());
-		print("Address:    " + address.getStreetAddress());
-		print("City:       " + address.getCity());
-		print("State:      " + address.getState());
-		print("Zip Code:   " + address.getZip());
-		print("Country:    " + address.getZip());
-		print("Phone:      " + address.getPhoneNumber());
+			print("First Name: " + address.getfName());
+			print("Last Name:  " + address.getlName());
+			print("Address:    " + address.getStreetAddress());
+			print("City:       " + address.getCity());
+			print("State:      " + address.getState());
+			print("Zip Code:   " + address.getZip());
+			print("Country:    " + address.getZip());
+			print("Phone:      " + address.getPhoneNumber());
+
+			String s = scan.nextLine();
+			s = s.toLowerCase();
+			if (s.charAt(0) == 'y')
+				correct = true;
+		}
 	}
 
 	public static void printOptions() {
