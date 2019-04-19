@@ -76,6 +76,7 @@ public class AddressBook {
 		print("I will interactivly guide you to create an entry in your "
 				+ "address book.");
 		print("");
+
 		print("What is the first name of the entry?");
 		String fName = scan.nextLine();
 
@@ -103,6 +104,18 @@ public class AddressBook {
 		Address address = new Address(fName, lName, streetAddress,
 				city, state, zip, country, phoneNumber);
 		list.insertAtBack(address);
+
+		print("Is the following information correct? (Y or N)");
+		print("");
+
+		print("First Name: " + address.getfName());
+		print("Last Name:  " + address.getlName());
+		print("Address:    " + address.getStreetAddress());
+		print("City:       " + address.getCity());
+		print("State:      " + address.getState());
+		print("Zip Code:   " + address.getZip());
+		print("Country:    " + address.getZip());
+		print("Phone:      " + address.getPhoneNumber());
 	}
 
 	public static void printOptions() {
