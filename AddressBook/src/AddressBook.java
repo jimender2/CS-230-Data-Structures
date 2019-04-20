@@ -34,8 +34,7 @@ public class AddressBook {
 					System.out.println("It looks like your address book"
 							+ "is not saved.");
 					System.out.println("Would you like to save? (Y or N)");
-					String s = scan.nextLine();
-					s = s.toLowerCase();
+					String s = scan.nextLine().toLowerCase();
 					if (s.charAt(0) == 'Y')
 						saveRecord();
 				}
@@ -62,6 +61,81 @@ public class AddressBook {
 
 	private static void modifyRecord() {
 		clear();
+
+		boolean again = true;
+		Address address = null;
+
+		LinkedList<Address> tempList = new LinkedList<Address>(list);
+
+
+		String lastName = scan.nextLine();
+		for(int i = 0; i < list.size(); i++) {
+			address = tempList.removeFromFront();
+			if(address.getlName().toLowerCase().contentEquals(lastName)) {
+				break;
+			}
+		}
+
+		if(address == null) {
+			System.out.println("I am sorry. It looks like there is not an"
+					+ " entry that has a last name of " + lastName + ".");
+			return;
+		}
+
+		while(again) {
+			int nextOp = 0;
+
+			print("1. Change First Name");
+			print("2. Change Last Name");
+			print("3. Change Street Address");
+			print("4. Change City");
+			print("5. Change State");
+			print("6. Change Zip Code");
+			print("7. Change Country");
+			print("8. Change Phone Number");
+
+			System.out.println("Type the number of the option you would"
+					+ " like to perform.");
+			String temp;
+			int option;
+			option = scan.nextInt();
+			if(option == 1) {
+				temp = scan.nextLine();
+				address.setfName(temp);
+			} else if(option == 2) {
+				temp = scan.nextLine();
+				address.setlName(temp);
+			} else if(option == 3) {
+				temp = scan.nextLine();
+				address.setStreetAddress(temp);
+			} else if(option == 4) {
+				temp = scan.nextLine();
+				address.setCity(temp);
+			} else if(option == 5) {
+				temp = scan.nextLine();
+				address.setState(temp);
+			} else if(option == 6) {
+				temp = scan.nextLine();
+				address.setZip(temp);
+			} else if(option == 7) {
+				temp = scan.nextLine();
+				address.setCountry(temp);
+			} else if(option == 8) {
+				temp = scan.nextLine();
+				address.setPhoneNumber(temp);
+			} else if(option == 9) {
+			}
+
+			System.out.println("Would you like to make more changes to "
+					+ "this entry? (Y or N)");
+			String run = scan.next().toLowerCase();
+
+			if(run.)
+		}
+		System.out.println("Here is your entry with the new changes:");
+		list(address);
+
+
 	}
 
 	private static void deleteRecord() {
