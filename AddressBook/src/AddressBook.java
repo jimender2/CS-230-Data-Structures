@@ -1,11 +1,14 @@
 import java.util.Scanner;
 
+/**
+ * @author Jonathan Meredith
+ *
+ */
 public class AddressBook {
 
 	static Scanner scan = new Scanner(System.in);
 	static LinkedList<Address> list = new LinkedList<>();
 	static boolean saved = false;
-
 
 	public static void main(String[] args) {
 		int selection = -1;
@@ -43,6 +46,9 @@ public class AddressBook {
 		}
 	}
 
+	/**
+	 *
+	 */
 	private static void printRecord() {
 		LinkedList<Address> use = new LinkedList<>(list);
 		print("Here are all of the addresses stored in your address book!!\n\n");
@@ -51,6 +57,9 @@ public class AddressBook {
 		}
 	}
 
+	/**
+	 *
+	 */
 	private static void retrieveRecord() {
 		clear();
 
@@ -76,23 +85,29 @@ public class AddressBook {
 		print(address.toString());
 	}
 
+	/**
+	 *
+	 */
 	private static void saveRecord() {
 		clear();
 	}
 
+	/**
+	 *
+	 */
 	private static void modifyRecord() {
 		clear();
 
 		boolean again = true;
 		Address address = null;
 
-		LinkedList<Address> tempList = new LinkedList<Address>(list);
-
+		LinkedList<Address> tempList = new LinkedList<>(list);
 
 		String lastName = scan.nextLine();
+
 		for(int i = 0; i < list.size(); i++) {
 			address = tempList.removeFromFront();
-			if(address.getlName().toLowerCase().contentEquals(lastName)) {
+			if(address.getlName().toLowerCase().contentEquals(lastName.toLowerCase())) {
 				break;
 			}
 		}
@@ -121,28 +136,37 @@ public class AddressBook {
 			String temp;
 			int option;
 			option = scan.nextInt();
+			scan.nextLine();
 			if(option == 1) {
 				temp = scan.nextLine();
+				print("Please enter the new first name: ");
 				address.setfName(temp);
 			} else if(option == 2) {
+				print("Please enter the new last name: ");
 				temp = scan.nextLine();
 				address.setlName(temp);
 			} else if(option == 3) {
+				print("Please enter the new Street Address: ");
 				temp = scan.nextLine();
 				address.setStreetAddress(temp);
 			} else if(option == 4) {
+				print("Please enter the new City: ");
 				temp = scan.nextLine();
 				address.setCity(temp);
 			} else if(option == 5) {
+				print("Please enter the new State: ");
 				temp = scan.nextLine();
 				address.setState(temp);
 			} else if(option == 6) {
+				print("Please enter the new Zip Code: ");
 				temp = scan.nextLine();
 				address.setZip(temp);
 			} else if(option == 7) {
+				print("Please enter the new Country: ");
 				temp = scan.nextLine();
 				address.setCountry(temp);
 			} else if(option == 8) {
+				print("Please enter the new phone number: ");
 				temp = scan.nextLine();
 				address.setPhoneNumber(temp);
 			} else if(option == 9) {
@@ -166,10 +190,16 @@ public class AddressBook {
 
 	}
 
+	/**
+	 *
+	 */
 	private static void deleteRecord() {
 		clear();
 	}
 
+	/**
+	 *
+	 */
 	private static void viewRecord() {
 		clear();
 
@@ -195,48 +225,63 @@ public class AddressBook {
 		print(address.toString());
 	}
 
+	/**
+	 *
+	 */
 	private static void addRecord() {
 		clear();
 		boolean correct = false;
 
-		print("I will interactivly guide you to create an entry in "
-				+ "your address book.");
-		print("");
+		while(!correct) {
+			print("I will interactivly guide you to create an entry in "
+					+ "your address book.");
+			print("");
 
-		print("What is the first name of the entry?");
-		String fName = scan.nextLine();
+			print("What is the first name of the entry?");
+			String fName = scan.nextLine();
 
-		print("What is the last name of the entry?");
-		String lName = scan.nextLine();
+			print("What is the last name of the entry?");
+			String lName = scan.nextLine();
 
-		print("What is the street address of the entry?");
-		String streetAddress = scan.nextLine();
+			print("What is the street address of the entry?");
+			String streetAddress = scan.nextLine();
 
-		print("What is the city of the entry?");
-		String city = scan.nextLine();
+			print("What is the city of the entry?");
+			String city = scan.nextLine();
 
-		print("What is the state of the entry?");
-		String state = scan.nextLine();
+			print("What is the state of the entry?");
+			String state = scan.nextLine();
 
-		print("What is the zip code of the entry?");
-		String zip = scan.nextLine();
+			print("What is the zip code of the entry?");
+			String zip = scan.nextLine();
 
-		print("What is the country of the entry?");
-		String country = scan.nextLine();
+			print("What is the country of the entry?");
+			String country = scan.nextLine();
 
-		print("What is the phone number of the entry?");
-		String phoneNumber = scan.nextLine();
+			print("What is the phone number of the entry?");
+			String phoneNumber = scan.nextLine();
 
-		Address address = new Address(fName, lName, streetAddress,
-				city, state, zip, country, phoneNumber);
+			Address address = new Address(fName, lName, streetAddress,
+					city, state, zip, country, phoneNumber);
 
-		print("Is the following information correct? (Y or N)");
-		print("");
+			print("Is the following information correct? (Y or N)");
+			print("");
 
-		list(address);
+			list(address);
 
+			String temp = scan.nextLine().toLowerCase();
+
+			if (temp.charAt(0) == 'y') {
+				correct = true;
+				list.insertAtBack(address);
+			}
+
+		}
 	}
 
+	/**
+	 *
+	 */
 	public static void printOptions() {
 		clear();
 		print("Please Select a Number Below:");
@@ -250,11 +295,17 @@ public class AddressBook {
 		print("8. Exit the program");
 	}
 
+	/**
+	 * @param str
+	 */
 	public static void print(String str) {
 		System.out.println(str);
 	}
 
 
+	/**
+	 * @return
+	 */
 	public static int getNumber() {
 		int num = 0;
 		boolean again = true;
@@ -283,7 +334,7 @@ public class AddressBook {
 	}
 
 	public static void clear() {
-		for(int i = 0; i < 100; i++)
+		for(int i = 0; i < 2; i++)
 			print("");
 	}
 
@@ -294,7 +345,7 @@ public class AddressBook {
 		print("City:       " + address.getCity());
 		print("State:      " + address.getState());
 		print("Zip Code:   " + address.getZip());
-		print("Country:    " + address.getZip());
+		print("Country:    " + address.getCountry());
 		print("Phone:      " + address.getPhoneNumber());
 	}
 
