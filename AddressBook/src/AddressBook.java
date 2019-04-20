@@ -31,9 +31,9 @@ public class AddressBook {
 				printRecord();
 			else if(selection == 8) {
 				if (!saved){
-					System.out.println("It looks like your address book"
+					print("It looks like your address book"
 							+ "is not saved.");
-					System.out.println("Would you like to save? (Y or N)");
+					print("Would you like to save? (Y or N)");
 					String s = scan.nextLine().toLowerCase();
 					if (s.charAt(0) == 'Y')
 						saveRecord();
@@ -44,15 +44,36 @@ public class AddressBook {
 	}
 
 	private static void printRecord() {
-		LinkedList<Address> use = new LinkedList<Address>(list);
-		System.out.println("Here are all of the addresses stored in your address book!!\n\n");
+		LinkedList<Address> use = new LinkedList<>(list);
+		print("Here are all of the addresses stored in your address book!!\n\n");
 		for(int i = 0; i < list.size(); i++) {
-			System.out.println(use.removeFromFront() + "\n");
+			print(use.removeFromFront() + "\n");
 		}
 	}
 
 	private static void retrieveRecord() {
 		clear();
+
+		Address address = null;
+
+		LinkedList<Address> tempList = new LinkedList<>(list);
+
+
+		String zip = scan.nextLine();
+		for(int i = 0; i < list.size(); i++) {
+			address = tempList.removeFromFront();
+			if(address.getZip().toLowerCase().contentEquals(zip)) {
+				break;
+			}
+		}
+
+		if(address == null) {
+			print("I am sorry. It looks like there is not an"
+					+ " entry that has a zipcode of " + zip + ".");
+			return;
+		}
+
+		print(address.toString());
 	}
 
 	private static void saveRecord() {
@@ -77,7 +98,7 @@ public class AddressBook {
 		}
 
 		if(address == null) {
-			System.out.println("I am sorry. It looks like there is not an"
+			print("I am sorry. It looks like there is not an"
 					+ " entry that has a last name of " + lastName + ".");
 			return;
 		}
@@ -93,8 +114,9 @@ public class AddressBook {
 			print("6. Change Zip Code");
 			print("7. Change Country");
 			print("8. Change Phone Number");
+			print("9. Finished with changes");
 
-			System.out.println("Type the number of the option you would"
+			print("Type the number of the option you would"
 					+ " like to perform.");
 			String temp;
 			int option;
@@ -124,15 +146,21 @@ public class AddressBook {
 				temp = scan.nextLine();
 				address.setPhoneNumber(temp);
 			} else if(option == 9) {
+				break;
 			}
 
-			System.out.println("Would you like to make more changes to "
+			print("Would you like to make more changes to "
 					+ "this entry? (Y or N)");
 			String run = scan.next().toLowerCase();
 
-			if(run.)
+			if( run.charAt(0) == 'y') {
+				again = true;
+			} else if (run.charAt(0) == 'n') {
+				again = false;
+			}
+
 		}
-		System.out.println("Here is your entry with the new changes:");
+		print("Here is your entry with the new changes:");
 		list(address);
 
 
@@ -144,6 +172,27 @@ public class AddressBook {
 
 	private static void viewRecord() {
 		clear();
+
+		Address address = null;
+
+		LinkedList<Address> tempList = new LinkedList<>(list);
+
+
+		String lastName = scan.nextLine();
+		for(int i = 0; i < list.size(); i++) {
+			address = tempList.removeFromFront();
+			if(address.getlName().toLowerCase().contentEquals(lastName)) {
+				break;
+			}
+		}
+
+		if(address == null) {
+			print("I am sorry. It looks like there is not an"
+					+ " entry that has a last name of " + lastName + ".");
+			return;
+		}
+
+		print(address.toString());
 	}
 
 	private static void addRecord() {
@@ -235,7 +284,7 @@ public class AddressBook {
 
 	public static void clear() {
 		for(int i = 0; i < 100; i++)
-			System.out.println();
+			print("");
 	}
 
 	public static void list(Address address) {
