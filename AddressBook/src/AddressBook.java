@@ -42,7 +42,7 @@ public class AddressBook {
 			else if(selection == 8) {
 				if (!saved){
 					java.awt.Toolkit.getDefaultToolkit().beep();
-					print("It looks like your address book"
+					print("It looks like your address book "
 							+ "is not saved.");
 					print("Would you like to save? (Y or N)");
 					String s = scan.nextLine().toLowerCase();
@@ -88,11 +88,19 @@ public class AddressBook {
 	 *
 	 */
 	private static void printRecord() {
+		clear();
 		LinkedList<Address> tempAddress = new LinkedList<>(list);
 		print("Here are all of the addresses that are in your address "
 				+ "book");
 		for(int i = 0; i < list.size(); i++) {
-			print(i+1 + ". " +tempAddress.removeFromFront().toString());
+			Address address = tempAddress.removeFromFront();
+			print(address.getfName() + " " + address.getlName());
+			print(address.getStreetAddress());
+			print(address.getCity() + ", " + address.getState() + " "
+					+ address.getZip());
+			print(address.getCountry());
+			print(address.getPhoneNumber());
+			print("");
 		}
 		pause();
 	}
@@ -107,7 +115,7 @@ public class AddressBook {
 
 		LinkedList<Address> tempList = new LinkedList<>(list);
 
-
+		print("What is the last name of the person you want to look up?");
 		String zip = scan.nextLine();
 		for(int i = 0; i < list.size(); i++) {
 			address = tempList.removeFromFront();
@@ -124,6 +132,7 @@ public class AddressBook {
 		}
 
 		print(address.toString());
+		pause();
 	}
 
 	/**
@@ -138,7 +147,7 @@ public class AddressBook {
 
 		LinkedList<Address> tempAddress = new LinkedList<Address>(list);
 
-		PrintWriter print = new PrintWriter("addressBook.txt");
+		PrintWriter print = new PrintWriter("addresses.txt");
 		for(int i = 0; i < list.size(); i++) {
 			Address address = tempAddress.removeFromFront();
 			print.println(address.getfName());
@@ -152,6 +161,9 @@ public class AddressBook {
 			print.println();
 		}
 
+		print.close();
+
+		saved = true;
 		print("I am finished saving your address book.");
 
 		pause();
@@ -209,34 +221,42 @@ public class AddressBook {
 				temp = scan.nextLine();
 				print("Please enter the new first name: ");
 				address.setfName(temp);
+				saved = false;
 			} else if(option == 2) {
 				print("Please enter the new last name: ");
 				temp = scan.nextLine();
 				address.setlName(temp);
+				saved = false;
 			} else if(option == 3) {
 				print("Please enter the new Street Address: ");
 				temp = scan.nextLine();
+				saved = false;
 				address.setStreetAddress(temp);
 			} else if(option == 4) {
 				print("Please enter the new City: ");
 				temp = scan.nextLine();
 				address.setCity(temp);
+				saved = false;
 			} else if(option == 5) {
 				print("Please enter the new State: ");
 				temp = scan.nextLine();
 				address.setState(temp);
+				saved = false;
 			} else if(option == 6) {
 				print("Please enter the new Zip Code: ");
 				temp = scan.nextLine();
 				address.setZip(temp);
+				saved = false;
 			} else if(option == 7) {
 				print("Please enter the new Country: ");
 				temp = scan.nextLine();
 				address.setCountry(temp);
+				saved = false;
 			} else if(option == 8) {
 				print("Please enter the new phone number: ");
 				temp = scan.nextLine();
 				address.setPhoneNumber(temp);
+				saved = false;
 			} else if(option == 9) {
 				break;
 			}
@@ -283,6 +303,8 @@ public class AddressBook {
 					+ " entry that has a last name of " + lastName + ".");
 		}
 
+		saved = false;
+
 		pause();
 	}
 
@@ -312,8 +334,9 @@ public class AddressBook {
 			return;
 		}
 
-		pause();
 		print(address.toString());
+		pause();
+
 	}
 
 	/**
@@ -355,6 +378,8 @@ public class AddressBook {
 			Address address = new Address(fName, lName, streetAddress,
 					city, state, zip, country, phoneNumber);
 
+			clear();
+
 			print("Is the following information correct? (Y or N)");
 			print("");
 
@@ -362,9 +387,12 @@ public class AddressBook {
 
 			String temp = scan.nextLine().toLowerCase();
 
+			saved = false;
+
 			if (temp.charAt(0) == 'y') {
 				correct = true;
 				list.insertAtBack(address);
+				print("This entry has been added to your address book.");
 			}
 
 		}
@@ -375,6 +403,9 @@ public class AddressBook {
 	 */
 	public static void printOptions() {
 		clear();
+		title();
+		print("");
+		print("");
 		print("Please Select a Number Below:");
 		print("1. Add a new address record");
 		print("2. View an existing address record");
@@ -410,13 +441,13 @@ public class AddressBook {
 					scan.nextLine();
 					return num;
 				} else {
-					System.out.println("I'm sorry, the year you entered"
+					System.out.println("I'm sorry, the option you entered"
 							+ " was invalid. Please try again.");
 				}
 			} catch (Exception InputMismatchException) {
 				System.out.println();
 				System.out.println("I'm sorry, what you entered was not a "
-						+ "valid year. Please try again.");
+						+ "valid option. Please try again.");
 				scan.next();
 			}
 
@@ -425,7 +456,7 @@ public class AddressBook {
 	}
 
 	public static void clear() {
-		for(int i = 0; i < 2; i++)
+		for(int i = 0; i < 100; i++)
 			print("");
 	}
 
@@ -436,6 +467,7 @@ public class AddressBook {
 		scan.nextLine();
 
 	}
+
 	public static void list(Address address) {
 		print("First Name: " + address.getfName());
 		print("Last Name:  " + address.getlName());
@@ -445,6 +477,23 @@ public class AddressBook {
 		print("Zip Code:   " + address.getZip());
 		print("Country:    " + address.getCountry());
 		print("Phone:      " + address.getPhoneNumber());
+	}
+
+	public static void title() {
+		print("   ___      _     _                    ______             _"
+				+ "    ");
+		print("  / _ \\    | |   | |                   | ___ \\           "
+				+ "| |   ");
+		print(" / /_\\ \\ __| | __| |_ __ ___  ___ ___  | |_/ / ___   ___ "
+				+ "| | __");
+		print(" |  _  |/ _` |/ _` | '__/ _ \\/ __/ __| | ___ \\/ _ \\ / _ "
+				+ "\\| |/ /");
+		print(" | | | | (_| | (_| | | |  __/\\__ \\__ \\ | |_/ / (_) | (_)"
+				+ " |   < ");
+		print(" \\_| |_/\\__,_|\\__,_|_|  \\___||___/___/ \\____/ \\___/ "
+				+ "\\___/|_|\\_\\");
+
+
 	}
 
 }
