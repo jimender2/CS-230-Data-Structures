@@ -52,6 +52,13 @@ public class AddressBook {
 				selection = 0;
 			}
 		}
+		clear();
+		title();
+		print("");
+		print("");
+		print("Thank you for using the Address Book. Feel free to open "
+				+ "me up again in order to look something up or to store "
+				+ "things.");
 	}
 
 	private static void fileRead() throws FileNotFoundException {
@@ -118,8 +125,8 @@ public class AddressBook {
 		}
 
 		if(address == null) {
-			print("I am sorry. It looks like there is not an"
-					+ " entry that has a zipcode of " + zip + ".");
+			print("I am sorry. It looks like there is not an entry that "
+					+ "has a zipcode of " + zip + ".");
 			pause();
 			return;
 		}
@@ -133,7 +140,7 @@ public class AddressBook {
 		print("I am saving your address book.... Please do not exit the "
 				+ "program or turn off your computer.");
 
-		LinkedList<Address> tempAddress = new LinkedList<Address>(list);
+		LinkedList<Address> tempAddress = new LinkedList<>(list);
 
 		PrintWriter print = new PrintWriter("addresses.txt");
 		for(int i = 0; i < list.size(); i++) {
@@ -166,111 +173,115 @@ public class AddressBook {
 
 		LinkedList<Address> tempList = new LinkedList<>(list);
 
+		print("Please enter the last name of the entry that you wish to "
+				+ "modify: ");
 		String lastName = scan.nextLine();
 
 		for(int i = 0; i < list.size(); i++) {
 			address = tempList.removeFromFront();
 			if(address.getlName().toLowerCase().contentEquals(
 					lastName.toLowerCase())) {
-				break;
+				while(again) {
+
+					print("1. Change First Name");
+					print("2. Change Last Name");
+					print("3. Change Street Address");
+					print("4. Change City");
+					print("5. Change State");
+					print("6. Change Zip Code");
+					print("7. Change Country");
+					print("8. Change Phone Number");
+					print("9. Finished with changes");
+
+					print("Type the number of the option you would"
+							+ " like to perform.");
+					String temp;
+					int option;
+					option = scan.nextInt();
+					scan.nextLine();
+					if(option == 1) {
+						temp = scan.nextLine();
+						print("Please enter the new first name: ");
+						address.setfName(temp);
+						saved = false;
+
+					} else if(option == 2) {
+						print("Please enter the new last name: ");
+						temp = scan.nextLine();
+						address.setlName(temp);
+						saved = false;
+
+					} else if(option == 3) {
+						print("Please enter the new Street Address: ");
+						temp = scan.nextLine();
+						saved = false;
+						address.setStreetAddress(temp);
+
+					} else if(option == 4) {
+						print("Please enter the new City: ");
+						temp = scan.nextLine();
+						address.setCity(temp);
+						saved = false;
+
+					} else if(option == 5) {
+						print("Please enter the new State: ");
+						temp = scan.nextLine();
+						address.setState(temp);
+						saved = false;
+
+					} else if(option == 6) {
+						print("Please enter the new Zip Code: ");
+						temp = scan.nextLine();
+						address.setZip(temp);
+						saved = false;
+
+					} else if(option == 7) {
+						print("Please enter the new Country: ");
+						temp = scan.nextLine();
+						address.setCountry(temp);
+						saved = false;
+
+					} else if(option == 8) {
+						print("Please enter the new phone number: ");
+						temp = scan.nextLine();
+						address.setPhoneNumber(temp);
+						saved = false;
+
+					} else if(option == 9) {
+						break;
+
+					}
+
+					print("Would you like to make more changes to "
+							+ "this entry? (Y or N)");
+					String run = scan.next().toLowerCase();
+
+					if( run.charAt(0) == 'y') {
+						again = true;
+					} else if (run.charAt(0) == 'n') {
+						again = false;
+					}
+
+				}
+				print("Here is your entry with the new changes:");
+				list(address);
+
+				pause();
+				return;
 			}
 		}
 
 		if(address == null) {
-			print("I am sorry. It looks like there is not an"
-					+ " entry that has a last name of " + lastName + ".");
+			print("I am sorry. It looks like there is not an entry that "
+					+ "has a last name of " + lastName + ".");
 			pause();
 			return;
 		}
 
-		while(again) {
-			int nextOp = 0;
-
-			print("1. Change First Name");
-			print("2. Change Last Name");
-			print("3. Change Street Address");
-			print("4. Change City");
-			print("5. Change State");
-			print("6. Change Zip Code");
-			print("7. Change Country");
-			print("8. Change Phone Number");
-			print("9. Finished with changes");
-
-			print("Type the number of the option you would"
-					+ " like to perform.");
-			String temp;
-			int option;
-			option = scan.nextInt();
-			scan.nextLine();
-			if(option == 1) {
-				temp = scan.nextLine();
-				print("Please enter the new first name: ");
-				address.setfName(temp);
-				saved = false;
-
-			} else if(option == 2) {
-				print("Please enter the new last name: ");
-				temp = scan.nextLine();
-				address.setlName(temp);
-				saved = false;
-
-			} else if(option == 3) {
-				print("Please enter the new Street Address: ");
-				temp = scan.nextLine();
-				saved = false;
-				address.setStreetAddress(temp);
-
-			} else if(option == 4) {
-				print("Please enter the new City: ");
-				temp = scan.nextLine();
-				address.setCity(temp);
-				saved = false;
-
-			} else if(option == 5) {
-				print("Please enter the new State: ");
-				temp = scan.nextLine();
-				address.setState(temp);
-				saved = false;
-
-			} else if(option == 6) {
-				print("Please enter the new Zip Code: ");
-				temp = scan.nextLine();
-				address.setZip(temp);
-				saved = false;
-
-			} else if(option == 7) {
-				print("Please enter the new Country: ");
-				temp = scan.nextLine();
-				address.setCountry(temp);
-				saved = false;
-
-			} else if(option == 8) {
-				print("Please enter the new phone number: ");
-				temp = scan.nextLine();
-				address.setPhoneNumber(temp);
-				saved = false;
-
-			} else if(option == 9) {
-				break;
-
-			}
-
-			print("Would you like to make more changes to "
-					+ "this entry? (Y or N)");
-			String run = scan.next().toLowerCase();
-
-			if( run.charAt(0) == 'y') {
-				again = true;
-			} else if (run.charAt(0) == 'n') {
-				again = false;
-			}
-
-		}
-		print("Here is your entry with the new changes:");
-		list(address);
-
+		print("I am sorry. It looks like there is not an entry that "
+				+ "has a last name of " + lastName + ".");
 		pause();
-
+		return;
 	}
 
 	private static void deleteRecord() {
@@ -287,17 +298,23 @@ public class AddressBook {
 			if(address.getlName().toLowerCase().contentEquals(
 					lastName.toLowerCase())) {
 				list.remove(address);
+				saved = false;
 				print("The entry with the last name of " + lastName + " "
 						+ "has been removed.");
+				pause();
+				return;
 			}
 		}
 
 		if(address == null) {
-			print("I am sorry. It looks like there is not an"
-					+ " entry that has a last name of " + lastName + ".");
+			print("I am sorry. It looks like there is not an entry that "
+					+ "has a last name of " + lastName + ".");
+			pause();
+			return;
 		}
 
-		saved = false;
+		print("I am sorry. It looks like there is not an entry that "
+				+ "has a last name of " + lastName + ".");
 
 		pause();
 	}
