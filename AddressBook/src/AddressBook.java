@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -40,6 +41,7 @@ public class AddressBook {
 				printRecord();
 			else if(selection == 8) {
 				if (!saved){
+					java.awt.Toolkit.getDefaultToolkit().beep();
 					print("It looks like your address book"
 							+ "is not saved.");
 					print("Would you like to save? (Y or N)");
@@ -87,7 +89,8 @@ public class AddressBook {
 	 */
 	private static void printRecord() {
 		LinkedList<Address> tempAddress = new LinkedList<>(list);
-		print("Here are all of the addresses stored in your address book!!\n\n");
+		print("Here are all of the addresses that are in your address "
+				+ "book");
 		for(int i = 0; i < list.size(); i++) {
 			print(i+1 + ". " +tempAddress.removeFromFront().toString());
 		}
@@ -124,10 +127,35 @@ public class AddressBook {
 	}
 
 	/**
+	 * @throws FileNotFoundException
 	 *
 	 */
-	private static void saveRecord() {
+	private static void saveRecord() throws FileNotFoundException {
 		clear();
+
+		print("I am saving your address book.... Please do not exit the "
+				+ "program or turn off your computer.");
+
+		LinkedList<Address> tempAddress = new LinkedList<Address>(list);
+
+		PrintWriter print = new PrintWriter("addressBook.txt");
+		for(int i = 0; i < list.size(); i++) {
+			Address address = tempAddress.removeFromFront();
+			print.println(address.getfName());
+			print.println(address.getlName());
+			print.println(address.getStreetAddress());
+			print.println(address.getCity());
+			print.println(address.getState());
+			print.println(address.getZip());
+			print.println(address.getCountry());
+			print.println(address.getPhoneNumber());
+			print.println();
+		}
+
+		print("I am finished saving your address book.");
+
+		pause();
+
 	}
 
 	/**
@@ -145,7 +173,8 @@ public class AddressBook {
 
 		for(int i = 0; i < list.size(); i++) {
 			address = tempList.removeFromFront();
-			if(address.getlName().toLowerCase().contentEquals(lastName.toLowerCase())) {
+			if(address.getlName().toLowerCase().contentEquals(
+					lastName.toLowerCase())) {
 				break;
 			}
 		}
