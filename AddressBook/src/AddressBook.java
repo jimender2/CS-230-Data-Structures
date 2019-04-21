@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -10,8 +12,12 @@ public class AddressBook {
 	static LinkedList<Address> list = new LinkedList<>();
 	static boolean saved = false;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
+
+		fileRead();
+
 		int selection = -1;
+
 		while(selection != 0) {
 
 			printOptions();
@@ -47,14 +53,45 @@ public class AddressBook {
 	}
 
 	/**
+	 * @throws FileNotFoundException
+	 *
+	 */
+	private static void fileRead() throws FileNotFoundException {
+
+		Scanner file = new Scanner(new File("addresses.txt"));
+
+		while(file.hasNext()) {
+			Address address = new Address();
+
+			address.setfName(file.nextLine());
+			address.setlName(file.nextLine());
+			address.setStreetAddress(file.nextLine());
+			address.setCity(file.nextLine());
+			address.setState(file.nextLine());
+			address.setZip(file.nextLine());
+			address.setCountry(file.nextLine());
+			address.setPhoneNumber(file.nextLine());
+
+			file.nextLine();
+
+			list.insertAtBack(address);
+
+		}
+
+		file.close();
+
+	}
+
+	/**
 	 *
 	 */
 	private static void printRecord() {
-		LinkedList<Address> use = new LinkedList<>(list);
+		LinkedList<Address> tempAddress = new LinkedList<>(list);
 		print("Here are all of the addresses stored in your address book!!\n\n");
 		for(int i = 0; i < list.size(); i++) {
-			print(use.removeFromFront() + "\n");
+			print(i+1 + ". " +tempAddress.removeFromFront().toString());
 		}
+		pause();
 	}
 
 	/**
@@ -79,6 +116,7 @@ public class AddressBook {
 		if(address == null) {
 			print("I am sorry. It looks like there is not an"
 					+ " entry that has a zipcode of " + zip + ".");
+			pause();
 			return;
 		}
 
@@ -115,6 +153,7 @@ public class AddressBook {
 		if(address == null) {
 			print("I am sorry. It looks like there is not an"
 					+ " entry that has a last name of " + lastName + ".");
+			pause();
 			return;
 		}
 
@@ -187,6 +226,7 @@ public class AddressBook {
 		print("Here is your entry with the new changes:");
 		list(address);
 
+		pause();
 
 	}
 
@@ -195,6 +235,26 @@ public class AddressBook {
 	 */
 	private static void deleteRecord() {
 		clear();
+
+		LinkedList<Address> tempList = new LinkedList<>(list);
+		Address address = null;
+
+		String lastName = scan.nextLine();
+		for(int i = 0; i < list.size(); i++) {
+			address = tempList.removeFromFront();
+			if(address.getlName().toLowerCase().contentEquals(lastName)) {
+				list.remove(address);
+				print("The entry with the last name of " + lastName + " "
+						+ "has been removed.");
+			}
+		}
+
+		if(address == null) {
+			print("I am sorry. It looks like there is not an"
+					+ " entry that has a last name of " + lastName + ".");
+		}
+
+		pause();
 	}
 
 	/**
@@ -219,9 +279,11 @@ public class AddressBook {
 		if(address == null) {
 			print("I am sorry. It looks like there is not an"
 					+ " entry that has a last name of " + lastName + ".");
+			pause();
 			return;
 		}
 
+		pause();
 		print(address.toString());
 	}
 
@@ -338,6 +400,13 @@ public class AddressBook {
 			print("");
 	}
 
+	public static void pause() {
+		print("");
+		print("");
+		print("Press the enter key to continue");
+		scan.nextLine();
+
+	}
 	public static void list(Address address) {
 		print("First Name: " + address.getfName());
 		print("Last Name:  " + address.getlName());
