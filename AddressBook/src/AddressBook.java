@@ -11,7 +11,7 @@ public class AddressBook {
 
 	static Scanner scan = new Scanner(System.in);
 	static LinkedList<Address> list = new LinkedList<>();
-	static boolean saved = false;
+	static boolean saved = true;
 
 	public static void main(String[] args) throws FileNotFoundException {
 
@@ -46,7 +46,7 @@ public class AddressBook {
 							+ "is not saved.");
 					print("Would you like to save? (Y or N)");
 					String s = scan.nextLine().toLowerCase();
-					if (s.charAt(0) == 'Y')
+					if (s.charAt(0) == 'y')
 						saveRecord();
 				}
 				selection = 0;
@@ -54,10 +54,6 @@ public class AddressBook {
 		}
 	}
 
-	/**
-	 * @throws FileNotFoundException
-	 *
-	 */
 	private static void fileRead() throws FileNotFoundException {
 
 		Scanner file = new Scanner(new File("addresses.txt"));
@@ -84,14 +80,12 @@ public class AddressBook {
 
 	}
 
-	/**
-	 *
-	 */
 	private static void printRecord() {
 		clear();
 		LinkedList<Address> tempAddress = new LinkedList<>(list);
 		print("Here are all of the addresses that are in your address "
 				+ "book");
+		print("");
 		for(int i = 0; i < list.size(); i++) {
 			Address address = tempAddress.removeFromFront();
 			print(address.getfName() + " " + address.getlName());
@@ -105,9 +99,6 @@ public class AddressBook {
 		pause();
 	}
 
-	/**
-	 *
-	 */
 	private static void retrieveRecord() {
 		clear();
 
@@ -115,11 +106,13 @@ public class AddressBook {
 
 		LinkedList<Address> tempList = new LinkedList<>(list);
 
-		print("What is the last name of the person you want to look up?");
+		print("What is the zip code of the person you want to look up?");
 		String zip = scan.nextLine();
 		for(int i = 0; i < list.size(); i++) {
 			address = tempList.removeFromFront();
-			if(address.getZip().toLowerCase().contentEquals(zip)) {
+			if(address.getZip().toLowerCase().contentEquals(
+					zip.toLowerCase())) {
+				print(address.toString());
 				break;
 			}
 		}
@@ -131,14 +124,9 @@ public class AddressBook {
 			return;
 		}
 
-		print(address.toString());
 		pause();
 	}
 
-	/**
-	 * @throws FileNotFoundException
-	 *
-	 */
 	private static void saveRecord() throws FileNotFoundException {
 		clear();
 
@@ -170,9 +158,6 @@ public class AddressBook {
 
 	}
 
-	/**
-	 *
-	 */
 	private static void modifyRecord() {
 		clear();
 
@@ -222,43 +207,52 @@ public class AddressBook {
 				print("Please enter the new first name: ");
 				address.setfName(temp);
 				saved = false;
+
 			} else if(option == 2) {
 				print("Please enter the new last name: ");
 				temp = scan.nextLine();
 				address.setlName(temp);
 				saved = false;
+
 			} else if(option == 3) {
 				print("Please enter the new Street Address: ");
 				temp = scan.nextLine();
 				saved = false;
 				address.setStreetAddress(temp);
+
 			} else if(option == 4) {
 				print("Please enter the new City: ");
 				temp = scan.nextLine();
 				address.setCity(temp);
 				saved = false;
+
 			} else if(option == 5) {
 				print("Please enter the new State: ");
 				temp = scan.nextLine();
 				address.setState(temp);
 				saved = false;
+
 			} else if(option == 6) {
 				print("Please enter the new Zip Code: ");
 				temp = scan.nextLine();
 				address.setZip(temp);
 				saved = false;
+
 			} else if(option == 7) {
 				print("Please enter the new Country: ");
 				temp = scan.nextLine();
 				address.setCountry(temp);
 				saved = false;
+
 			} else if(option == 8) {
 				print("Please enter the new phone number: ");
 				temp = scan.nextLine();
 				address.setPhoneNumber(temp);
 				saved = false;
+
 			} else if(option == 9) {
 				break;
+
 			}
 
 			print("Would you like to make more changes to "
@@ -279,19 +273,19 @@ public class AddressBook {
 
 	}
 
-	/**
-	 *
-	 */
 	private static void deleteRecord() {
 		clear();
 
 		LinkedList<Address> tempList = new LinkedList<>(list);
 		Address address = null;
 
+		print("Please enter the last name of the entry that you wish to "
+				+ "delete");
 		String lastName = scan.nextLine();
 		for(int i = 0; i < list.size(); i++) {
 			address = tempList.removeFromFront();
-			if(address.getlName().toLowerCase().contentEquals(lastName)) {
+			if(address.getlName().toLowerCase().contentEquals(
+					lastName.toLowerCase())) {
 				list.remove(address);
 				print("The entry with the last name of " + lastName + " "
 						+ "has been removed.");
@@ -308,9 +302,6 @@ public class AddressBook {
 		pause();
 	}
 
-	/**
-	 *
-	 */
 	private static void viewRecord() {
 		clear();
 
@@ -318,12 +309,16 @@ public class AddressBook {
 
 		LinkedList<Address> tempList = new LinkedList<>(list);
 
-
+		print("Please enter the last name of the person you want to look "
+				+ "for:");
 		String lastName = scan.nextLine();
 		for(int i = 0; i < list.size(); i++) {
 			address = tempList.removeFromFront();
-			if(address.getlName().toLowerCase().contentEquals(lastName)) {
-				break;
+			if(address.getlName().toLowerCase().contentEquals(
+					lastName.toLowerCase())) {
+				print(address.toString());
+				pause();
+				return;
 			}
 		}
 
@@ -334,14 +329,12 @@ public class AddressBook {
 			return;
 		}
 
-		print(address.toString());
+		print("I am sorry. It looks like there is not an"
+				+ " entry that has a last name of " + lastName + ".");
 		pause();
 
 	}
 
-	/**
-	 *
-	 */
 	private static void addRecord() {
 		clear();
 		boolean correct = false;
@@ -398,9 +391,6 @@ public class AddressBook {
 		}
 	}
 
-	/**
-	 *
-	 */
 	public static void printOptions() {
 		clear();
 		title();
@@ -415,19 +405,14 @@ public class AddressBook {
 		print("6. Retrieve all address entries using zip code");
 		print("7. Print the entire address book on the screen");
 		print("8. Exit the program");
+
+		print("");
 	}
 
-	/**
-	 * @param str
-	 */
 	public static void print(String str) {
 		System.out.println(str);
 	}
 
-
-	/**
-	 * @return
-	 */
 	public static int getNumber() {
 		int num = 0;
 		boolean again = true;
@@ -446,14 +431,15 @@ public class AddressBook {
 				}
 			} catch (Exception InputMismatchException) {
 				System.out.println();
-				System.out.println("I'm sorry, what you entered was not a "
-						+ "valid option. Please try again.");
+				System.out.println("I'm sorry, what you entered was not a"
+						+ " valid option. Please try again.");
 				scan.next();
 			}
 
 		}
 		return num;
 	}
+
 
 	public static void clear() {
 		for(int i = 0; i < 100; i++)
@@ -492,7 +478,6 @@ public class AddressBook {
 				+ " |   < ");
 		print(" \\_| |_/\\__,_|\\__,_|_|  \\___||___/___/ \\____/ \\___/ "
 				+ "\\___/|_|\\_\\");
-
 
 	}
 
