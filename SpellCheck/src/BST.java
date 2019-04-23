@@ -46,10 +46,10 @@ public class BST<T extends Comparable<T>> {
 		while (currentNode != null) {
 			if (currentNode.data.compareTo(item) <= 0) {
 				trailCurrentNode = currentNode;
-				currentNode = currentNode.leftChild;
+				currentNode = currentNode.rightChild;
 			} else {
 				trailCurrentNode = currentNode;
-				currentNode = currentNode.rightChild;
+				currentNode = currentNode.leftChild;
 			}
 		}
 
@@ -57,7 +57,6 @@ public class BST<T extends Comparable<T>> {
 			trailCurrentNode.rightChild = newNode;
 		else
 			trailCurrentNode.leftChild = newNode;
-
 		return;
 	}
 
