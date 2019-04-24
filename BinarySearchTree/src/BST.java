@@ -233,6 +233,19 @@ public class BST<T extends Comparable<T>> {
 			}
 		}
 
+		if (currentNode == null) {
+			System.out.println(item + " not found");
+			return;
+		}
+
+		if (found && currentNode.leftChild == null && currentNode.rightChild == null) {
+			if (trailCurrentNode.data.compareTo(item) < 0)
+				trailCurrentNode.rightChild = null;
+			else
+				trailCurrentNode.leftChild = null;
+			return;
+		}
+
 		return;
 	}
 
