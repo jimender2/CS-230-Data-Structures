@@ -246,7 +246,23 @@ public class BST<T extends Comparable<T>> {
 			return;
 		}
 
-		return;
+		if (found && currentNode.leftChild == null && currentNode.rightChild != null) {
+			trailCurrentNode.leftChild = currentNode.rightChild;
+			return;
+		} else {
+			trailCurrentNode.rightChild = currentNode.rightChild;
+			return;
+		}
+		
+		if( found && currentNode.rightChild == null && currentNode.leftChild != null ) {
+			trailCurrentNode.leftChild = currentNode.rightChild;
+			return;
+		} else {
+			trailCurrentNode.rightChild = currentNode.rightChild;
+			return;
+		}
+		
+		}
 	}
 
 }
