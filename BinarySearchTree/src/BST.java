@@ -238,7 +238,7 @@ public class BST<T extends Comparable<T>> {
 			return;
 		}
 
-		if (found && currentNode.leftChild == null && currentNode.rightChild == null) {
+		if (currentNode.leftChild == null && currentNode.rightChild == null) {
 			if (trailCurrentNode.data.compareTo(item) < 0)
 				trailCurrentNode.rightChild = null;
 			else
@@ -246,23 +246,29 @@ public class BST<T extends Comparable<T>> {
 			return;
 		}
 
-		if (found && currentNode.leftChild == null && currentNode.rightChild != null) {
-			trailCurrentNode.leftChild = currentNode.rightChild;
-			return;
-		} else {
-			trailCurrentNode.rightChild = currentNode.rightChild;
-			return;
-		}
-		
-		if( found && currentNode.rightChild == null && currentNode.leftChild != null ) {
-			trailCurrentNode.leftChild = currentNode.rightChild;
-			return;
-		} else {
-			trailCurrentNode.rightChild = currentNode.rightChild;
+		if (currentNode.leftChild == null && currentNode.rightChild != null) {
+			if (trailCurrentNode.data.compareTo(item) < 0)
+				trailCurrentNode.rightChild = currentNode.rightChild;
+			else
+				trailCurrentNode.leftChild = currentNode.rightChild;
 			return;
 		}
-		
+
+		/*
+		 * } else { trailCurrentNode.leftChild = currentNode.leftChild; }
+		 */
+
+		if (currentNode.leftChild != null && currentNode.rightChild == null) {
+			if (trailCurrentNode.data.compareTo(item) < 0)
+				trailCurrentNode.rightChild = currentNode.leftChild;
+			else
+				trailCurrentNode.leftChild = currentNode.leftChild;
+			return;
 		}
+
+		if (currentNode.rightChild != null && currentNode.leftChild != null) {
+			//Ajwas code will go right here
+
 	}
 
 }
