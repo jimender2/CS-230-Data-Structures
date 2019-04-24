@@ -28,6 +28,6 @@ public class SpellCheck {
 		if (misspelled.isEmpty())
 			System.out.println("There are no misspelled words");
 		else
-			dictionary.inOrderTraversal();
+			misspelled.inOrderTraversal();
 	}
 }
