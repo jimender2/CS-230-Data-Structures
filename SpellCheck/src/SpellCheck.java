@@ -12,13 +12,11 @@ public class SpellCheck {
 		}
 		file.close();
 
-		String temp = "";
 		BST<String> misspelled = new BST<>();
-
 		Scanner scan = new Scanner(new File ("sampleText.txt"));
 		while (scan.hasNext()) {
-			temp = scan.nextLine().replaceAll("[.,]", "");
-			String array [] = temp.split(" ");
+			String temp = scan.nextLine().replaceAll("[.,]", "");
+			String[] array = temp.split(" ");
 			for(int i = 0; i < array.length; i++)
 				if( !dictionary.searchFor(array[i]))
 					misspelled.insert(array[i]);
