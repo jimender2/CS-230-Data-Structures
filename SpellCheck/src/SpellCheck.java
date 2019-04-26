@@ -6,7 +6,7 @@ public class SpellCheck {
 
 	public static void main(String args[]) throws FileNotFoundException {
 		BST<String> dictionary = new BST<>();
-		Scanner file = new Scanner(new File ("words.txt"));
+		Scanner file = new Scanner(new File ("dictionary.txt"));
 		while (file.hasNext()) {
 			dictionary.insert(file.nextLine());
 		}

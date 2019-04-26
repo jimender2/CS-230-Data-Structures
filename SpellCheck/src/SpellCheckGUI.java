@@ -329,6 +329,7 @@ public class SpellCheckGUI {
 				System.exit(0);
 			}
 		});
+
 		exitButton.setBounds(50, 200, 163, 23);
 		frame.getContentPane().add(exitButton);
 
@@ -348,7 +349,7 @@ public class SpellCheckGUI {
 
 	private void SpellCheck() throws FileNotFoundException {
 		BSTGUI<String> dictionary = new BSTGUI<>();
-		Scanner file = new Scanner(new File ("words.txt"));
+		Scanner file = new Scanner(new File ("dictionary.txt"));
 		while (file.hasNext()) {
 			dictionary.insert(file.nextLine());
 		}
