@@ -309,13 +309,32 @@ public class SpellCheckGUI {
 				}
 			}
 		});
-		btnNewButton.setBounds(51, 102, 163, 23);
+		btnNewButton.setBounds(50, 100, 163, 23);
 		frame.getContentPane().add(btnNewButton);
+
+		JButton btnButton = new JButton("Reset");
+		btnButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				model.clear();
+			}
+		});
+		btnButton.setBounds(50, 150, 163, 23);
+		frame.getContentPane().add(btnButton);
+
+		JButton exitButton = new JButton("Exit");
+		exitButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		exitButton.setBounds(50, 200, 163, 23);
+		frame.getContentPane().add(exitButton);
 
 		list.setBounds(216, 108, 158, 142);
 		frame.getContentPane().add(list);
 		JScrollPane pane = new JScrollPane(list);
-
 
 		JLabel lblMisspelledWords = new JLabel("Misspelled Words");
 		lblMisspelledWords.setBounds(254, 83, 120, 14);
